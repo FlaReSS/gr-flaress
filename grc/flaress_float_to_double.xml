@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<block>
+  <name>float to double</name>
+  <key>flaress_float_to_double</key>
+  <category>[flaress]</category>
+  <import>import flaress</import>
+  <make>flaress.float_to_double()</make>
+
+  <sink>
+    <name>in</name>
+    <type>float</type>
+  </sink>
+
+  <source>
+    <name>out</name>
+    <type>f64</type>
+  </source>
+</block>

@@ -19,5 +19,6 @@
 # Boston, MA 02110-1301, USA.
 
 install(FILES
-    flaress_selector.xml DESTINATION share/gnuradio/grc/blocks
+    flaress_selector.xml
+    flaress_float_to_double.xml DESTINATION share/gnuradio/grc/blocks
 )

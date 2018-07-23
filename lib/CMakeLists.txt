@@ -29,6 +29,7 @@ link_directories(${Boost_LIBRARY_DIRS})
 list(APPEND flaress_sources
     selector_cc_impl.cc
     selector_ff_impl.cc
+    float_to_double_impl.cc
 )
 
 set(flaress_sources "${flaress_sources}" PARENT_SCOPE)
