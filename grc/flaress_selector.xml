@@ -1,0 +1,75 @@
+<?xml version="1.0"?>
+<block>
+  <name>selector</name>
+  <key>flaress_selector_xx</key>
+  <category>[flaress]</category>
+  <import>import flaress</import>
+  <make>flaress.selector_$(type.fcn)($select, $n_inputs, $n_outputs)</make>
+
+  <callback>set_select($select)</callback>
+
+  <param>
+    <name>IO Type</name>
+    <key>type</key>
+    <type>enum</type>
+    <option>
+      <name>Complex</name>
+      <key>complex</key>
+      <opt>fcn:cc</opt>
+    </option>
+    <option>
+      <name>Float</name>
+      <key>float</key>
+      <opt>fcn:ff</opt>
+    </option>
+  </param>
+
+  <param>
+    <name>select</name>
+    <key>select</key>
+    <type>int</type>
+  </param>
+  <param>
+    <name>number of inputs</name>
+    <key>n_inputs</key>
+    <value>1</value>
+    <type>int</type>
+  </param>
+
+  <param>
+    <name>number of outputs</name>
+    <key>n_outputs</key>
+    <value>1</value>
+    <type>int</type>
+  </param>
+
+  <check>$n_inputs &gt;= 1</check>
+  <check>$n_outputs &gt;= 1</check>
+  <check>$select &gt;= 0</check>
+  <check>($n_inputs &gt; 1 and $n_outputs &lt;= 1) or ($n_outputs &gt; 1 and $n_inputs &lt;= 1)</check>
+  <check>($n_inputs &gt;= $n_outputs and $select &lt;= $n_inputs) or ($n_inputs &lt; $n_outputs and $select &lt;= $n_outputs)</check>
+
+  <!-- Make one 'sink' node per input. Sub-nodes:
+       * name (an identifier for the GUI)
+       * type
+       * vlen
+       * optional (set to 1 for optional inputs) -->
+   <sink>
+     <name>in</name>
+     <type>$type</type>
+     <nports>$n_inputs</nports>
+     <optional>1</optional>
+   </sink>
+
+  <!-- Make one 'source' node per output. Sub-nodes:
+       * name (an identifier for the GUI)
+       * type
+       * vlen
+       * optional (set to 1 for optional inputs) -->
+  <source>
+    <name>out</name>
+    <type>$type</type>
+    <nports>$n_outputs</nports>
+    <optional>1</optional>
+  </source>
+</block>

@@ -1,0 +1,11 @@
+This is the flaress-write-a-block package meant as a guide to building
+out-of-tree packages. To use the flaress blocks, the Python namespaces
+is in 'flaress', which is imported as:
+
+    import flaress
+
+See the Doxygen documentation for details about the blocks available
+in this package. A quick listing of the details can be found in Python
+after importing by using:
+
+    help(flaress)
