@@ -44,7 +44,7 @@ namespace gr {
      * The private constructor
      */
     selector_ff_impl::selector_ff_impl(int select, int n_inputs, int n_outputs)
-      : gr::sync_block("selector_ff",
+      : gr::block("selector_ff",
               gr::io_signature::make(0, n_inputs, sizeof(float)),
               gr::io_signature::make(0, n_outputs, sizeof(float))),
               d_select(select), d_n_inputs(n_inputs), d_n_outputs(n_outputs)
@@ -60,18 +60,38 @@ namespace gr {
     }
 
     int
-    selector_ff_impl::work(int noutput_items,
-        gr_vector_const_void_star &input_items,
-        gr_vector_void_star &output_items)
+    selector_ff_impl::general_work (int noutput_items,
+                       gr_vector_int &ninput_items,
+                       gr_vector_const_void_star &input_items,
+                       gr_vector_void_star &output_items)
     {
+      const float *in[d_n_inputs];
+      float *out[d_n_outputs];
 
-      for(int i = 0; i < noutput_items; i++) {
-          sel_evaluation();
-          const float *in = (const float *) input_items[in_sel];
-          float *out = (float *) output_items[out_sel];
-          out[i]= in[i];
+      for(int x = 0; x < d_n_inputs; x++) {
+        in[x] = (const float *) input_items[x];
       }
-      return noutput_items;
+      for(int y = 0; y < d_n_outputs;y++) {
+        out[y] = (float *) output_items[y];
+      }
+
+      sel_evaluation();
+      for(int i = 0; i < noutput_items; i++) {
+            out[out_sel][i]= in[in_sel][i];
+      }
+
+      for(int z = 0; z < d_n_inputs; z++) {
+          consume(z, noutput_items);
+      }
+
+      for(int w = 0; w < d_n_outputs; w++) {
+        if (w != out_sel )
+          produce(w, 0);
+        else
+          produce(w, noutput_items);
+      }
+
+      return WORK_CALLED_PRODUCE;
     }
 
     void selector_ff_impl::sel_evaluation(){

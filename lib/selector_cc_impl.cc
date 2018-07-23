@@ -81,10 +81,7 @@ namespace gr {
       }
 
       for(int z = 0; z < d_n_inputs; z++) {
-        //if (z == in_sel )
           consume(z, noutput_items);
-        //else
-          //consume(z, 0);
       }
 
       for(int w = 0; w < d_n_outputs; w++) {
@@ -109,11 +106,6 @@ namespace gr {
         out_sel = d_select;
         in_sel = 0;
       }
-      //
-      // if (temp != d_select){
-      //   std::cout<<"select is: "<<d_select<<std::endl;
-      //   temp = d_select;
-      // }
     }
 
     int selector_cc_impl::get_select() const   { return d_select;  }

@@ -23,7 +23,7 @@
 #define INCLUDED_FLARESS_SELECTOR_FF_H
 
 #include <flaress/api.h>
-#include <gnuradio/sync_block.h>
+#include <gnuradio/block.h>
 
 namespace gr {
   namespace flaress {
@@ -33,7 +33,7 @@ namespace gr {
      * \ingroup flaress
      *
      */
-    class FLARESS_API selector_ff : virtual public gr::sync_block
+    class FLARESS_API selector_ff : virtual public gr::block
     {
      public:
       typedef boost::shared_ptr<selector_ff> sptr;

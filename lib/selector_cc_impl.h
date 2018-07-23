@@ -45,8 +45,8 @@ namespace gr {
                          gr_vector_void_star &output_items);
 
       void sel_evaluation();
-     int get_select() const;
-     void set_select(int select);
+      int get_select() const;
+      void set_select(int select);
     };
 
   } // namespace flaress
