@@ -25,5 +25,6 @@ install(FILES
     api.h
     selector_cc.h
     selector_ff.h
-    float_to_double.h DESTINATION include/flaress
+    float_to_double.h
+    float_to_int64.h DESTINATION include/flaress
 )

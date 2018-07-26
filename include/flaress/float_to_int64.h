@@ -19,40 +19,45 @@
  */
 
 
-#ifndef INCLUDED_FLARESS_SELECTOR_FF_H
-#define INCLUDED_FLARESS_SELECTOR_FF_H
+#ifndef INCLUDED_FLARESS_FLOAT_TO_INT64_H
+#define INCLUDED_FLARESS_FLOAT_TO_INT64_H
 
 #include <flaress/api.h>
-#include <gnuradio/block.h>
+#include <gnuradio/sync_block.h>
 
 namespace gr {
   namespace flaress {
 
     /*!
-     * \brief <+description of block+>
-     * \ingroup flaress
+    * \brief Convert stream of floats to a stream of ints.
+    * \ingroup type_converters_blks
      *
      */
-    class FLARESS_API selector_ff : virtual public gr::block
+    class FLARESS_API float_to_int64 : virtual public gr::sync_block
     {
      public:
-      typedef boost::shared_ptr<selector_ff> sptr;
+      typedef boost::shared_ptr<float_to_int64> sptr;
 
       /*!
-       * \brief Return a shared_ptr to a new instance of flaress::selector_ff.
+       * Build a float to int64 block.
        *
-       * To avoid accidental use of raw pointers, flaress::selector_ff's
-       * constructor is in a private implementation
-       * class. flaress::selector_ff::make is the public interface for
-       * creating new instances.
+       * \param vlen vector length of data streams.
+       * \param scale a scalar multiplier to change the output signal scale.
        */
-      static sptr make(size_t vlen, int select, int n_inputs, int n_outputs);
+      static sptr make(size_t vlen=1, double scale=1.0);
 
-      virtual int get_select() const=0;
-      virtual void set_select(int select)=0;
+      /*!
+       * Get the scalar multiplier value.
+       */
+      virtual double scale() const = 0;
+
+      /*!
+       * Set the scalar multiplier value.
+       */
+      virtual void set_scale(double scale) = 0;
     };
 
   } // namespace flaress
 } // namespace gr
 
-#endif /* INCLUDED_FLARESS_SELECTOR_FF_H */
+#endif /* INCLUDED_FLARESS_FLOAT_TO_INT64_H */

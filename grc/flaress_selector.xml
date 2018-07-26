@@ -4,7 +4,7 @@
   <key>flaress_selector_xx</key>
   <category>[flaress]</category>
   <import>import flaress</import>
-  <make>flaress.selector_$(type.fcn)($select, $n_inputs, $n_outputs)</make>
+  <make>flaress.selector_$(type.fcn)($vlen, $select, $n_inputs, $n_outputs)</make>
 
   <callback>set_select($select)</callback>
 
@@ -43,6 +43,14 @@
     <type>int</type>
   </param>
 
+  <param>
+    <name>Vec Length</name>
+    <key>vlen</key>
+    <value>1</value>
+    <type>int</type>
+  </param>
+
+  <check>$vlen &gt;= 0</check>
   <check>$n_inputs &gt;= 1</check>
   <check>$n_outputs &gt;= 1</check>
   <check>$select &gt;= 0</check>
@@ -57,6 +65,7 @@
    <sink>
      <name>in</name>
      <type>$type</type>
+     <vlen>$vlen</vlen>
      <nports>$n_inputs</nports>
      <optional>1</optional>
    </sink>
@@ -69,6 +78,7 @@
   <source>
     <name>out</name>
     <type>$type</type>
+    <vlen>$vlen</vlen>
     <nports>$n_outputs</nports>
     <optional>1</optional>
   </source>

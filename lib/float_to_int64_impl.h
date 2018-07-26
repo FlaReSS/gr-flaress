@@ -18,41 +18,34 @@
  * Boston, MA 02110-1301, USA.
  */
 
+#ifndef INCLUDED_FLARESS_FLOAT_TO_INT64_IMPL_H
+#define INCLUDED_FLARESS_FLOAT_TO_INT64_IMPL_H
 
-#ifndef INCLUDED_FLARESS_SELECTOR_FF_H
-#define INCLUDED_FLARESS_SELECTOR_FF_H
-
-#include <flaress/api.h>
-#include <gnuradio/block.h>
+#include <flaress/float_to_int64.h>
 
 namespace gr {
   namespace flaress {
 
-    /*!
-     * \brief <+description of block+>
-     * \ingroup flaress
-     *
-     */
-    class FLARESS_API selector_ff : virtual public gr::block
+    class float_to_int64_impl : public float_to_int64
     {
+     private:
+       size_t d_vlen;
+       double d_scale;
+
      public:
-      typedef boost::shared_ptr<selector_ff> sptr;
+      float_to_int64_impl(size_t vlen, double scale);
+      ~float_to_int64_impl();
 
-      /*!
-       * \brief Return a shared_ptr to a new instance of flaress::selector_ff.
-       *
-       * To avoid accidental use of raw pointers, flaress::selector_ff's
-       * constructor is in a private implementation
-       * class. flaress::selector_ff::make is the public interface for
-       * creating new instances.
-       */
-      static sptr make(size_t vlen, int select, int n_inputs, int n_outputs);
+      virtual double scale() const { return d_scale; }
+      virtual void set_scale(double scale) { d_scale = scale; }
 
-      virtual int get_select() const=0;
-      virtual void set_select(int select)=0;
+      // Where all the action really happens
+      int work(int noutput_items,
+         gr_vector_const_void_star &input_items,
+         gr_vector_void_star &output_items);
     };
 
   } // namespace flaress
 } // namespace gr
 
-#endif /* INCLUDED_FLARESS_SELECTOR_FF_H */
+#endif /* INCLUDED_FLARESS_FLOAT_TO_INT64_IMPL_H */

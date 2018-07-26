@@ -20,30 +20,20 @@
  * Boston, MA 02110-1301, USA.
  */
 
-#ifndef INCLUDED_FLARESS_FLOAT_TO_DOUBLE_IMPL_H
-#define INCLUDED_FLARESS_FLOAT_TO_DOUBLE_IMPL_H
+#ifdef HAVE_CONFIG_H
+#include <config.h>
+#endif
 
-#include <flaress/float_to_double.h>
+#define _ISOC9X_SOURCE
+#include <float_array_to_int64.h>
+#include <math.h>
+#include <stdint.h>
 
-namespace gr {
-  namespace flaress {
-
-    class float_to_double_impl : public float_to_double
-    {
-     private:
-      // Nothing to declare in this block.
-
-     public:
-      float_to_double_impl();
-      ~float_to_double_impl();
-
-      // Where all the action really happens
-      int work(int noutput_items,
-         gr_vector_const_void_star &input_items,
-         gr_vector_void_star &output_items);
-    };
-
-  } // namespace flaress
-} // namespace gr
-
-#endif /* INCLUDED_FLARESS_FLOAT_TO_DOUBLE_IMPL_H */
+void
+float_array_to_int64(const float *in, int64_t *out, double scale, int nsamples)
+{
+  for (int i = 0; i < nsamples; i++){
+    int64_t r = llrint(scale * double(in[i]));
+    out[i] = r;
+  }
+}

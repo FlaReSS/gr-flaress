@@ -29,13 +29,14 @@ namespace gr {
     class selector_ff_impl : public selector_ff
     {
      private:
+      size_t d_vlen;
       int d_select;
       int d_n_inputs;
       int d_n_outputs;
       int out_sel, in_sel;
 
      public:
-      selector_ff_impl(int select, int n_inputs, int n_outputs);
+      selector_ff_impl(size_t vlen, int select, int n_inputs, int n_outputs);
       ~selector_ff_impl();
 
       // Where all the action really happens

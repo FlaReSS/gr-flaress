@@ -20,30 +20,14 @@
  * Boston, MA 02110-1301, USA.
  */
 
-#ifndef INCLUDED_FLARESS_FLOAT_TO_DOUBLE_IMPL_H
-#define INCLUDED_FLARESS_FLOAT_TO_DOUBLE_IMPL_H
+#ifndef INCLUDED_BLOCKS_FLOAT_ARRAY_TO_INT_H
+#define INCLUDED_BLOCKS_FLOAT_ARRAY_TO_INT_H
 
-#include <flaress/float_to_double.h>
+#include <gnuradio/blocks/api.h>
+#include <stdint.h>
+/*!
+ * convert array of floats to int with rounding and saturation.
+ */
+BLOCKS_API void float_array_to_int64 (const float *in, int64_t *out, double scale, int nsamples);
 
-namespace gr {
-  namespace flaress {
-
-    class float_to_double_impl : public float_to_double
-    {
-     private:
-      // Nothing to declare in this block.
-
-     public:
-      float_to_double_impl();
-      ~float_to_double_impl();
-
-      // Where all the action really happens
-      int work(int noutput_items,
-         gr_vector_const_void_star &input_items,
-         gr_vector_void_star &output_items);
-    };
-
-  } // namespace flaress
-} // namespace gr
-
-#endif /* INCLUDED_FLARESS_FLOAT_TO_DOUBLE_IMPL_H */
+#endif /* INCLUDED_BLOCKS_FLOAT_ARRAY_TO_INT_H */

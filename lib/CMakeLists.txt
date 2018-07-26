@@ -30,6 +30,8 @@ list(APPEND flaress_sources
     selector_cc_impl.cc
     selector_ff_impl.cc
     float_to_double_impl.cc
+    float_to_int64_impl.cc
+    float_array_to_int64.cc
 )
 
 set(flaress_sources "${flaress_sources}" PARENT_SCOPE)

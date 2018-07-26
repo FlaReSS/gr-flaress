@@ -29,25 +29,20 @@ namespace gr {
   namespace flaress {
 
     selector_cc::sptr
-    selector_cc::make(int select, int n_inputs, int n_outputs)
+    selector_cc::make(size_t vlen, int select, int n_inputs, int n_outputs)
     {
-      if ( n_inputs > 1 || n_outputs < 1)
-        n_outputs = 1;
-      if ( n_inputs < 1)
-        n_outputs = 1;
-
       return gnuradio::get_initial_sptr
-        (new selector_cc_impl(select, n_inputs, n_outputs));
+        (new selector_cc_impl(vlen, select, n_inputs, n_outputs));
     }
 
     /*
      * The private constructor
      */
-    selector_cc_impl::selector_cc_impl(int select, int n_inputs, int n_outputs)
+    selector_cc_impl::selector_cc_impl(size_t vlen, int select, int n_inputs, int n_outputs)
       : gr::block("selector_cc",
-              gr::io_signature::make(0, n_inputs, sizeof(gr_complex)),
-              gr::io_signature::make(0, n_outputs, sizeof(gr_complex))),
-              d_select(select), d_n_inputs(n_inputs), d_n_outputs(n_outputs)
+              gr::io_signature::make(0, n_inputs, sizeof(gr_complex)*vlen),
+              gr::io_signature::make(0, n_outputs, sizeof(gr_complex)*vlen)),
+              d_select(select), d_n_inputs(n_inputs), d_n_outputs(n_outputs), d_vlen(vlen)
     {
 
     }
@@ -76,7 +71,7 @@ namespace gr {
       }
 
       sel_evaluation();
-      for(int i = 0; i < noutput_items; i++) {
+      for(int i = 0; i < noutput_items*d_vlen; i++) {
             out[out_sel][i]= in[in_sel][i];
       }
 

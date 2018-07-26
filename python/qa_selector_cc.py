@@ -1,3 +1,6 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+#                     GNU GENERAL PUBLIC LICENSE
 
 from gnuradio import gr, gr_unittest
 from gnuradio import blocks, analog
@@ -24,7 +27,7 @@ class qa_selector_cc (gr_unittest.TestCase):
         N = 4096
 
         # Blocks
-        flaress_selector = flaress.selector_cc(0, 2, 1)
+        flaress_selector = flaress.selector_cc(1, 0, 2, 1)
 
         def _probe_func_probe():
             time.sleep(0.5)
@@ -103,7 +106,7 @@ class qa_selector_cc (gr_unittest.TestCase):
         N = 4096
 
         # Blocks
-        flaress_selector = flaress.selector_cc(0, 3, 1)
+        flaress_selector = flaress.selector_cc(1, 0, 3, 1)
 
         def _probe_func_probe():
             time.sleep(0.5)
@@ -199,7 +202,7 @@ class qa_selector_cc (gr_unittest.TestCase):
         N = 4096
 
         # Blocks
-        flaress_selector = flaress.selector_cc(0, 1, 2)
+        flaress_selector = flaress.selector_cc(1, 0, 1, 2)
 
         def _probe_func_probe():
             time.sleep(0.5)
@@ -267,7 +270,7 @@ class qa_selector_cc (gr_unittest.TestCase):
         N = 4096
 
         # Blocks
-        flaress_selector = flaress.selector_cc(0, 1, 3)
+        flaress_selector = flaress.selector_cc(1, 0, 1, 3)
 
         def _probe_func_probe():
             time.sleep(0.5)

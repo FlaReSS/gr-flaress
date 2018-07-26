@@ -46,7 +46,7 @@ namespace gr {
        * class. flaress::selector_cc::make is the public interface for
        * creating new instances.
        */
-      static sptr make(int select, int n_inputs, int n_outputs);
+      static sptr make(size_t vlen, int select, int n_inputs, int n_outputs);
 
       virtual int get_select() const=0;
       virtual void set_select(int select)=0;

@@ -29,25 +29,20 @@ namespace gr {
   namespace flaress {
 
     selector_ff::sptr
-    selector_ff::make(int select, int n_inputs, int n_outputs)
+    selector_ff::make(size_t vlen, int select, int n_inputs, int n_outputs)
     {
-      if ( n_inputs > 1 || n_outputs < 1)
-        n_outputs = 1;
-      if ( n_inputs < 1)
-        n_outputs = 1;
-
       return gnuradio::get_initial_sptr
-        (new selector_ff_impl(select, n_inputs, n_outputs));
+        (new selector_ff_impl(vlen, select, n_inputs, n_outputs));
     }
 
     /*
      * The private constructor
      */
-    selector_ff_impl::selector_ff_impl(int select, int n_inputs, int n_outputs)
+    selector_ff_impl::selector_ff_impl(size_t vlen, int select, int n_inputs, int n_outputs)
       : gr::block("selector_ff",
-              gr::io_signature::make(0, n_inputs, sizeof(float)),
-              gr::io_signature::make(0, n_outputs, sizeof(float))),
-              d_select(select), d_n_inputs(n_inputs), d_n_outputs(n_outputs)
+              gr::io_signature::make(0, n_inputs, sizeof(float)*vlen),
+              gr::io_signature::make(0, n_outputs, sizeof(float)*vlen)),
+              d_select(select), d_n_inputs(n_inputs), d_n_outputs(n_outputs), d_vlen(vlen)
     {
 
     }
@@ -76,7 +71,7 @@ namespace gr {
       }
 
       sel_evaluation();
-      for(int i = 0; i < noutput_items; i++) {
+      for(int i = 0; i < noutput_items*d_vlen; i++) {
             out[out_sel][i]= in[in_sel][i];
       }
 
