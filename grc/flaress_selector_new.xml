@@ -1,10 +1,10 @@
 <?xml version="1.0"?>
 <block>
-  <name>selector</name>
-  <key>flaress_selector_xx</key>
+  <name>selector new</name>
+  <key>flaress_selector</key>
   <category>[flaress]</category>
   <import>import flaress</import>
-  <make>flaress.selector_$(type.fcn)($vlen, $select, $n_inputs, $n_outputs)</make>
+  <make>flaress.selector($type.size*$vlen, $select, $n_inputs, $n_outputs)</make>
 
   <callback>set_select($select)</callback>
 
@@ -13,16 +13,48 @@
     <key>type</key>
     <type>enum</type>
     <option>
-      <name>Complex</name>
-      <key>complex</key>
-      <opt>fcn:cc</opt>
-    </option>
+			<name>Complex</name>
+			<key>complex</key>
+			<opt>size:gr.sizeof_gr_complex</opt>
+		</option>
+		<option>
+			<name>Float</name>
+			<key>float</key>
+			<opt>size:gr.sizeof_float</opt>
+		</option>
     <option>
-      <name>Float</name>
-      <key>float</key>
-      <opt>fcn:ff</opt>
+      <name>Float64</name>
+      <key>f64</key>
+      <opt>size:gr.sizeof_double</opt>
     </option>
-  </param>
+		<option>
+			<name>Int</name>
+			<key>int</key>
+			<opt>size:gr.sizeof_int</opt>
+		</option>
+    <option>
+      <name>Int64</name>
+      <key>s64</key>
+      <opt>size:flaress.sizeof_long</opt>
+    </option>
+		<option>
+			<name>Short</name>
+			<key>short</key>
+			<opt>size:gr.sizeof_short</opt>
+		</option>
+		<option>
+			<name>Byte</name>
+			<key>byte</key>
+			<opt>size:gr.sizeof_char</opt>
+		</option>
+	</param>
+
+	<param>
+		<name>Vec Length</name>
+		<key>vlen</key>
+		<value>1</value>
+		<type>int</type>
+	</param>
 
   <param>
     <name>select</name>
@@ -43,20 +75,12 @@
     <type>int</type>
   </param>
 
-  <param>
-    <name>Vec Length</name>
-    <key>vlen</key>
-    <value>1</value>
-    <type>int</type>
-  </param>
-
   <check>$vlen &gt;= 0</check>
   <check>$n_inputs &gt;= 1</check>
   <check>$n_outputs &gt;= 1</check>
   <check>$select &gt;= 0</check>
   <check>($n_inputs &gt; 1 and $n_outputs &lt;= 1) or ($n_outputs &gt; 1 and $n_inputs &lt;= 1)</check>
   <check>($n_inputs &gt;= $n_outputs and $select &lt;= $n_inputs) or ($n_inputs &lt; $n_outputs and $select &lt;= $n_outputs)</check>
-
 
    <sink>
      <name>in</name>

@@ -24,20 +24,17 @@ class qa_selector_cc (gr_unittest.TestCase):
 
         # Variables
         samp_rate = 512
-        N = 4096
+        N = 2048
 
         # Blocks
         flaress_selector = flaress.selector_cc(1, 0, 2, 1)
 
         def _probe_func_probe():
             time.sleep(0.5)
-            while True:
-                try:
-                    if (flaress_selector.get_select() == 0):
-                        flaress_selector.set_select(1)
-                except AttributeError:
-                    pass
-                time.sleep(1.0)
+            try:
+                flaress_selector.set_select(1)
+            except AttributeError:
+                pass
 
         _probe_func_thread = threading.Thread(target=_probe_func_probe)
         _probe_func_thread.daemon = True
@@ -52,10 +49,8 @@ class qa_selector_cc (gr_unittest.TestCase):
         sig_source0 = analog.sig_source_c(samp_rate,analog.GR_SAW_WAVE, 0.125 , 10, 0)
         sig_source1 = analog.sig_source_c(samp_rate,analog.GR_SAW_WAVE, 0.125 , -10, -1)
 
-        sig_source0.set_max_noutput_items (samp_rate)
-        sig_source1.set_max_noutput_items (samp_rate)
-        # sig_source0.set_max_output_buffer (samp_rate)
-        # sig_source1.set_max_output_buffer (samp_rate)
+        throttle0.set_max_noutput_items (samp_rate)
+        throttle1.set_max_noutput_items (samp_rate)
 
         # Connections
         tb.connect(sig_source0,throttle0)
@@ -91,10 +86,12 @@ class qa_selector_cc (gr_unittest.TestCase):
 
         self.assertGreater(N_sel0, 0)
         self.assertGreater(N_sel1, 0)
-        self.assertGreaterEqual(lost_items, 0)
+        self.assertEqual(lost_items, 0)
+        self.assertEqual((N_sel0 + N_sel1 + N_sel2), N)
 
         print "- Items outputted from in0: ", N_sel0
         print "- Items outputted from in1: ", N_sel1
+        print "- Items lost: ", lost_items
 
     def test_001_t (self):
         """test 1: mux version with 3 inputs"""
@@ -103,23 +100,22 @@ class qa_selector_cc (gr_unittest.TestCase):
 
         # Variables
         samp_rate = 512
-        N = 4096
+        N = 2048
 
         # Blocks
         flaress_selector = flaress.selector_cc(1, 0, 3, 1)
 
         def _probe_func_probe():
             time.sleep(0.5)
-            while True:
-                try:
-                    if (flaress_selector.get_select() == 0):
-                        flaress_selector.set_select(1)
-                        time.sleep(2.0)
-                    if (flaress_selector.get_select() == 1):
-                        flaress_selector.set_select(2)
-                except AttributeError:
-                    pass
-                time.sleep(1.0)
+            try:
+                flaress_selector.set_select(1)
+                time.sleep(1.5)
+            except AttributeError:
+                pass
+            try:
+                flaress_selector.set_select(2)
+            except AttributeError:
+                pass
 
         _probe_func_thread = threading.Thread(target=_probe_func_probe)
         _probe_func_thread.daemon = True
@@ -138,10 +134,10 @@ class qa_selector_cc (gr_unittest.TestCase):
         sig_source1 = analog.sig_source_c(samp_rate,analog.GR_SAW_WAVE, 0.125 , 10, 11)
         sig_source2 = analog.sig_source_c(samp_rate,analog.GR_SAW_WAVE, 0.125 , -10, -1)
 
-        sig_source0.set_max_noutput_items (samp_rate)
-        sig_source1.set_max_noutput_items (samp_rate)
-        # sig_source0.set_max_output_buffer (samp_rate)
-        # sig_source1.set_max_output_buffer (samp_rate)
+
+        throttle0.set_max_noutput_items (samp_rate)
+        throttle1.set_max_noutput_items (samp_rate)
+        throttle2.set_max_noutput_items (samp_rate)
 
         # Connections
         tb.connect(sig_source0,throttle0)
@@ -186,11 +182,13 @@ class qa_selector_cc (gr_unittest.TestCase):
         self.assertGreater(N_sel0, 0)
         self.assertGreater(N_sel1, 0)
         self.assertGreater(N_sel2, 0)
-        self.assertGreaterEqual(lost_items, 0)
+        self.assertEqual(lost_items, 0)
+        self.assertEqual((N_sel0 + N_sel1 + N_sel2), N)
 
         print "- Items outputted from in0: ", N_sel0
         print "- Items outputted from in1: ", N_sel1
         print "- Items outputted from in2: ", N_sel2
+        print "- Items lost: ", lost_items
 
     def test_002_t (self):
         """test 2: demux version with 2 outputs"""
@@ -199,20 +197,17 @@ class qa_selector_cc (gr_unittest.TestCase):
 
         # Variables
         samp_rate = 512
-        N = 4096
+        N = 2048
 
         # Blocks
         flaress_selector = flaress.selector_cc(1, 0, 1, 2)
 
         def _probe_func_probe():
             time.sleep(0.5)
-            while True:
-                try:
-                    if (flaress_selector.get_select() == 0):
-                        flaress_selector.set_select(1)
-                except AttributeError:
-                    pass
-                time.sleep(1.0)
+            try:
+                flaress_selector.set_select(1)
+            except AttributeError:
+                pass
 
         _probe_func_thread = threading.Thread(target=_probe_func_probe)
         _probe_func_thread.daemon = True
@@ -224,7 +219,7 @@ class qa_selector_cc (gr_unittest.TestCase):
         head = blocks.head(gr.sizeof_gr_complex, N)
         sig_source = analog.sig_source_c(samp_rate,analog.GR_SAW_WAVE, float(samp_rate / N) , 10, 0)
 
-        sig_source.set_max_noutput_items (samp_rate)
+        throttle.set_max_noutput_items (samp_rate)
 
         # Connections
         tb.connect(sig_source,throttle)
@@ -256,9 +251,11 @@ class qa_selector_cc (gr_unittest.TestCase):
         self.assertGreater(N_sel0, 0)
         self.assertGreater(N_sel1, 0)
         self.assertEqual(lost_items, 0)
+        self.assertEqual((N_sel0 + N_sel1), N)
 
         print "- Items outputted on out0: ",N_sel0
         print "- Items outputted on out1: ", N_sel1
+        print "- Items lost: ", lost_items
 
     def test_003_t (self):
         """test 3: demux version with 3 outpus"""
@@ -267,23 +264,22 @@ class qa_selector_cc (gr_unittest.TestCase):
 
         # Variables
         samp_rate = 512
-        N = 4096
+        N = 2048
 
         # Blocks
         flaress_selector = flaress.selector_cc(1, 0, 1, 3)
 
         def _probe_func_probe():
             time.sleep(0.5)
-            while True:
-                try:
-                    if (flaress_selector.get_select() == 0):
-                        flaress_selector.set_select(1)
-                        time.sleep(2.0)
-                    if (flaress_selector.get_select() == 1):
-                        flaress_selector.set_select(2)
-                except AttributeError:
-                    pass
-                time.sleep(1.0)
+            try:
+                flaress_selector.set_select(1)
+                time.sleep(1.5)
+            except AttributeError:
+                pass
+            try:
+                flaress_selector.set_select(2)
+            except AttributeError:
+                pass
 
         _probe_func_thread = threading.Thread(target=_probe_func_probe)
         _probe_func_thread.daemon = True
@@ -296,7 +292,7 @@ class qa_selector_cc (gr_unittest.TestCase):
         head = blocks.head(gr.sizeof_gr_complex, N)
         sig_source = analog.sig_source_c(samp_rate,analog.GR_SAW_WAVE, float(samp_rate / N) , 10, 0)
 
-        sig_source.set_max_noutput_items (samp_rate)
+        throttle.set_max_noutput_items (samp_rate)
 
         # Connections
         tb.connect(sig_source,throttle)
@@ -335,10 +331,13 @@ class qa_selector_cc (gr_unittest.TestCase):
         self.assertGreater(N_sel1, 0)
         self.assertGreater(N_sel2, 0)
         self.assertEqual(lost_items, 0)
+        self.assertEqual((N_sel0 + N_sel1 + N_sel2), N)
+
 
         print "- Items outputted on out0: ",N_sel0
         print "- Items outputted on out1: ", N_sel1
         print "- Items outputted on out2: ", N_sel2
+        print "- Items lost: ", lost_items
 
 
 if __name__ == '__main__':
