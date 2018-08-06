@@ -25,10 +25,7 @@ include(GrPlatform) #define LIB_SUFFIX
 
 include_directories(${Boost_INCLUDE_DIR})
 link_directories(${Boost_LIBRARY_DIRS})
-
 list(APPEND flaress_sources
-    selector_cc_impl.cc
-    selector_ff_impl.cc
     float_to_double_impl.cc
     float_to_int64_impl.cc
     float_array_to_int64.cc

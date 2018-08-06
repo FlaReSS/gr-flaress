@@ -17,10 +17,8 @@
 # along with GNU Radio; see the file COPYING.  If not, write to
 # the Free Software Foundation, Inc., 51 Franklin Street,
 # Boston, MA 02110-1301, USA.
-
 install(FILES
     flaress_selector.xml
-    flaress_selector_new.xml
     flaress_float_to_double.xml
     flaress_float_to_int64.xml
     flaress_selector.xml DESTINATION share/gnuradio/grc/blocks

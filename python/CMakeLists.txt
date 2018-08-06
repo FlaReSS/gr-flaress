@@ -42,8 +42,6 @@ include(GrTest)
 
 set(GR_TEST_TARGET_DEPS gnuradio-flaress)
 set(GR_TEST_PYTHON_DIRS ${CMAKE_BINARY_DIR}/swig)
-GR_ADD_TEST(qa_selector_cc ${PYTHON_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/qa_selector_cc.py)
-GR_ADD_TEST(qa_selector_ff ${PYTHON_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/qa_selector_ff.py)
 GR_ADD_TEST(qa_float_to_double ${PYTHON_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/qa_float_to_double.py)
 GR_ADD_TEST(qa_float_to_int64 ${PYTHON_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/qa_float_to_int64.py)
 GR_ADD_TEST(qa_selector ${PYTHON_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/qa_selector.py)

@@ -23,8 +23,6 @@
 ########################################################################
 install(FILES
     api.h
-    selector_cc.h
-    selector_ff.h
     float_to_double.h
     float_to_int64.h
     selector.h DESTINATION include/flaress
