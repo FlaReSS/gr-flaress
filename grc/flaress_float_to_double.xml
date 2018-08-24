@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <block>
-  <name>float to double</name>
+  <name>Float To Double</name>
   <key>flaress_float_to_double</key>
   <category>[flaress]</category>
   <import>import flaress</import>

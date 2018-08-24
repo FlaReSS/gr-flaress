@@ -4,7 +4,7 @@
 
 from gnuradio import gr, gr_unittest
 from gnuradio import blocks, analog
-import runner
+import runner, time
 import flaress_swig as flaress
 import threading, time
 
@@ -18,13 +18,13 @@ class qa_selector (gr_unittest.TestCase):
         self.tb = None
 
     def test_000_c (self):
-        """test 0: mux complex version with 2 inputs"""
+        """test debug: mux complex version with 2 inputs"""
 
         tb = self.tb
 
         # Variables
-        samp_rate = 512
-        N = 2048
+        samp_rate = 4096
+        N = 16276
 
         # Blocks
         flaress_selector = flaress.selector(gr.sizeof_gr_complex*1, 0, 2, 1)
@@ -51,123 +51,209 @@ class qa_selector (gr_unittest.TestCase):
 
         throttle0.set_max_noutput_items (samp_rate)
         throttle1.set_max_noutput_items (samp_rate)
+        throttle0.set_min_noutput_items (samp_rate)
+        throttle1.set_min_noutput_items (samp_rate)
 
         # Connections
-        tb.connect(sig_source0,throttle0)
-        tb.connect(sig_source1,throttle1)
-        tb.connect(throttle0, head0)
-        tb.connect(throttle1, head1)
+        tb.connect(sig_source0,head0)
+        # tb.connect(sig_source1,throttle1)
+        # tb.connect(throttle0, head0)
+        # tb.connect(throttle1, head1)
         tb.connect(head0, dst_in0)
-        tb.connect(head1, dst_in1)
-        tb.connect(head0, (flaress_selector, 0))
-        tb.connect(head1, (flaress_selector, 1))
-        tb.connect(flaress_selector, dst_out)
+        # tb.connect(head1, dst_in1)
+        # tb.connect(head0, (flaress_selector, 0))
+        # tb.connect(head1, (flaress_selector, 1))
+        # tb.connect(flaress_selector, dst_out)
 
         _probe_func_thread.start()
+        time_now = time.time()
+
         tb.run()
+        print "time for run", (time.time() - time_now), 's'
 
         data_in_0 = dst_in0.data()
-        data_in_1 = dst_in1.data()
-        data_out = dst_out.data()
+        # data_in_1 = dst_in1.data()
+        # data_out = dst_out.data()
+        #
+        # # Checking
+        # lost_items = 0
+        # N_sel0 = 0
+        # N_sel1 = 0
+        # N_out = len(data_out)
+        #
+        # for i in xrange(N):
+        #     if (data_out[i] == data_in_0[i]):
+        #             N_sel0 += 1
+        #     elif (data_out[i] == data_in_1[(i)]):
+        #         N_sel1 += 1
+        #     else:
+        #         lost_items += 1
+        #
+        # self.assertGreater(N_sel0, 0)
+        # self.assertGreater(N_sel1, 0)
+        # self.assertEqual(lost_items, 0)
+        # self.assertEqual((N_sel0 + N_sel1), N)
+        #
+        # print "- Items outputted from in0: ", N_sel0
+        # print "- Items outputted from in1: ", N_sel1
+        # print "- Items lost: ", lost_items
 
-        # Checking
-        lost_items = 0
-        N_sel0 = 0
-        N_sel1 = 0
-        N_out = len(data_out)
 
-        for i in xrange(N):
-            if (data_out[i] == data_in_0[i]):
-                    N_sel0 += 1
-            elif (data_out[i] == data_in_1[(i)]):
-                N_sel1 += 1
-            else:
-                lost_items += 1
+    # def test_000_c (self):
+    #     """test 0: mux complex version with 2 inputs"""
+    #
+    #     tb = self.tb
+    #
+    #     # Variables
+    #     samp_rate = 512
+    #     N = 2048
+    #
+    #     # Blocks
+    #     flaress_selector = flaress.selector(gr.sizeof_gr_complex*1, 0, 2, 1)
+    #
+    #     def _probe_func_probe():
+    #         time.sleep(0.5)
+    #         try:
+    #             flaress_selector.set_select(1)
+    #         except AttributeError:
+    #             pass
+    #
+    #     _probe_func_thread = threading.Thread(target=_probe_func_probe)
+    #     _probe_func_thread.daemon = True
+    #
+    #     throttle0 = blocks.throttle(gr.sizeof_gr_complex*1, samp_rate, True)
+    #     throttle1 = blocks.throttle(gr.sizeof_gr_complex*1, samp_rate, True)
+    #     dst_in0 = blocks.vector_sink_c()
+    #     dst_in1 = blocks.vector_sink_c()
+    #     dst_out = blocks.vector_sink_c()
+    #     head0 = blocks.head(gr.sizeof_gr_complex, N)
+    #     head1 = blocks.head(gr.sizeof_gr_complex, N)
+    #     sig_source0 = analog.sig_source_c(samp_rate,analog.GR_SAW_WAVE, 0.125 , 10, 0)
+    #     sig_source1 = analog.sig_source_c(samp_rate,analog.GR_SAW_WAVE, 0.125 , -10, -1)
+    #
+    #     throttle0.set_max_noutput_items (samp_rate)
+    #     throttle1.set_max_noutput_items (samp_rate)
+    #
+    #     # Connections
+    #     tb.connect(sig_source0,throttle0)
+    #     tb.connect(sig_source1,throttle1)
+    #     tb.connect(throttle0, head0)
+    #     tb.connect(throttle1, head1)
+    #     tb.connect(head0, dst_in0)
+    #     tb.connect(head1, dst_in1)
+    #     tb.connect(head0, (flaress_selector, 0))
+    #     tb.connect(head1, (flaress_selector, 1))
+    #     tb.connect(flaress_selector, dst_out)
+    #
+    #     _probe_func_thread.start()
+    #     time_now = time.time()
+    #
+    #     tb.run()
+    #     print "time for run", ( time.time() - time_now)
+    #
+    #     data_in_0 = dst_in0.data()
+    #     data_in_1 = dst_in1.data()
+    #     data_out = dst_out.data()
+    #
+    #     # Checking
+    #     lost_items = 0
+    #     N_sel0 = 0
+    #     N_sel1 = 0
+    #     N_out = len(data_out)
+    #
+    #     for i in xrange(N):
+    #         if (data_out[i] == data_in_0[i]):
+    #                 N_sel0 += 1
+    #         elif (data_out[i] == data_in_1[(i)]):
+    #             N_sel1 += 1
+    #         else:
+    #             lost_items += 1
+    #
+    #     self.assertGreater(N_sel0, 0)
+    #     self.assertGreater(N_sel1, 0)
+    #     self.assertEqual(lost_items, 0)
+    #     self.assertEqual((N_sel0 + N_sel1), N)
+    #
+    #     print "- Items outputted from in0: ", N_sel0
+    #     print "- Items outputted from in1: ", N_sel1
+    #     print "- Items lost: ", lost_items
 
-        self.assertGreater(N_sel0, 0)
-        self.assertGreater(N_sel1, 0)
-        self.assertEqual(lost_items, 0)
-        self.assertEqual((N_sel0 + N_sel1), N)
+    # def test_000_f (self):
+    #     """test 0: mux float version with 2 inputs"""
+    #
+    #     tb = self.tb
+    #
+    #     # Variables
+    #     samp_rate = 512
+    #     N = 2048
+    #
+    #     # Blocks
+    #     flaress_selector = flaress.selector(gr.sizeof_float*1, 0, 2, 1)
+    #
+    #     def _probe_func_probe():
+    #         time.sleep(0.5)
+    #         try:
+    #             flaress_selector.set_select(1)
+    #         except AttributeError:
+    #             pass
+    #
+    #     _probe_func_thread = threading.Thread(target=_probe_func_probe)
+    #     _probe_func_thread.daemon = True
+    #
+    #     throttle0 = blocks.throttle(gr.sizeof_float*1, samp_rate, True)
+    #     throttle1 = blocks.throttle(gr.sizeof_float*1, samp_rate, True)
+    #     dst_in0 = blocks.vector_sink_f()
+    #     dst_in1 = blocks.vector_sink_f()
+    #     dst_out = blocks.vector_sink_f()
+    #     head0 = blocks.head(gr.sizeof_float, N)
+    #     head1 = blocks.head(gr.sizeof_float, N)
+    #     sig_source0 = analog.sig_source_f(samp_rate,analog.GR_SAW_WAVE, 0.125 , 10, 0)
+    #     sig_source1 = analog.sig_source_f(samp_rate,analog.GR_SAW_WAVE, 0.125 , -10, -1)
+    #
+    #     throttle0.set_max_noutput_items (samp_rate)
+    #     throttle1.set_max_noutput_items (samp_rate)
+    #
+    #     # Connections
+    #     tb.connect(sig_source0,throttle0)
+    #     tb.connect(sig_source1,throttle1)
+    #     tb.connect(throttle0, head0)
+    #     tb.connect(throttle1, head1)
+    #     tb.connect(head0, dst_in0)
+    #     tb.connect(head1, dst_in1)
+    #     tb.connect(head0, (flaress_selector, 0))
+    #     tb.connect(head1, (flaress_selector, 1))
+    #     tb.connect(flaress_selector, dst_out)
+    #
+    #     _probe_func_thread.start()
+    #     tb.run()
+    #
+    #     data_in_0 = dst_in0.data()
+    #     data_in_1 = dst_in1.data()
+    #     data_out = dst_out.data()
+    #
+    #     # Checking
+    #     lost_items = 0
+    #     N_sel0 = 0
+    #     N_sel1 = 0
+    #     N_out = len(data_out)
+    #
+    #     for i in xrange(N):
+    #         if (data_out[i] == data_in_0[i]):
+    #                 N_sel0 += 1
+    #         elif (data_out[i] == data_in_1[(i)]):
+    #             N_sel1 += 1
+    #         else:
+    #             lost_items += 1
+    #
+    #     self.assertGreater(N_sel0, 0)
+    #     self.assertGreater(N_sel1, 0)
+    #     self.assertEqual(lost_items, 0)
+    #     self.assertEqual((N_sel0 + N_sel1), N)
+    #
+    #     print "- Items outputted from in0: ", N_sel0
+    #     print "- Items outputted from in1: ", N_sel1
+    #     print "- Items lost: ", lost_items
 
-        print "- Items outputted from in0: ", N_sel0
-        print "- Items outputted from in1: ", N_sel1
-        print "- Items lost: ", lost_items
-
-    def test_000_f (self):
-        """test 0: mux float version with 2 inputs"""
-
-        tb = self.tb
-
-        # Variables
-        samp_rate = 512
-        N = 2048
-
-        # Blocks
-        flaress_selector = flaress.selector(gr.sizeof_float*1, 0, 2, 1)
-
-        def _probe_func_probe():
-            time.sleep(0.5)
-            try:
-                flaress_selector.set_select(1)
-            except AttributeError:
-                pass
-
-        _probe_func_thread = threading.Thread(target=_probe_func_probe)
-        _probe_func_thread.daemon = True
-
-        throttle0 = blocks.throttle(gr.sizeof_float*1, samp_rate, True)
-        throttle1 = blocks.throttle(gr.sizeof_float*1, samp_rate, True)
-        dst_in0 = blocks.vector_sink_f()
-        dst_in1 = blocks.vector_sink_f()
-        dst_out = blocks.vector_sink_f()
-        head0 = blocks.head(gr.sizeof_float, N)
-        head1 = blocks.head(gr.sizeof_float, N)
-        sig_source0 = analog.sig_source_f(samp_rate,analog.GR_SAW_WAVE, 0.125 , 10, 0)
-        sig_source1 = analog.sig_source_f(samp_rate,analog.GR_SAW_WAVE, 0.125 , -10, -1)
-
-        throttle0.set_max_noutput_items (samp_rate)
-        throttle1.set_max_noutput_items (samp_rate)
-
-        # Connections
-        tb.connect(sig_source0,throttle0)
-        tb.connect(sig_source1,throttle1)
-        tb.connect(throttle0, head0)
-        tb.connect(throttle1, head1)
-        tb.connect(head0, dst_in0)
-        tb.connect(head1, dst_in1)
-        tb.connect(head0, (flaress_selector, 0))
-        tb.connect(head1, (flaress_selector, 1))
-        tb.connect(flaress_selector, dst_out)
-
-        _probe_func_thread.start()
-        tb.run()
-
-        data_in_0 = dst_in0.data()
-        data_in_1 = dst_in1.data()
-        data_out = dst_out.data()
-
-        # Checking
-        lost_items = 0
-        N_sel0 = 0
-        N_sel1 = 0
-        N_out = len(data_out)
-
-        for i in xrange(N):
-            if (data_out[i] == data_in_0[i]):
-                    N_sel0 += 1
-            elif (data_out[i] == data_in_1[(i)]):
-                N_sel1 += 1
-            else:
-                lost_items += 1
-
-        self.assertGreater(N_sel0, 0)
-        self.assertGreater(N_sel1, 0)
-        self.assertEqual(lost_items, 0)
-        self.assertEqual((N_sel0 + N_sel1), N)
-
-        print "- Items outputted from in0: ", N_sel0
-        print "- Items outputted from in1: ", N_sel1
-        print "- Items lost: ", lost_items
     #
     # def test_001_c (self):
     #     """test 1: mux version with 3 inputs"""

@@ -78,8 +78,8 @@
   <check>$vlen &gt;= 0</check>
   <check>$n_inputs &gt;= 1</check>
   <check>$n_outputs &gt;= 1</check>
-  <check>$select &gt;= 0</check>
-  <check>($n_inputs &gt; 1 and $n_outputs &lt;= 1) or ($n_outputs &gt; 1 and $n_inputs &lt;= 1)</check>
+  <check>$select &gt;= -1</check>
+  <check>($n_inputs &gt;= 1 and $n_outputs &lt;= 1) or ($n_outputs &gt; 1 and $n_inputs &lt;= 1)</check>
   <check>($n_inputs &gt;= $n_outputs and $select &lt;= $n_inputs) or ($n_inputs &lt; $n_outputs and $select &lt;= $n_outputs)</check>
 
    <sink>

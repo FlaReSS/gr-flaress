@@ -18,41 +18,37 @@
  * Boston, MA 02110-1301, USA.
  */
 
-#ifndef INCLUDED_FLARESS_SELECTOR_IMPL_H
-#define INCLUDED_FLARESS_SELECTOR_IMPL_H
+#ifndef INCLUDED_FLARESS_SNR_IMPL_H
+#define INCLUDED_FLARESS_SNR_IMPL_H
 
-#include <flaress/selector.h>
+#include <flaress/snr.h>
 
 namespace gr {
   namespace flaress {
 
-    class selector_impl : public selector
+    class snr_impl : public snr
     {
      private:
-      size_t d_sizeof_stream_item;
-      int d_select;
-      int d_n_inputs;
-      int d_n_outputs;
-      int out_sel, in_sel;
+      bool d_carrier;
+      int d_samp_rate;
+      int d_nintems;
+      int d_nintems_half;
+      int signal_item_offset;
+      int noise_item_offset;
+
+
 
      public:
-      selector_impl(size_t sizeof_stream_item, int select, int n_inputs, int n_outputs);
-      ~selector_impl();
-
-      void forecast (int noutput_items, gr_vector_int &ninput_items_required);
+      snr_impl(bool carrier, int samp_rate, int nintems, float signal_bw, float noise_bw);
+      ~snr_impl();
 
       // Where all the action really happens
-      int general_work (int noutput_items,
-                         gr_vector_int &ninput_items,
-                         gr_vector_const_void_star &input_items,
-                         gr_vector_void_star &output_items);
-
-      void sel_evaluation();
-      int get_select() const;
-      void set_select(int select);
+      int work(int noutput_items,
+         gr_vector_const_void_star &input_items,
+         gr_vector_void_star &output_items);
     };
 
   } // namespace flaress
 } // namespace gr
 
-#endif /* INCLUDED_FLARESS_SELECTOR_IMPL_H */
+#endif /* INCLUDED_FLARESS_SNR_IMPL_H */

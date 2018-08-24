@@ -55,30 +55,43 @@ namespace gr {
     {
     }
 
+    void
+    selector_impl::forecast (int noutput_items, gr_vector_int &ninput_items_required)
+    {
+      for(int w = 0; w < d_n_inputs; w++) {
+          ninput_items_required[w] = noutput_items;
+      }
+    }
+
     int
     selector_impl::general_work (int noutput_items,
                        gr_vector_int &ninput_items,
                        gr_vector_const_void_star &input_items,
                        gr_vector_void_star &output_items)
     {
-      sel_evaluation();
-      void *in = (void*) input_items[in_sel];
-      void *out = (void *) output_items[out_sel];
+        if (d_select != -1){
 
-      sel_evaluation();
+        sel_evaluation();
+        void *in = (void*) input_items[in_sel];
+        void *out = (void *) output_items[out_sel];
 
-      memcpy(out, in, noutput_items * d_sizeof_stream_item);
+        // std::cout << "noutput_items: " << noutput_items << '\n';
 
+        memcpy(out, in, noutput_items * d_sizeof_stream_item);
 
-      for(int w = 0; w < d_n_outputs; w++) {
-        if (w != out_sel )
-          produce(w, 0);
-        else
-          produce(w, noutput_items);
+        for(int w = 0; w < d_n_outputs; w++) {
+          if (w != out_sel )
+            produce(w, 0);
+          else
+            produce(w, noutput_items);
+        }
+        consume_each(noutput_items);
+        return WORK_CALLED_PRODUCE;
       }
-      consume_each(noutput_items);
-
-      return WORK_CALLED_PRODUCE;
+      else{
+        consume_each(noutput_items);
+        return 0;
+      }
     }
 
     void selector_impl::sel_evaluation(){
@@ -99,15 +112,24 @@ namespace gr {
 
     void selector_impl::set_select(int select)
     {
-      int max;
+      int max, temp;
+      temp = select;
       if (d_n_inputs >= d_n_outputs)
         max = d_n_inputs;
       else
         max = d_n_outputs;
-      if(select < 0 || select >= max) {
-        throw std::out_of_range ("pll: invalid selector value.");
+
+      if(select >= max) {
+        temp = 0;
+        throw std::out_of_range ("pll: invalid selector value, too high.");
+
       }
-      d_select = select;
+      if (select < -1) {
+        temp = -1;
+        throw std::out_of_range ("pll: invalid selector value, too low.");
+
+      }
+      d_select = temp;
     }
 
 

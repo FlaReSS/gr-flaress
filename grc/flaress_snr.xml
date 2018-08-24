@@ -1,0 +1,57 @@
+<?xml version="1.0"?>
+<block>
+  <name>snr</name>
+  <key>flaress_snr</key>
+  <category>[flaress]</category>
+  <import>import flaress</import>
+  <make>flaress.snr($carrier, $samp_rate, $nintems, $signal_bw, $noise_bw)</make>
+
+  <param>
+    <name>Measurement</name>
+    <key>carrier</key>
+		<type>enum</type>
+		<option>
+			<name>Carrier to Noise Ratio</name>
+			<key>True</key>
+		</option>
+		<option>
+			<name>Signal to Noise Ratio</name>
+			<key>False</key>
+		</option>
+  </param>
+
+
+  <param>
+    <name>sample rate</name>
+    <key>samp_rate</key>
+    <value>samp_rate</value>
+    <type>int</type>
+  </param>
+  <param>
+    <name>FFT size</name>
+    <key>nintems</key>
+    <value>1024</value>
+    <type>int</type>
+  </param>
+  <param>
+    <name>Signal bandwidth</name>
+    <key>signal_bw</key>
+    <type>int</type>
+  </param>
+  <param>
+    <name>Noise bandwidth</name>
+    <key>noise_bw</key>
+    <type>int</type>
+  </param>
+
+  <sink>
+    <name>in</name>
+    <type>float</type>
+		<vlen>$nintems</vlen>
+  </sink>
+
+  <source>
+    <name>out</name>
+		<type>float</type>
+  </source>
+</block>
