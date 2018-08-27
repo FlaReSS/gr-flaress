@@ -22,5 +22,7 @@ install(FILES
     flaress_float_to_double.xml
     flaress_float_to_int64.xml
     flaress_selector.xml
-    flaress_snr.xml DESTINATION share/gnuradio/grc/blocks
+    flaress_snr.xml
+    flaress_vector_sink_x.xml
+    flaress_null_sink.xml DESTINATION share/gnuradio/grc/blocks
 )
