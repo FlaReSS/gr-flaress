@@ -31,7 +31,7 @@ namespace gr {
     class vector_sink_int64_impl : public vector_sink_int64
     {
     private:
-      std::vector<long long int> d_data;
+      std::vector<int64_t> d_data;
       std::vector<tag_t> d_tags;
       mutable gr::thread::mutex d_data_mutex; // protects internal data access.
       int d_vlen;
@@ -41,7 +41,7 @@ namespace gr {
       ~vector_sink_int64_impl();
 
       void reset();
-      std::vector<long long int> data() const;
+      std::vector<long int> data() const;
       std::vector<tag_t> tags() const;
 
       int work(int noutput_items,

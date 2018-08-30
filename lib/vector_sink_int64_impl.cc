@@ -28,6 +28,7 @@
 #include <gnuradio/thread/thread.h>
 #include <algorithm>
 #include <iostream>
+#include <stdint.h>
 #include "vector_sink_int64_impl.h"
 
 namespace gr {
@@ -42,7 +43,7 @@ namespace gr {
 
     vector_sink_int64_impl::vector_sink_int64_impl(const int vlen, const int reserve_items)
     : sync_block("vector_sink_int64",
-                    io_signature::make(1, 1, sizeof(long long int) * vlen),
+                    io_signature::make(1, 1, sizeof(int64_t) * vlen),
                     io_signature::make(0, 0, 0)),
     d_vlen(vlen)
     {
@@ -51,9 +52,9 @@ namespace gr {
     }
 
     vector_sink_int64_impl::~vector_sink_int64_impl()
-    {}
+    { }
 
-    std::vector<long long int>
+    std::vector<long int>
     vector_sink_int64_impl::data() const
     {
       gr::thread::scoped_lock guard(d_data_mutex);
@@ -81,7 +82,7 @@ namespace gr {
                       gr_vector_const_void_star &input_items,
                       gr_vector_void_star &output_items)
     {
-      long long int *iptr = (long long int*)input_items[0];
+      int64_t *iptr = (int64_t*)input_items[0];
 
       // can't touch this (as long as work() is working, the accessors shall not
       // read the data

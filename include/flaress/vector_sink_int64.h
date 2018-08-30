@@ -52,7 +52,7 @@ namespace gr {
 
       //! Clear the data and tags containers.
       virtual void reset() = 0;
-      virtual std::vector<long long int> data() const = 0;
+      virtual std::vector<long int> data() const = 0;
       virtual std::vector<tag_t> tags() const = 0;
     };
 
