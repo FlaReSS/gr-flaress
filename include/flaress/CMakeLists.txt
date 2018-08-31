@@ -29,5 +29,6 @@ install(FILES
     snr.h
     vector_sink_int64.h
     vector_sink_double.h
-    null_sink.h DESTINATION include/flaress
+    null_sink.h
+    debug_func_probe.h DESTINATION include/flaress
 )

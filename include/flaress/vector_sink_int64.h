@@ -36,7 +36,7 @@ namespace gr {
     class FLARESS_API vector_sink_int64 : virtual public sync_block
     {
     public:
-      // gr::blocks::vector_sink_int64::sptr
+      // gr::flaress::vector_sink_int64::sptr
       typedef boost::shared_ptr<vector_sink_int64> sptr;
 
       /*!
