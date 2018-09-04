@@ -25,5 +25,6 @@ install(FILES
     flaress_snr.xml
     flaress_vector_sink_x.xml
     flaress_null_sink.xml 
-    flaress_debug_func_probe.xml DESTINATION share/gnuradio/grc/blocks
+    flaress_debug_func_probe.xml
+    flaress_null_source.xml DESTINATION share/gnuradio/grc/blocks
 )

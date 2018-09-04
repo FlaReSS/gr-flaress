@@ -48,5 +48,5 @@ GR_ADD_TEST(qa_selector ${PYTHON_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/qa_sele
 GR_ADD_TEST(qa_snr ${PYTHON_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/qa_snr.py)
 GR_ADD_TEST(qa_vector_sink_int64 ${PYTHON_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/qa_vector_sink_int64.py)
 GR_ADD_TEST(qa_vector_sink_double ${PYTHON_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/qa_vector_sink_double.py)
-GR_ADD_TEST(qa_null_sink ${PYTHON_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/qa_null_sink.py)
+GR_ADD_TEST(qa_null_source_sink ${PYTHON_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/qa_null_source_sink.py)
 GR_ADD_TEST(qa_debug_func_probe ${PYTHON_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/qa_debug_func_probe.py)

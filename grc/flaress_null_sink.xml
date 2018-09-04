@@ -4,7 +4,7 @@
   <key>flaress_null_sink</key>
   <category>[flaress]</category>
   <import>import flaress</import>
-  <make>blocks.null_sink($type.size*$vlen)</make>
+  <make>flaress.null_sink($type.size*$vlen)</make>
   <param>
     <name>Input Type</name>
     <key>type</key>

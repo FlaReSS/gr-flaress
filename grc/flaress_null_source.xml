@@ -1,0 +1,76 @@
+<?xml version="1.0"?>
+<block>
+  <name>null_source</name>
+  <key>flaress_null_source</key>
+  <category>[flaress]</category>
+  <import>import flaress</import>
+  <make>flaress.null_source($type.size*$vlen)</make>
+	<param>
+		<name>Output Type</name>
+		<key>type</key>
+		<type>enum</type>
+		<option>
+			<name>Complex</name>
+			<key>complex</key>
+			<opt>size:gr.sizeof_gr_complex</opt>
+		</option>
+		<option>
+			<name>Float</name>
+			<key>float</key>
+			<opt>size:gr.sizeof_float</opt>
+		</option>
+		<option>
+			<name>Int</name>
+			<key>int</key>
+			<opt>size:gr.sizeof_int</opt>
+		</option>
+		<option>
+			<name>Short</name>
+			<key>short</key>
+			<opt>size:gr.sizeof_short</opt>
+		</option>
+		<option>
+			<name>Byte</name>
+			<key>byte</key>
+			<opt>size:gr.sizeof_char</opt>
+		</option>
+    <option>
+      <name>Int64</name>
+      <key>s64</key>
+      <opt>size:flaress.sizeof_long</opt>
+    </option>
+    <option>
+      <name>Float64</name>
+      <key>f64</key>
+      <opt>size:gr.sizeof_double</opt>
+    </option>
+	</param>
+	<param>
+		<name>Vec Length</name>
+		<key>vlen</key>
+		<value>1</value>
+		<type>int</type>
+	</param>
+	<param>
+		<name>Num Outputs</name>
+		<key>num_outputs</key>
+		<value>1</value>
+		<type>int</type>
+	</param>
+	<param>
+		<name>Bus Connections</name>
+		<key>bus_conns</key>
+                <value>[[0,],]</value>
+		<type>raw</type>
+                <hide>part</hide>
+	</param>
+	<check>$num_outputs &gt;= 1</check>
+	<check>$vlen &gt; 0</check>
+	<source>
+		<name>out</name>
+		<type>$type</type>
+		<vlen>$vlen</vlen>
+		<nports>$num_outputs</nports>
+	</source>
+        <bus_structure_source>$bus_conns</bus_structure_source>
+</block>
