@@ -17,6 +17,8 @@
 #include "flaress/null_sink.h"
 #include "flaress/debug_func_probe.h"
 #include "flaress/null_source.h"
+#include "flaress/vector_source_double.h"
+#include "flaress/vector_source_int64.h"
 %}
 
 %constant int sizeof_long = sizeof(int64_t);
@@ -39,3 +41,7 @@ GR_SWIG_BLOCK_MAGIC2(flaress, null_sink);
 GR_SWIG_BLOCK_MAGIC2(flaress, debug_func_probe);
 %include "flaress/null_source.h"
 GR_SWIG_BLOCK_MAGIC2(flaress, null_source);
+%include "flaress/vector_source_double.h"
+GR_SWIG_BLOCK_MAGIC2(flaress, vector_source_double);
+%include "flaress/vector_source_int64.h"
+GR_SWIG_BLOCK_MAGIC2(flaress, vector_source_int64);

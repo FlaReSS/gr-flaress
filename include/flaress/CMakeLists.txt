@@ -31,5 +31,7 @@ install(FILES
     vector_sink_double.h
     null_sink.h
     debug_func_probe.h
-    null_source.h DESTINATION include/flaress
+    null_source.h
+    vector_source_double.h
+    vector_source_int64.h DESTINATION include/flaress
 )

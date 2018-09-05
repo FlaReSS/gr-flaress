@@ -1,6 +1,8 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-#                     GNU GENERAL PUBLIC LICENSE
+#
+# Copyright 2018 Antonio Miraglia - ISISpace .
+#
 
 from gnuradio import gr, gr_unittest
 from gnuradio import blocks, analog

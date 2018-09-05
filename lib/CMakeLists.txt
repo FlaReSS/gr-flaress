@@ -36,6 +36,8 @@ list(APPEND flaress_sources
     null_sink_impl.cc
     debug_func_probe_impl.cc
     null_source_impl.cc
+    vector_source_double_impl.cc
+    vector_source_int64_impl.cc
 )
 
 set(flaress_sources "${flaress_sources}" PARENT_SCOPE)
