@@ -85,7 +85,30 @@ class qa_vector_sink_source_double (gr_unittest.TestCase):
         self.assertTrue(compare_tags(expected_tags[0], result_tags[0]))
 
     def test_005(self):
-        """test_005: set_data"""
+        """test_005: that repeat works (with tagged streams)"""
+        
+        length = 16
+        src_data = [float(x) for x in range(length)]
+        expected_result = tuple(src_data + src_data)
+        src_tags = tuple([make_tag('key', 'val', 0, 'src')])
+        expected_tags = tuple([make_tag('key', 'val', 0, 'src'),
+                               make_tag('key', 'val', length, 'src')])
+
+        src = flaress.vector_source_double(src_data, repeat=True, tags=src_tags)
+        head = blocks.head(gr.sizeof_double, 2*length)
+        dst = flaress.vector_sink_double()
+
+        self.tb.connect(src, head, dst)
+        self.tb.run()
+        result_data = dst.data()
+        result_tags = dst.tags()
+        self.assertEqual(expected_result, result_data)
+        self.assertEqual(len(result_tags), 2)
+        self.assertTrue(compare_tags(expected_tags[0], result_tags[0]))
+        self.assertTrue(compare_tags(expected_tags[1], result_tags[1]))
+
+    def test_006(self):
+        """test_006: set_data"""
         
         src_data = [float(x) for x in range(16)]
         expected_result = tuple(src_data)
@@ -99,8 +122,8 @@ class qa_vector_sink_source_double (gr_unittest.TestCase):
         result_data = dst.data()
         self.assertEqual(expected_result, result_data)
 
-    def test_006(self):
-        """test_006: set_repeat"""
+    def test_007(self):
+        """test_007: set_repeat"""
 
         src_data = [float(x) for x in range(16)]
         expected_result = tuple(src_data)

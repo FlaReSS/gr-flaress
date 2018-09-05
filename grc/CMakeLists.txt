@@ -28,5 +28,6 @@ install(FILES
     flaress_debug_func_probe.xml
     flaress_null_source.xml
     flaress_vector_source_double.xml
-    flaress_vector_source_int64.xml DESTINATION share/gnuradio/grc/blocks
+    flaress_vector_source_int64.xml
+    flaress_int_to_int64.xml DESTINATION share/gnuradio/grc/blocks
 )

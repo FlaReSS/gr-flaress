@@ -33,5 +33,6 @@ install(FILES
     debug_func_probe.h
     null_source.h
     vector_source_double.h
-    vector_source_int64.h DESTINATION include/flaress
+    vector_source_int64.h
+    int_to_int64.h DESTINATION include/flaress
 )

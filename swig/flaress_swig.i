@@ -19,6 +19,7 @@
 #include "flaress/null_source.h"
 #include "flaress/vector_source_double.h"
 #include "flaress/vector_source_int64.h"
+#include "flaress/int_to_int64.h"
 %}
 
 %constant int sizeof_long = sizeof(int64_t);
@@ -45,3 +46,5 @@ GR_SWIG_BLOCK_MAGIC2(flaress, null_source);
 GR_SWIG_BLOCK_MAGIC2(flaress, vector_source_double);
 %include "flaress/vector_source_int64.h"
 GR_SWIG_BLOCK_MAGIC2(flaress, vector_source_int64);
+%include "flaress/int_to_int64.h"
+GR_SWIG_BLOCK_MAGIC2(flaress, int_to_int64);

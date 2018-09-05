@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+<block>
+  <name>Int to Int64</name>
+  <key>flaress_int_to_int64</key>
+  <category>[flaress]</category>
+  <import>import flaress</import>
+  <make>flaress.int_to_int64($vlen, $scale)</make>
+  <callback>set_scale($scale)</callback>
+  <param>
+		<name>Vec Length</name>
+		<key>vlen</key>
+		<value>1</value>
+		<type>int</type>
+	</param>
+	<param>
+		<name>Scale</name>
+		<key>scale</key>
+		<value>1</value>
+		<type>s64</type>
+	</param>
+	<sink>
+		<name>in</name>
+		<type>int</type>
+		<vlen>$vlen</vlen>
+	</sink>
+	<source>
+		<name>out</name>
+		<type>s64</type>
+		<vlen>$vlen</vlen>
+	</source>
+</block>

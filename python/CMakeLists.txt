@@ -50,3 +50,4 @@ GR_ADD_TEST(qa_vector_sink_source_double ${PYTHON_EXECUTABLE} ${CMAKE_CURRENT_SO
 GR_ADD_TEST(qa_vector_sink_source_int64 ${PYTHON_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/qa_vector_sink_source_int64.py)
 GR_ADD_TEST(qa_null_source_sink ${PYTHON_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/qa_null_source_sink.py)
 GR_ADD_TEST(qa_debug_func_probe ${PYTHON_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/qa_debug_func_probe.py)
+GR_ADD_TEST(qa_int_to_int64 ${PYTHON_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/qa_int_to_int64.py)

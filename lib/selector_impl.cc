@@ -35,25 +35,16 @@ namespace gr {
         (new selector_impl(sizeof_stream_item, select, n_inputs, n_outputs));
     }
 
-    /*
-     * The private constructor
-     */
     selector_impl::selector_impl(size_t sizeof_stream_item, int select, int n_inputs, int n_outputs)
       : gr::block("selector",
               gr::io_signature::make(0, n_inputs, sizeof_stream_item),
               gr::io_signature::make(0, n_outputs, sizeof_stream_item)),
               d_select(select), d_n_inputs(n_inputs), d_n_outputs(n_outputs),
               d_sizeof_stream_item(sizeof_stream_item)
-    {
+    {}
 
-    }
-
-    /*
-     * Our virtual destructor.
-     */
     selector_impl::~selector_impl()
-    {
-    }
+    {}
 
     void
     selector_impl::forecast (int noutput_items, gr_vector_int &ninput_items_required)
