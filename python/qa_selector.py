@@ -874,7 +874,7 @@ class qa_selector (gr_unittest.TestCase):
                             make_tag('key1', 'val1', (N / 3), 'src1'),
                             make_tag('key1', 'val1', (N / 2), 'src1')])
 
-        expected_tags =src_tags0[:] + src_tags1[:]
+        expected_tags =src_tags0[:]
     
         # Blocks
         flaress_selector = flaress.selector(gr.sizeof_gr_complex*1, 0, 2, 1)
@@ -895,15 +895,11 @@ class qa_selector (gr_unittest.TestCase):
         result_tags = dst_out.tags()
 
         self.assertFloatTuplesAlmostEqual(expected_result, result_data)
-        self.assertEqual(len(result_tags), 8)
+        self.assertEqual(len(result_tags), 4)
         self.assertTrue(compare_tags(expected_tags[0], result_tags[0]))
-        self.assertTrue(compare_tags(expected_tags[4], result_tags[1]))
-        self.assertTrue(compare_tags(expected_tags[1], result_tags[2]))
-        self.assertTrue(compare_tags(expected_tags[5], result_tags[3]))
-        self.assertTrue(compare_tags(expected_tags[2], result_tags[4]))
-        self.assertTrue(compare_tags(expected_tags[6], result_tags[5]))
-        self.assertTrue(compare_tags(expected_tags[3], result_tags[6]))
-        self.assertTrue(compare_tags(expected_tags[7], result_tags[7]))
+        self.assertTrue(compare_tags(expected_tags[1], result_tags[1]))
+        self.assertTrue(compare_tags(expected_tags[2], result_tags[2]))
+        self.assertTrue(compare_tags(expected_tags[3], result_tags[3]))
 
         print "- Tag received properly"
 

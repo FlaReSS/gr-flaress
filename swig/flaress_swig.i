@@ -48,3 +48,4 @@ GR_SWIG_BLOCK_MAGIC2(flaress, vector_source_double);
 GR_SWIG_BLOCK_MAGIC2(flaress, vector_source_int64);
 %include "flaress/int_to_int64.h"
 GR_SWIG_BLOCK_MAGIC2(flaress, int_to_int64);
+

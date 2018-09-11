@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <block>
-  <name>vector sink</name>
+  <name>Vector Sink</name>
   <key>flaress_vector_sink_x</key>
   <category>[flaress]</category>
   <import>import flaress</import>

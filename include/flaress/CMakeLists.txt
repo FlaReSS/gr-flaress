@@ -34,5 +34,6 @@ install(FILES
     null_source.h
     vector_source_double.h
     vector_source_int64.h
-    int_to_int64.h DESTINATION include/flaress
+    int_to_int64.h
+    DESTINATION include/flaress
 )

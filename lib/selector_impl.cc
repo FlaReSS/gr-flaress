@@ -41,7 +41,9 @@ namespace gr {
               gr::io_signature::make(0, n_outputs, sizeof_stream_item)),
               d_select(select), d_n_inputs(n_inputs), d_n_outputs(n_outputs),
               d_sizeof_stream_item(sizeof_stream_item)
-    {}
+    {
+      set_tag_propagation_policy(TPP_DONT);
+    }
 
     selector_impl::~selector_impl()
     {}
@@ -65,11 +67,23 @@ namespace gr {
         sel_evaluation();
         void *in = (void*) input_items[in_sel];
         void *out = (void *) output_items[out_sel];
-
+        std::vector<tag_t> rtags;
+        std::vector<tag_t>::iterator t;
         // std::cout << "noutput_items: " << noutput_items << '\n';
 
         memcpy(out, in, noutput_items * d_sizeof_stream_item);
 
+        get_tags_in_range(rtags, in_sel, nitems_read(0),
+                             (nitems_read(0) + noutput_items));
+
+        if (rtags.size() >= 0)
+        {
+          for (t = rtags.begin(); t != rtags.end(); t++)
+          {
+            add_item_tag(out_sel, *t);
+          }
+        }
+        
         for(int w = 0; w < d_n_outputs; w++) {
           if (w != out_sel )
             produce(w, 0);

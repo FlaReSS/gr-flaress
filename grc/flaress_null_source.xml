@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <block>
-  <name>null_source</name>
+  <name>Null Source</name>
   <key>flaress_null_source</key>
   <category>[flaress]</category>
   <import>import flaress</import>
