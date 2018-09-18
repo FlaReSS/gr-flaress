@@ -1,0 +1,60 @@
+<?xml version="1.0"?>
+<block>
+  <name>Fixed Point Math</name>
+  <key>flaress_fixed_point_math_xx</key>
+  <category>[flaress]</category>
+  <import>import flaress</import>
+  <make>flaress.fixed_point_math_$(type.fcn)($vlen, $N_int, $N_frac)</make>
+
+  <param>
+		<name>Input Type</name>
+		<key>type</key>
+    <value>complex</value>
+		<type>enum</type>
+		<option>
+			<name>Complex</name>
+			<key>complex</key>
+			<opt>fcn:cc</opt>
+		</option>
+		<option>
+			<name>Float</name>
+			<key>float</key>
+			<opt>fcn:ff</opt>
+		</option>
+    <option>
+			<name>Double</name>
+			<key>f64</key>
+			<opt>fcn:dd</opt>
+		</option>
+	</param>
+	<param>
+		<name>Vec Length</name>
+		<key>vlen</key>
+		<value>1</value>
+		<type>int</type>
+	</param>
+  <param>
+    <name>N of bits integer part</name>
+    <key>N_int</key>
+    <type>int</type>
+  </param>
+  <param>
+    <name>N of bits fractional part</name>
+    <key>N_frac</key>
+    <type>int</type>
+  </param>
+
+	<check>$vlen &gt; 0</check>
+
+	<source>
+		<name>in</name>
+		<type>$type</type>
+		<vlen>$vlen</vlen>
+	</source>
+
+  <sink>
+		<name>in</name>
+		<type>$type</type>
+		<vlen>$vlen</vlen>
+	</sink>
+</block>

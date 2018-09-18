@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<block>
+  <name>Sine Debug</name>
+  <key>flaress_sine_debug</key>
+  <category>[flaress]</category>
+  <import>import flaress</import>
+  <make>flaress.sine_debug()</make>
+
+  <sink>
+    <name>in</name>
+    <type>complex</type>
+  </sink>
+
+</block>

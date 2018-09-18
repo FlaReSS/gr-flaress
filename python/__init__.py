@@ -31,6 +31,8 @@ except ImportError:
 	pass
 
 # import any pure python here
+from sine_debug import sine_debug
+
 
 
 #

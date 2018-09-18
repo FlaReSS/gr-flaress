@@ -39,7 +39,11 @@ list(APPEND flaress_sources
     vector_source_double_impl.cc
     vector_source_int64_impl.cc
     int_to_int64_impl.cc
-    )
+    fixed_point_math_cc_impl.cc
+    fixed_point_math_ff_impl.cc
+    fixed_point_math_dd_impl.cc
+    integer_math_ii_impl.cc
+    integer_math_ll_impl.cc )
 
 set(flaress_sources "${flaress_sources}" PARENT_SCOPE)
 if(NOT flaress_sources)

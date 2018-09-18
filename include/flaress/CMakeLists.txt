@@ -35,5 +35,9 @@ install(FILES
     vector_source_double.h
     vector_source_int64.h
     int_to_int64.h
-    DESTINATION include/flaress
+    fixed_point_math_cc.h
+    fixed_point_math_ff.h
+    fixed_point_math_dd.h
+    integer_math_ii.h
+    integer_math_ll.h DESTINATION include/flaress
 )

@@ -30,5 +30,7 @@ install(FILES
     flaress_vector_source_double.xml
     flaress_vector_source_int64.xml
     flaress_int_to_int64.xml
-    DESTINATION share/gnuradio/grc/blocks
+    flaress_sine_debug.xml
+    flaress_fixed_point_math_xx.xml
+    flaress_integer_math_xx.xml DESTINATION share/gnuradio/grc/blocks
 )

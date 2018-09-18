@@ -17,9 +17,9 @@
  * the Free Software Foundation, Inc., 51 Franklin Street,
  * Boston, MA 02110-1301, USA.
  */
-
-#ifndef INCLUDED_FLARESS_INT_TO_INT64_H
-#define INCLUDED_FLARESS_INT_TO_INT64_H
+ 
+#ifndef INCLUDED_FLARESS_INTEGER_MATH_II_H
+#define INCLUDED_FLARESS_INTEGER_MATH_II_H
 
 #include <flaress/api.h>
 #include <gnuradio/sync_block.h>
@@ -28,36 +28,27 @@ namespace gr {
   namespace flaress {
 
   /*!
-    * \brief Convert stream of ints to a stream of ints.
+    * \brief Convert stream of integers to a limited stream of integers.
     * \ingroup flaress
      *
      */
-  class FLARESS_API int_to_int64 : virtual public gr::sync_block
-  {
-  public:
-    typedef boost::shared_ptr<int_to_int64> sptr;
+    class FLARESS_API integer_math_ii : virtual public gr::sync_block
+    {
+     public:
+      typedef boost::shared_ptr<integer_math_ii> sptr;
 
     /*!
-       * Build a int to int64 block.
+       * Convert stream of integers to a limited stream of integers in fixed point math,
+       * depending on the number of bits.
        *
        * \param vlen vector length of data streams.
-       * \param scale a scalar multiplier to change the output signal scale.
+       * \param N_int number of bits used to represent the integer part.
        */
-    static sptr make(size_t vlen = 1, int scale = 1);
-
-    /*!
-       * Get the scalar multiplier value.
-       */
-    virtual int scale() const = 0;
-
-    /*!
-       * Set the scalar multiplier value.
-       */
-    virtual void set_scale(int scale) = 0;
-  };
+      static sptr make(size_t vlen, int N_int);
+    };
 
   } // namespace flaress
 } // namespace gr
 
-#endif /* INCLUDED_FLARESS_INT_TO_INT64_H */
+#endif /* INCLUDED_FLARESS_INTEGER_MATH_II_H */
 

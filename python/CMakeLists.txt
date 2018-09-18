@@ -32,6 +32,7 @@ endif()
 GR_PYTHON_INSTALL(
     FILES
     __init__.py
+    sine_debug.py
     DESTINATION ${GR_PYTHON_DIR}/flaress
 )
 
@@ -51,3 +52,7 @@ GR_ADD_TEST(qa_vector_sink_source_int64 ${PYTHON_EXECUTABLE} ${CMAKE_CURRENT_SOU
 GR_ADD_TEST(qa_null_source_sink ${PYTHON_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/qa_null_source_sink.py)
 GR_ADD_TEST(qa_debug_func_probe ${PYTHON_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/qa_debug_func_probe.py)
 GR_ADD_TEST(qa_int_to_int64 ${PYTHON_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/qa_int_to_int64.py)
+GR_ADD_TEST(qa_sine_debug ${PYTHON_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/qa_sine_debug.py)
+GR_ADD_TEST(qa_iqbal_gen ${PYTHON_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/qa_iqbal_gen.py)
+GR_ADD_TEST(qa_fixed_point_math ${PYTHON_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/qa_fixed_point_math.py)
+GR_ADD_TEST(qa_integer_math ${PYTHON_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/qa_integer_math.py)
