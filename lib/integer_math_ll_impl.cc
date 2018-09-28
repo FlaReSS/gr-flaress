@@ -66,6 +66,7 @@ namespace gr {
 
       for(size_t i = 0; i < (noutput_items * d_vlen); i++)
       {
+        int64_t rounded = in[i];
         if(rounded > max_value_pos){
           rounded = max_value_pos;
         }

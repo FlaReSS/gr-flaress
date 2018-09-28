@@ -52,7 +52,10 @@ namespace gr {
     selector_impl::forecast (int noutput_items, gr_vector_int &ninput_items_required)
     {
       for(int w = 0; w < d_n_inputs; w++) {
+        if (w == in_sel )
           ninput_items_required[w] = noutput_items;
+        else
+          ninput_items_required[w] = 0;
       }
     }
 

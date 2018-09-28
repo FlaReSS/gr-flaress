@@ -24,33 +24,37 @@
 
 #include <gnuradio/io_signature.h>
 #include "snr_impl.h"
+#include <volk/volk.h>
 
 namespace gr {
   namespace flaress {
 
     snr::sptr
-    snr::make(bool carrier, int samp_rate, int nintems, float signal_bw, float noise_bw)
+    snr::make(bool auto_carrier, bool carrier, float freq_central, float samp_rate, int nintems, float signal_bw, float noise_bw)
     {
       return gnuradio::get_initial_sptr
-        (new snr_impl(carrier, samp_rate, nintems, signal_bw, noise_bw));
+        (new snr_impl(auto_carrier, carrier, freq_central, samp_rate, nintems, signal_bw, noise_bw));
     }
 
     /*
      * The private constructor
      */
-    snr_impl::snr_impl(bool carrier, int samp_rate, int nintems, float signal_bw, float noise_bw)
-      : gr::sync_block("snr",
-              gr::io_signature::make(1, 1, sizeof(float) * nintems),
-              gr::io_signature::make(1, 1, sizeof(float))),
-              d_nintems_half(nintems / 2), d_nintems(nintems),
-              d_samp_rate(samp_rate), d_carrier(carrier),
-              signal_item_offset((signal_bw / samp_rate) * (nintems / 4)),
-              noise_item_offset((noise_bw / samp_rate) * (nintems / 4))
-    {}
+    snr_impl::snr_impl(bool auto_carrier, bool carrier, float freq_central, float samp_rate, int nintems, float signal_bw, float noise_bw)
+        : gr::sync_block("snr",
+                         gr::io_signature::make(1, 1, sizeof(float) * nintems),
+                         gr::io_signature::make(1, 1, sizeof(float))),
+          d_nintems(nintems), d_auto_carrier(auto_carrier),
+          d_samp_rate(samp_rate), d_carrier(carrier),
+          d_freq_central_index((freq_central / samp_rate * nintems) + (nintems / 2)),
+          signal_item_offset((signal_bw / samp_rate) * (nintems / 4)),
+          noise_item_offset((noise_bw / samp_rate) * (nintems / 4))
+    {
+      d_nintems_half = d_nintems / 2;
+      noise_bw_items = (noise_item_offset - signal_item_offset) * 2;
+      signal_bw_items = signal_item_offset * 2;
+      create_buffers();
+    }
 
-    /*
-     * Our virtual destructor.
-     */
     snr_impl::~snr_impl()
     {}
 
@@ -61,66 +65,73 @@ namespace gr {
     {
       const float *in = (const float *) input_items[0];
       float *out = (float *) output_items[0];
-      float window[d_nintems];
-      int signal_item = 0;
-      int signal_tot_items = 1;
-      int noise_tot_items = 1;
-      float signal_spectrum = -1000;
-      float noise_spectrum_avg = 0;
-      int j = 0;
-      int debug = 0;
 
-      for(int i = 0; i < (noutput_items * d_nintems ); i++) {
-        if (j < d_nintems_half) {
-          if (in [i] > signal_spectrum ) {
-            signal_spectrum = in [i];
-            signal_item = j;
-          }
-          window[j + d_nintems_half] = in [i];
+      float signal_dB = 1;
+      float noise_dB = 0;
+
+
+      for(int i = 0; i < noutput_items; i++) {
+
+        // Perform shift operation
+        memcpy(temp_buffer, &in[i * d_nintems], sizeof(float) * (d_nintems_half + 1));
+        memcpy(&fft_buffer[0], &in[i * d_nintems + d_nintems_half], sizeof(float) * (d_nintems_half));
+        memcpy(&fft_buffer[d_nintems_half], temp_buffer, sizeof(float) * (d_nintems_half + 1));
+
+        if (d_auto_carrier == true)
+        {
+          volk_32f_index_max_32u(signal_max_index, fft_buffer, d_nintems);
+          d_freq_central_index = *signal_max_index;
         }
 
-        if (j >= d_nintems_half && j < d_nintems) {
-          if (in [i] > signal_spectrum ) {
-            signal_spectrum = in [i];
-            signal_item = j;
-          }
-          window[j - d_nintems_half] = in [i];
+        memcpy(&signal_band[0], &fft_buffer[d_freq_central_index - signal_item_offset], sizeof(float) * signal_bw_items);
+
+        memcpy(&noise_band[0], &fft_buffer[d_freq_central_index - noise_item_offset], sizeof(float) * (noise_item_offset - signal_item_offset));
+        memcpy(&noise_band[(noise_item_offset - signal_item_offset)], &fft_buffer[d_freq_central_index + signal_item_offset + 1], sizeof(float) * (noise_item_offset - signal_item_offset));
+        volk_32f_accumulator_s32f(noise_acc, noise_band, noise_bw_items);
+        noise_dB = *noise_acc / noise_bw_items;
+
+        if (d_carrier == true) {
+          signal_dB = fft_buffer[d_freq_central_index];
+          
+
+        }
+        else
+        {
+          volk_32f_accumulator_s32f(signal_acc, signal_band, signal_bw_items);
+          signal_dB = *signal_acc / signal_bw_items;
         }
 
-        j ++;
-        if(j == d_nintems ){
 
-          if (d_carrier == false) {
-            signal_spectrum = 0;
-          }
-
-          for (size_t w = 0; w < d_nintems; w++) {
-            if (((w >= (signal_item - noise_item_offset)) && (w < (signal_item - signal_item_offset))) || ((w > (signal_item + signal_item_offset)) && (w <= (signal_item + noise_item_offset)))) {
-                 noise_spectrum_avg += window[w];
-                 noise_tot_items ++;
-            }
-            if ((w < signal_item - signal_item_offset ) || (w > signal_item + signal_item_offset )) {
-                 if (d_carrier == false) {
-                   signal_spectrum += window[w];
-                   signal_tot_items ++;
-                 }
-            }
-          }
-
-          *out++ = (signal_spectrum / signal_tot_items) - (noise_spectrum_avg / noise_tot_items);
-          j = 0;
-        }
+      
+        out[i] = signal_dB - noise_dB;
       }
 
-
-
-
-        // out[i] = (signal_spectrum / signal_tot_items) - (noise_spectrum_avg / noise_tot_items);
-
-
-      // Tell runtime system how many output items we produced.
       return noutput_items;
     }
+
+
+
+    void snr_impl::create_buffers()
+    {
+      
+      signal_band = (float *)volk_malloc(signal_bw_items * sizeof(float), volk_get_alignment());
+      memset(signal_band, 0, signal_bw_items * sizeof(float));
+
+      noise_band = (float *)volk_malloc(noise_bw_items * sizeof(float), volk_get_alignment());
+      memset(noise_band, 0, noise_bw_items * sizeof(float));
+
+
+      temp_buffer = (float *)volk_malloc(sizeof(float) * (d_nintems_half + 1), volk_get_alignment());
+
+      fft_buffer = (float *)volk_malloc(d_nintems * sizeof(float), volk_get_alignment());
+      memset(fft_buffer, 0, d_nintems * sizeof(float));
+
+      signal_max_index = (uint32_t *)volk_malloc(sizeof(uint32_t), volk_get_alignment());
+
+      signal_acc = (float *)volk_malloc(sizeof(float), volk_get_alignment());
+
+      noise_acc = (float *)volk_malloc(sizeof(float), volk_get_alignment());
+      }
 
   } /* namespace flaress */
 } /* namespace gr */

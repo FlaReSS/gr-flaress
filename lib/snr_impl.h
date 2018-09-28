@@ -30,16 +30,27 @@ namespace gr {
     {
      private:
       bool d_carrier;
-      int d_samp_rate;
-      int d_nintems;
-      int d_nintems_half;
-      int signal_item_offset;
-      int noise_item_offset;
+      bool d_auto_carrier;
+      float d_samp_rate;
+      uint32_t d_freq_central_index;
+      uint32_t d_nintems;
+      uint32_t d_nintems_half;
+      uint32_t signal_item_offset;
+      uint32_t noise_item_offset;
+      uint32_t noise_bw_items;
+      uint32_t signal_bw_items;
 
+      float *signal_band;
+      float *noise_band;
+      float *temp_buffer;
+      float *fft_buffer;
+      uint32_t *signal_max_index;
+      float *signal_acc;
+      float *noise_acc;
 
+      void create_buffers();
 
-     public:
-      snr_impl(bool carrier, int samp_rate, int nintems, float signal_bw, float noise_bw);
+          public : snr_impl(bool auto_carrier, bool carrier, float freq_central, float samp_rate, int nintems, float signal_bw, float noise_bw);
       ~snr_impl();
 
       // Where all the action really happens

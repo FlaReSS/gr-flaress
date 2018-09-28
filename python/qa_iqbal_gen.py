@@ -90,24 +90,28 @@ def plot(self, data):
     ax1.set_xlabel('Time [s]')
     ax1.set_ylabel ('Real', color='r')
     ax1.set_title("Input", fontsize=20)
+    ax1.set_xlim([0.0, 0.04])
     ax1.plot(time, in_re, color='r', scalex=True, scaley=True, linewidth=1)
     ax1.tick_params(axis='y', labelcolor='red')
     ax1.grid(True)
 
     ax2 = ax1.twinx()
     ax2.set_ylabel('Imag', color='b')  # we already handled the x-label with ax1
+    ax2.set_xlim([0.0, 0.04])
     ax2.plot(time, in_im, color='b', scalex=True, scaley=True, linewidth=1)
     ax2.tick_params(axis='y', labelcolor='blue')
 
     ax3.set_xlabel('Time [s]')
     ax3.set_ylabel ('Real', color='r')
     ax3.set_title("Output", fontsize=20)
+    ax3.set_xlim([0.0, 0.04])
     ax3.plot(time, out_re, color='r', scalex=True, scaley=True, linewidth=1)
     ax3.tick_params(axis='y', labelcolor='red')
     ax3.grid(True)
 
     ax4 = ax3.twinx()
     ax4.set_ylabel('Imag', color='b')  # we already handled the x-label with ax1
+    ax4.set_xlim([0.0, 0.04])
     ax4.plot(time, out_im, color='b', scalex=True, scaley=True, linewidth=1)
     ax4.tick_params(axis='y', labelcolor='blue')
 
@@ -116,15 +120,19 @@ def plot(self, data):
     ax5.set_ylabel ('Real', color='r')
     ax5.set_title("Cross-correlation", fontsize=20)
     ax5.axhline(0.5, ls=':')
-    ax5.axvline(0, ls=':')
+    ax5.axvline(len(corr.real)/2, ls=':')
     # ax5.set_ylim([-0.1, 1.1])
-    ax5.plot(time_corr, corr.real, color='r', scalex=True, scaley=True, linewidth=1)
+    ax5.set_xlim([1850, 2250])
+    ax5.plot(corr.real, color='r', scalex=True, scaley=True, linewidth=1)
+    # ax5.plot(time_corr, corr.real, color='r', scalex=True, scaley=True, linewidth=1)
     ax5.tick_params(axis='y', labelcolor='red')
     ax5.grid(True)
 
     ax6 = ax5.twinx()
     ax6.set_ylabel('Imag', color='b')  # we already handled the x-label with ax1
-    ax6.plot(time_corr, corr.imag, color='b', scalex=True, scaley=True, linewidth=1)
+    ax6.set_xlim([1850, 2250])
+    ax6.plot(corr.imag, color='b', scalex=True, scaley=True, linewidth=1)
+    # ax6.plot(time_corr, corr.imag, color='b', scalex=True, scaley=True, linewidth=1)
     ax6.tick_params(axis='y', labelcolor='blue')
 
     name_test = self.id().split("__main__.")[1]
@@ -144,7 +152,7 @@ def test_imbalance(self, param):
     tb = self.tb
     data = namedtuple('data_pc', 'src out corr time time_corr')
 
-    src_sine = analog.sig_source_c(param.samp_rate, analog.GR_SQR_WAVE, param.frequency, param.amplitude, param.offset)
+    src_sine = analog.sig_source_c(param.samp_rate, analog.GR_SIN_WAVE, param.frequency, param.amplitude, param.offset)
 
     throttle = blocks.throttle(gr.sizeof_gr_complex*1, param.samp_rate,True)
     head = blocks.head(gr.sizeof_gr_complex, int (param.items))
@@ -185,15 +193,15 @@ class qa_iqbal_gen (gr_unittest.TestCase):
         self.pdf.finalize_pdf()
 
     def test_001_t (self):
-        """test_001_t: with a phase accumulator"""
+        """test_001_t: without imbalance"""
         param = namedtuple('param', 'samp_rate items frequency amplitude offset magnitude phase origin')
         param.samp_rate = 2048
         param.items = param.samp_rate
         param.frequency = 50.0
         param.amplitude = 1.0
         param.offset = 0.0
-        param.magnitude = 1
-        param.phase = 1
+        param.magnitude = 0.0
+        param.phase = 0.0
         param.origin = "TX"
 
         print_parameters(param)
@@ -206,7 +214,27 @@ class qa_iqbal_gen (gr_unittest.TestCase):
         # # self.assertAlmostEqual(param.step / (2 * math.pi), data_fft.carrier)
         # print "Time shifting= %.3f ms;" %(data.time_corr[i]*1000)
 
+    def test_002_t (self):
+        """test_002_t: with imbalance"""
+        param = namedtuple('param', 'samp_rate items frequency amplitude offset magnitude phase origin')
+        param.samp_rate = 2048
+        param.items = param.samp_rate
+        param.frequency = 50.0
+        param.amplitude = 1.0
+        param.offset = 0.0
+        param.magnitude = 10.0
+        param.phase = 10.0
+        param.origin = "TX"
 
+        print_parameters(param)
+
+        data = test_imbalance(self, param)
+
+        plot(self,data)
+
+        # i,j = np.unravel_index(data.corr.argmax(), data.corr.shape) #get the index of the maximum value of correlation
+        # # self.assertAlmostEqual(param.step / (2 * math.pi), data_fft.carrier)
+        # print "Time shifting= %.3f ms;" %(data.time_corr[i]*1000)
 
 if __name__ == '__main__':
     suite = gr_unittest.TestLoader().loadTestsFromTestCase(qa_iqbal_gen)

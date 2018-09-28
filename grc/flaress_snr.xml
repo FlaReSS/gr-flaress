@@ -4,11 +4,12 @@
   <key>flaress_snr</key>
   <category>[flaress]</category>
   <import>import flaress</import>
-  <make>flaress.snr($carrier, $samp_rate, $nintems, $signal_bw, $noise_bw)</make>
+  <make>flaress.snr($auto_carrier, $carrier, $freq_central, $samp_rate, $nintems, $signal_bw, $noise_bw)</make>
 
   <param>
     <name>Measurement</name>
     <key>carrier</key>
+    <value>True</value>
 		<type>enum</type>
 		<option>
 			<name>Carrier to Noise Ratio</name>
@@ -20,12 +21,33 @@
 		</option>
   </param>
 
+  <param>
+    <name>Carrier self-dection</name>
+    <key>auto_carrier</key>
+    <value>True</value>
+    <type>enum</type>
+    <option>
+      <name>Yes</name>
+      <key>True</key>
+    </option>
+    <option>
+      <name>No</name>
+      <key>False</key>
+    </option>
+  </param>
+
+  <param>
+    <name>Central Frequency</name>
+    <key>freq_central</key>
+    <value>0</value>
+    <type>real</type>
+  </param>
 
   <param>
     <name>sample rate</name>
     <key>samp_rate</key>
     <value>samp_rate</value>
-    <type>int</type>
+    <type>real</type>
   </param>
   <param>
     <name>FFT size</name>
