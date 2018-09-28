@@ -35,15 +35,15 @@
 
 	<check>$vlen &gt; 0</check>
 
-	<source>
-		<name>in</name>
-		<type>$type</type>
-		<vlen>$vlen</vlen>
-	</source>
-
   <sink>
 		<name>in</name>
 		<type>$type</type>
 		<vlen>$vlen</vlen>
 	</sink>
+	
+	<source>
+		<name>in</name>
+		<type>$type</type>
+		<vlen>$vlen</vlen>
+	</source>
 </block>

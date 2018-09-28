@@ -6,10 +6,10 @@
   <import>import flaress</import>
   <make>flaress.fixed_point_math_$(type.fcn)($vlen, $N_int, $N_frac)</make>
 
-  <param>
-		<name>Input Type</name>
+	<param>
+		<name>IO Type</name>
 		<key>type</key>
-    <value>complex</value>
+		<value>complex</value>
 		<type>enum</type>
 		<option>
 			<name>Complex</name>
@@ -46,15 +46,18 @@
 
 	<check>$vlen &gt; 0</check>
 
-	<source>
-		<name>in</name>
-		<type>$type</type>
-		<vlen>$vlen</vlen>
-	</source>
 
   <sink>
 		<name>in</name>
 		<type>$type</type>
 		<vlen>$vlen</vlen>
 	</sink>
+
+	<source>
+		<name>in</name>
+		<type>$type</type>
+		<vlen>$vlen</vlen>
+	</source>
+
+
 </block>
