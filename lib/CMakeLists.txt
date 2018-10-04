@@ -43,7 +43,8 @@ list(APPEND flaress_sources
     fixed_point_math_ff_impl.cc
     fixed_point_math_dd_impl.cc
     integer_math_ii_impl.cc
-    integer_math_ll_impl.cc )
+    integer_math_ll_impl.cc
+    )
 
 set(flaress_sources "${flaress_sources}" PARENT_SCOPE)
 if(NOT flaress_sources)

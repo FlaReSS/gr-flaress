@@ -31,6 +31,7 @@ namespace gr {
      private:
       bool d_carrier;
       bool d_auto_carrier;
+      bool d_all_spectrum;
       float d_samp_rate;
       uint32_t d_freq_central_index;
       uint32_t d_nintems;
@@ -49,8 +50,9 @@ namespace gr {
       float *noise_acc;
 
       void create_buffers();
+      void check_bands();
 
-          public : snr_impl(bool auto_carrier, bool carrier, float freq_central, float samp_rate, int nintems, float signal_bw, float noise_bw);
+          public : snr_impl(bool auto_carrier, bool carrier, bool all_spectrum, float freq_central, float samp_rate, int nintems, float signal_bw, float noise_bw);
       ~snr_impl();
 
       // Where all the action really happens

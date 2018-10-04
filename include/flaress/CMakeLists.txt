@@ -39,5 +39,6 @@ install(FILES
     fixed_point_math_ff.h
     fixed_point_math_dd.h
     integer_math_ii.h
-    integer_math_ll.h DESTINATION include/flaress
+    integer_math_ll.h
+    DESTINATION include/flaress
 )

@@ -46,7 +46,7 @@ namespace gr {
        * class. flaress::snr::make is the public interface for
        * creating new instances.
        */
-      static sptr make(bool auto_carrier, bool carrier, float freq_central, float samp_rate, int nintems, float signal_bw, float noise_bw);
+      static sptr make(bool auto_carrier, bool carrier, bool all_spectrum, float freq_central, float samp_rate, int nintems, float signal_bw, float noise_bw);
     };
 
   } // namespace flaress

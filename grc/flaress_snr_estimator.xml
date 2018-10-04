@@ -1,0 +1,191 @@
+<?xml version="1.0"?>
+<block>
+  <name>SNR Estimator</name>
+  <key>flaress_snr_estimator_x</key>
+  <category>[flaress]</category>
+  <import>from gnuradio.fft import window</import>
+  <import>import flaress</import>
+  <make>flaress.snr_estimator_$(fft_output.fcn)( 
+        auto_carrier = $auto_carrier, 
+        carrier = $carrier, 
+        all_spectrum = $all_spectrum, 
+        freq_central = $freq_central, 
+        samp_rate = $samp_rate, 
+        nintems = $nintems, 
+        signal_bw = $signal_bw, 
+        noise_bw = $noise_bw, 
+        avg_alpha = $avg_alpha, 
+        average = $average, 
+        win = $win)</make>
+
+  <param>
+		<name>FFT Output</name>
+		<key>fft_output</key>
+    <value>True</value>
+		<type>enum</type>
+    <hide>part</hide>
+		<option>
+			<name>Yes</name>
+			<key>False</key>
+      <opt>fcn:cfv</opt>
+		</option>
+		<option>
+			<name>No</name>
+			<key>True</key>
+      <opt>fcn:cf</opt>
+		</option>
+  </param>
+
+<param>
+    <name>Measurement</name>
+    <key>carrier</key>
+    <value>True</value>
+		<type>enum</type>
+		<option>
+			<name>Carrier to Noise Ratio</name>
+			<key>True</key>
+		</option>
+		<option>
+			<name>Signal to Noise Ratio</name>
+			<key>False</key>
+		</option>
+  </param>
+
+  <param>
+    <name>Carrier self-dection</name>
+    <key>auto_carrier</key>
+    <value>True</value>
+    <type>enum</type>
+    <option>
+      <name>Yes</name>
+      <key>True</key>
+    </option>
+    <option>
+      <name>No</name>
+      <key>False</key>
+    </option>
+  </param>
+
+  <param>
+    <name>Whole spectrum for noise</name>
+    <key>all_spectrum</key>
+    <value>True</value>
+    <type>enum</type>
+    <option>
+      <name>Yes</name>
+      <key>True</key>
+    </option>
+    <option>
+      <name>No</name>
+      <key>False</key>
+    </option>
+  </param>
+
+  <param>
+    <name>Central Frequency</name>
+    <key>freq_central</key>
+    <value>0</value>
+    <type>real</type>
+  </param>
+
+  <param>
+    <name>sample rate</name>
+    <key>samp_rate</key>
+    <value>samp_rate</value>
+    <type>real</type>
+  </param>
+  <param>
+    <name>FFT size</name>
+    <key>nintems</key>
+    <value>1024</value>
+    <type>int</type>
+  </param>
+  <param>
+    <name>Signal bandwidth</name>
+    <key>signal_bw</key>
+    <type>int</type>
+  </param>
+  <param>
+    <name>Noise bandwidth</name>
+    <key>noise_bw</key>
+    <type>int</type>
+  </param>
+
+  <param>
+    <name>Window Type</name>
+    <key>win</key>
+    <value>window.blackmanharris</value>
+    <type>enum</type>
+    <hide>part</hide>
+    <option>
+      <name>Blackman-harris</name>
+      <key>window.blackmanharris</key>
+    </option>
+    <option>
+      <name>Hamming</name>
+      <key>window.hamming</key>
+    </option>
+    <option>
+      <name>Hann</name>
+      <key>window.hann</key>
+    </option>
+    <option>
+      <name>Blackman</name>
+      <key>window.blackman</key>
+    </option>
+    <option>
+      <name>Rectangular (Uniform)</name>
+      <key>window.rectangular</key>
+    </option>
+    <option>
+      <name>Kaiser</name>
+      <key>window.kaiser</key>
+    </option>
+    <option>
+      <name>Flat-top</name>
+      <key>window.flattop</key>
+    </option>
+  </param>
+
+	<param>
+		<name>Average</name>
+		<key>average</key>
+		<value>False</value>
+		<type>bool</type>
+		<option>
+			<name>On</name>
+			<key>True</key>
+		</option>
+		<option>
+			<name>Off</name>
+			<key>False</key>
+		</option>
+	</param>
+
+	<param>
+		<name>Average Alpha</name>
+		<key>avg_alpha</key>
+		<value>1.0</value>
+		<type>real</type>
+	</param>
+
+  <sink>
+    <name>in</name>
+    <type>complex</type>
+  </sink>
+
+  <source>
+    <name>out</name>
+    <type>float</type>
+    <optional>1</optional>
+  </source>
+
+<source>
+  <name>fft</name>
+  <type>float</type>
+  <vlen>$nintems</vlen>
+  <optional>1</optional>
+  <hide>$fft_output</hide>
+</source>
+
+</block>

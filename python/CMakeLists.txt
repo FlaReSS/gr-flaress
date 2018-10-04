@@ -33,6 +33,8 @@ GR_PYTHON_INSTALL(
     FILES
     __init__.py
     sine_debug.py
+    snr_estimator_cf.py
+    snr_estimator_cfv.py
     DESTINATION ${GR_PYTHON_DIR}/flaress
 )
 
@@ -56,3 +58,5 @@ GR_ADD_TEST(qa_sine_debug ${PYTHON_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/qa_si
 GR_ADD_TEST(qa_iqbal_gen ${PYTHON_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/qa_iqbal_gen.py)
 GR_ADD_TEST(qa_fixed_point_math ${PYTHON_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/qa_fixed_point_math.py)
 GR_ADD_TEST(qa_integer_math ${PYTHON_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/qa_integer_math.py)
+GR_ADD_TEST(qa_snr_estimator ${PYTHON_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/qa_snr_estimator.py)
+
