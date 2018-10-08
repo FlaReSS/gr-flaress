@@ -1,0 +1,5 @@
+
+build/
+python/*.pyc
+*.pyc
+flaress.code-workspace
