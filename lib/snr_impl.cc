@@ -120,7 +120,7 @@ namespace gr {
 
         volk_32f_accumulator_s32f(signal_acc, signal_band, signal_bw_items);
 
-        noise = *noise_acc;
+        noise = *noise_acc + (*noise_acc / noise_bw_items)*signal_bw_items;
 
         if ((d_freq_central_index - signal_item_offset) > d_nintems_half || (d_freq_central_index + signal_item_offset) < d_nintems_half )//to do not evaluate DC component)
             noise -= fft_buffer [d_nintems_half];
