@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 build/swig/flaress_swig_doc_swig_docs/xml/null__sink_8h.xml
 flaress.code-workspace
 build/CMakeCache.txt
@@ -610,3 +611,10 @@ build/swig/flaress_swig_doc_swig_docs/xml/vector__source__double_8h.xml
 build/swig/flaress_swig_doc_swig_docs/xml/vector__source__int64_8h.xml
 python/sine_debug.pyc
 python/Graphs/qa_iqbal_gen_graphs.pdf
+=======
+
+build/
+python/*.pyc
+*.pyc
+flaress.code-workspace
+>>>>>>> dc9a20a7f05463f4c7654ad7b7399c41e07d42d7
