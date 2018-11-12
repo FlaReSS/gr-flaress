@@ -57,4 +57,4 @@ GR_ADD_TEST(qa_iqbal_gen ${PYTHON_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/qa_iqb
 GR_ADD_TEST(qa_fixed_point_math ${PYTHON_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/qa_fixed_point_math.py)
 GR_ADD_TEST(qa_integer_math ${PYTHON_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/qa_integer_math.py)
 GR_ADD_TEST(qa_snr_estimator ${PYTHON_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/qa_snr_estimator.py)
-
+GR_ADD_TEST(qa_sine_debug ${PYTHON_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/qa_sine_debug.py)

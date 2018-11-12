@@ -57,8 +57,12 @@ namespace gr {
     std::vector<long int>
     vector_sink_int64_impl::data() const
     {
+      std::vector<long int> d_data_cast;
       gr::thread::scoped_lock guard(d_data_mutex);
-      return d_data;
+      for(int i; i < d_data.size(); i++){
+        d_data_cast.push_back( (long int) d_data[i]);
+      }
+      return d_data_cast;
     }
 
     std::vector<tag_t>

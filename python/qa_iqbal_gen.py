@@ -223,7 +223,7 @@ class qa_iqbal_gen (gr_unittest.TestCase):
         param.amplitude = 1.0
         param.offset = 0.0
         param.magnitude = 10.0
-        param.phase = 10.0
+        param.phase = -10.0
         param.origin = "TX"
 
         print_parameters(param)
