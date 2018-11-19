@@ -69,9 +69,31 @@ namespace gr {
 
     static sptr make(const std::vector<long int> &data, bool repeat = false, int vlen = 1, const std::vector<tag_t> &tags = std::vector<tag_t>());
 
+    /*******************************************************************
+    * SET FUNCTIONS
+    *******************************************************************/
+
+    /*!
+     * \brief Set rewind
+     */
     virtual void rewind() = 0;
+
+    /*!
+     * \brief Set data to output
+     * 
+     * \details both data and tags can be set
+     *
+     * \param data (vector<long int>) new data
+     * \param tags (vector<tag_t>) new tags
+     */
     virtual void set_data(const std::vector<long int> &data,
                           const std::vector<tag_t> &tags = std::vector<tag_t>()) = 0;
+
+    /*!
+     * \brief Set repeat (if yes or not)
+     *
+     * \param repeat (bool) new repeat
+     */
     virtual void set_repeat(bool repeat) = 0;
   };
 

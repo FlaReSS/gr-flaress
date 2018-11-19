@@ -26,25 +26,25 @@
 #include <flaress/api.h>
 #include <gnuradio/sync_block.h>
 
-    namespace gr {
+namespace gr {
   namespace flaress {
 
-  /*!
-     * \brief A source of zeros used mainly for testing.
-     * \ingroup misc_blk
-     */
-  class FLARESS_API null_source : virtual public gr::sync_block
-  {
-  public:
-    // gr::flaress::null_source::sptr
-    typedef boost::shared_ptr<null_source> sptr;
-
     /*!
-       * Build a null source block.
-       *
-       * \param sizeof_stream_item size of the stream items in bytes.
-       */
-    static sptr make(size_t sizeof_stream_item);
+      * \brief A source of zeros used mainly for testing.
+      * \ingroup misc_blk
+      */
+    class FLARESS_API null_source : virtual public gr::sync_block
+    {
+    public:
+      // gr::flaress::null_source::sptr
+      typedef boost::shared_ptr<null_source> sptr;
+
+      /*!
+        * Build a null source block.
+        *
+        * \param sizeof_stream_item size of the stream items in bytes.
+        */
+      static sptr make(size_t sizeof_stream_item);
     };
 
   } // namespace flaress

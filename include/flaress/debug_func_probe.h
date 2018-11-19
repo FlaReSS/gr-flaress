@@ -48,7 +48,6 @@ namespace gr {
        */
       static sptr make(size_t sizeof_stream_item);
 
-      //! Clear the data container.
       virtual void reset() = 0;
       virtual void debug_nitems() = 0;
       virtual std::vector<long int> data() const = 0;

@@ -50,9 +50,27 @@ namespace gr {
        */
       static sptr make(const int vlen = 1, const int reserve_items = 1024);
 
-      //! Clear the data and tags containers.
+      /*******************************************************************
+      * SET FUNCTIONS
+      *******************************************************************/
+
+      /*!
+       * \brief Clear the data and tags containers.
+       */
       virtual void reset() = 0;
+
+      /*******************************************************************
+      * GET FUNCTIONS
+      *******************************************************************/
+
+      /*!
+        * \brief Returns data stored.
+        */
       virtual std::vector<long int> data() const = 0;
+
+      /*!
+        * \brief Returns tags stored.
+        */
       virtual std::vector<tag_t> tags() const = 0;
     };
 

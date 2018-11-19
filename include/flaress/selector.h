@@ -48,7 +48,24 @@ namespace gr {
        */
       static sptr make(size_t sizeof_stream_item, int select, int n_inputs, int n_outputs);
 
+      /*******************************************************************
+      * GET FUNCTIONS
+      *******************************************************************/
+
+      /*!
+       * \brief Returns the select value
+       */
       virtual int get_select() const=0;
+
+      /*******************************************************************
+      * SET FUNCTIONS
+      *******************************************************************/
+
+      /*!
+       * \brief Set the select value
+       *
+       * \param select (int) new select
+       */
       virtual void set_select(int select)=0;
     };
 

@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <block>
-  <name>null sink</name>
+  <name>Null Sink</name>
   <key>flaress_null_sink</key>
   <category>[flaress]</category>
   <import>import flaress</import>
