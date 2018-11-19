@@ -13,7 +13,7 @@
 		<option>
 			<name>Integer</name>
 			<key>int</key>
-			<opt>fcn:cc</opt>
+			<opt>fcn:ii</opt>
 		</option>
 		<option>
 			<name>Integer64</name>

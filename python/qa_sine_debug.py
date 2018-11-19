@@ -5,8 +5,9 @@
 #
 
 from gnuradio import gr, gr_unittest
-import flaress_swig as flaress
-import runner, time
+import flaress
+import runner, time, math
+import numpy as np
 from gnuradio import blocks, analog
 
 class qa_sine_debug (gr_unittest.TestCase):
@@ -17,10 +18,67 @@ class qa_sine_debug (gr_unittest.TestCase):
     def tearDown (self):
         self.tb = None
 
-    def test_001_t (self):
-        """"test_001_t: """"
-        
+    def test_001(self):
+        """test_001: with sine wave"""
 
+        tb = self.tb
+    
+        # Variables
+        samp_rate = 4096 * 32
+        items = samp_rate / 2
+        step_phase = 2.0
+        frequency = step_phase * samp_rate / (2 * math.pi)
+    
+        # Blocks
+        sine_debug = flaress.sine_debug()
+        dst_out = blocks.vector_sink_f()
+        head = blocks.head(gr.sizeof_gr_complex, items)
+        sig_source = analog.sig_source_c(samp_rate, analog.GR_SIN_WAVE, frequency, 1, 0)
+
+    
+        # Connections
+        tb.connect(sig_source, head)
+        tb.connect(head, sine_debug)
+        tb.connect(sine_debug, dst_out)
+    
+        self.tb.run()
+
+        result_data = dst_out.data()
+
+        self.assertAlmostEqual(np.mean(result_data), step_phase, 4)
+        self.assertAlmostEqual(np.var(result_data), 0, 3)
+        print np.mean(result_data), np.var(result_data)
+        
+    def test_002(self):
+        """test_002: with cossine wave"""
+
+        tb = self.tb
+    
+        # Variables
+        samp_rate = 4096 * 32
+        items = samp_rate / 2
+        step_phase = 3.0
+        frequency = step_phase * samp_rate / (2 * math.pi)
+    
+        # Blocks
+        sine_debug = flaress.sine_debug()
+        dst_out = blocks.vector_sink_f()
+        head = blocks.head(gr.sizeof_gr_complex, items)
+        sig_source = analog.sig_source_c(samp_rate, analog.GR_COS_WAVE, frequency, 1, 0)
+
+    
+        # Connections
+        tb.connect(sig_source, head)
+        tb.connect(head, sine_debug)
+        tb.connect(sine_debug, dst_out)
+    
+        self.tb.run()
+
+        result_data = dst_out.data()
+
+        self.assertAlmostEqual(np.mean(result_data), step_phase, 4)
+        self.assertAlmostEqual(np.var(result_data), 0, 3)
+        print np.mean(result_data), np.var(result_data)
 
 
 if __name__ == '__main__':

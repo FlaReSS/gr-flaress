@@ -4,7 +4,7 @@
   <key>flaress_vector_sink_x</key>
   <category>[flaress]</category>
   <import>import flaress</import>
-	<make>blocks.vector_sink_$(type.fcn)($vlen, $reserve_items)</make>
+	<make>flaress.vector_sink_$(type.fcn)($vlen, $reserve_items)</make>
   <param>
 		<name>Input Type</name>
 		<key>type</key>

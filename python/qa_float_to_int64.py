@@ -34,7 +34,7 @@ class qa_float_to_int64 (gr_unittest.TestCase):
         """test_001: that sink has data set in source for the simplest case"""
         
         src_data = [float(x) for x in range(16)]
-        src_data_int = [float(x) for x in range(16)]
+        src_data_int = [int(x) for x in range(16)]
         expected_result = tuple(src_data_int)
 
         src = blocks.vector_source_f(src_data)
@@ -50,7 +50,7 @@ class qa_float_to_int64 (gr_unittest.TestCase):
         """test_002: vectors (the gnuradio vector I/O type)"""
         
         src_data = [float(x) for x in range(16)]
-        src_data_int = [float(x) for x in range(16)]
+        src_data_int = [int(x) for x in range(16)]
         expected_result = tuple(src_data_int)
 
         src = blocks.vector_source_f(src_data, False, 2)
@@ -66,7 +66,7 @@ class qa_float_to_int64 (gr_unittest.TestCase):
         """test_003: sending and receiving tagged streams"""
         
         src_data = [float(x) for x in range(16)]
-        src_data_int = [float(x) for x in range(16)]
+        src_data_int = [int(x) for x in range(16)]
         expected_result = tuple(src_data_int)
         src_tags = tuple([make_tag('key', 'val', 0, 'src')])
         expected_tags = src_tags[:]
@@ -87,7 +87,7 @@ class qa_float_to_int64 (gr_unittest.TestCase):
         """test_004: set_data"""
 
         src_data = [float(x) for x in range(16)]
-        src_data_int = [float(x) for x in range(16)]
+        src_data_int = [int(x) for x in range(16)]
         expected_result = tuple(src_data_int)
 
         src = blocks.vector_source_f((3,1,4))
@@ -104,7 +104,7 @@ class qa_float_to_int64 (gr_unittest.TestCase):
         """test_005: set_repeat"""
        
         src_data = [float(x) for x in range(16)]
-        src_data_int = [float(x) for x in range(16)]
+        src_data_int = [int(x) for x in range(16)]
         expected_result = tuple(src_data_int)
 
         src = blocks.vector_source_f(src_data, True)
