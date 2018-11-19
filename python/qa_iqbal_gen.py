@@ -142,8 +142,8 @@ def plot(self, data):
     fig.tight_layout()  # otherwise the right y-label is slightly clipped
     fig.subplots_adjust(hspace=0.6, top=0.85, bottom=0.15)
 
-    plt.show()
-    # self.pdf.add_to_pdf(fig)
+    # plt.show()
+    self.pdf.add_to_pdf(fig)
 
 
 def test_imbalance(self, param):
