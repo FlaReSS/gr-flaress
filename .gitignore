@@ -1,3 +1,4 @@
 build/
 flaress.code-workspace
 *.pyc
+python/*.pyc
