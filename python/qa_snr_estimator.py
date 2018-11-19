@@ -10,11 +10,11 @@ from gnuradio.fft import window
 from gnuradio.filter import firdes
 from collections import namedtuple
 from gnuradio import filter
-import flaress
+import flaress_swig as flaress
+from snr_estimator_cf import snr_estimator_cf
+from snr_estimator_cfv import snr_estimator_cfv
 import runner, math
 import numpy as np
-
-
 
 def print_parameters(data):
     to_print = "\p Signal amplitude= %.2f V; Noise amplitude= %.2f V; f_samp= %.1f Hz; f_signal= %.1f Hz; Signal Bandwidth = %.1f Hz; Noise Bandwidth = %.1f Hz, FFT size = %d\p" \
@@ -65,7 +65,7 @@ class qa_snr (gr_unittest.TestCase):
         
         bpf_noise = filter.fir_filter_ccc(1, firdes.complex_band_pass(1, param.samp_rate, (param.freq_sine - param.noise_bw/2), (param.freq_sine + param.noise_bw/2), 1, firdes.WIN_HAMMING, 6.76))
         
-        snr = flaress.snr_estimator_cf(auto_carrier = True, carrier = True, all_spectrum = False, freq_central = param.freq_sine, samp_rate = param.samp_rate, nintems = param.fft, signal_bw = param.signal_bw , noise_bw = param.noise_bw, avg_alpha = 1.0, average = False, win = window.blackmanharris)
+        snr = snr_estimator_cf(auto_carrier = True, carrier = True, all_spectrum = False, freq_central = param.freq_sine, samp_rate = param.samp_rate, nintems = param.fft, signal_bw = param.signal_bw , noise_bw = param.noise_bw, avg_alpha = 1.0, average = False, win = window.blackmanharris)
         
         adder = blocks.add_vcc(1)
 
@@ -126,7 +126,7 @@ class qa_snr (gr_unittest.TestCase):
         
         bpf_noise = filter.fir_filter_ccc(1, firdes.complex_band_pass(1, param.samp_rate, (param.freq_sine - param.noise_bw/2), (param.freq_sine + param.noise_bw/2), 1, firdes.WIN_HAMMING, 6.76))
         
-        snr = flaress.snr_estimator_cf(auto_carrier = True, carrier = True, all_spectrum = True, freq_central = param.freq_sine, samp_rate = param.samp_rate, nintems = param.fft, signal_bw = param.signal_bw , noise_bw = param.noise_bw, avg_alpha = 1.0, average = False, win = window.blackmanharris)
+        snr = snr_estimator_cf(auto_carrier = True, carrier = True, all_spectrum = True, freq_central = param.freq_sine, samp_rate = param.samp_rate, nintems = param.fft, signal_bw = param.signal_bw , noise_bw = param.noise_bw, avg_alpha = 1.0, average = False, win = window.blackmanharris)
         
         adder = blocks.add_vcc(1)
 
@@ -185,7 +185,7 @@ class qa_snr (gr_unittest.TestCase):
         
         bpf_noise = filter.fir_filter_ccc(1, firdes.complex_band_pass(1, param.samp_rate, (param.freq_sine - param.noise_bw/2), (param.freq_sine + param.noise_bw/2), 1, firdes.WIN_HAMMING, 6.76))
         
-        snr = flaress.snr_estimator_cf(auto_carrier = True, carrier = False, all_spectrum = False, freq_central = param.freq_sine, samp_rate = param.samp_rate, nintems = param.fft, signal_bw = param.signal_bw , noise_bw = param.noise_bw, avg_alpha = 1.0, average = False, win = window.blackmanharris)
+        snr = snr_estimator_cf(auto_carrier = True, carrier = False, all_spectrum = False, freq_central = param.freq_sine, samp_rate = param.samp_rate, nintems = param.fft, signal_bw = param.signal_bw , noise_bw = param.noise_bw, avg_alpha = 1.0, average = False, win = window.blackmanharris)
         
         adder = blocks.add_vcc(1)
 

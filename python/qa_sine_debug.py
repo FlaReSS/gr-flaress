@@ -5,7 +5,8 @@
 #
 
 from gnuradio import gr, gr_unittest
-import flaress
+import flaress_swig as flaress
+from sine_debug import sine_debug
 import runner, time, math
 import numpy as np
 from gnuradio import blocks, analog
@@ -30,7 +31,7 @@ class qa_sine_debug (gr_unittest.TestCase):
         frequency = step_phase * samp_rate / (2 * math.pi)
     
         # Blocks
-        sine_debug = flaress.sine_debug()
+        sine_debug_0 = sine_debug()
         dst_out = blocks.vector_sink_f()
         head = blocks.head(gr.sizeof_gr_complex, items)
         sig_source = analog.sig_source_c(samp_rate, analog.GR_SIN_WAVE, frequency, 1, 0)
@@ -38,8 +39,8 @@ class qa_sine_debug (gr_unittest.TestCase):
     
         # Connections
         tb.connect(sig_source, head)
-        tb.connect(head, sine_debug)
-        tb.connect(sine_debug, dst_out)
+        tb.connect(head, sine_debug_0)
+        tb.connect(sine_debug_0, dst_out)
     
         self.tb.run()
 
@@ -61,7 +62,7 @@ class qa_sine_debug (gr_unittest.TestCase):
         frequency = step_phase * samp_rate / (2 * math.pi)
     
         # Blocks
-        sine_debug = flaress.sine_debug()
+        sine_debug_0 = sine_debug()
         dst_out = blocks.vector_sink_f()
         head = blocks.head(gr.sizeof_gr_complex, items)
         sig_source = analog.sig_source_c(samp_rate, analog.GR_COS_WAVE, frequency, 1, 0)
@@ -69,8 +70,8 @@ class qa_sine_debug (gr_unittest.TestCase):
     
         # Connections
         tb.connect(sig_source, head)
-        tb.connect(head, sine_debug)
-        tb.connect(sine_debug, dst_out)
+        tb.connect(head, sine_debug_0)
+        tb.connect(sine_debug_0, dst_out)
     
         self.tb.run()
 
