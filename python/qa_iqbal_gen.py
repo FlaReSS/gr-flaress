@@ -22,12 +22,12 @@ class Pdf_class(object):
 
     def __init__(self, name_test='test'):
         current_dir = os.getcwd()
-        dir_to = os.path.join(current_dir, 'Graphs')
+        self.dir_to = os.path.join(current_dir, 'Graphs')
 
-        if not os.path.exists(dir_to):
-            os.makedirs(dir_to)
+        if not os.path.exists(self.dir_to):
+            os.makedirs(self.dir_to)
         self.name_test = name_test.split('.')[0]
-        self.name_complete = dir_to + '/' + name_test.split('.')[0] + "_graphs.pdf"
+        self.name_complete = self.dir_to + '/' + name_test.split('.')[0] + "_graphs.pdf"
 
     def add_to_pdf(self, fig):
         """this function can add a new element/page to the list of pages"""
@@ -52,14 +52,26 @@ class Pdf_class(object):
             d['ModDate'] = datetime.datetime.today()
 
 def print_parameters(data):
-    to_print = "\p Sample rate = %d Hz; Input Frequency = %.3f Hz; Input Amplitude = %.3f V; Input Offset =  %.3f V; Magnitude Imbalance  = %d; Phase Imbalance = %f; Origin = %s \p" \
+    to_print = "\parameters Sample rate = %d Hz; Input Frequency = %.3f Hz; Input Amplitude = %.3f V; Input Offset =  %.3f V; Magnitude Imbalance  = %d; Phase Imbalance = %f; Origin = %s \parameters" \
         %(data.samp_rate, data.frequency, data.amplitude, data.offset, data.magnitude, data.phase, data.origin)
     print to_print
 
+def print_all_images(data):
+    to_print = "\images"
+    
+    for image in data:
+        to_print = to_print + image + ";"
+
+    if to_print.endswith(";"):
+        to_print = to_print[:-1]
+
+    to_print = to_print + "\images"
+    print to_print
+    
 def plot(self, data):
     """this function create a defined graph for the pll with the data input and output"""
 
-    plt.rcParams['text.usetex'] = True
+    all_images = []
     out_real = []
     out_imag = []
     in_real = []
@@ -143,7 +155,13 @@ def plot(self, data):
     fig.subplots_adjust(hspace=0.6, top=0.85, bottom=0.15)
 
     # plt.show()
+    name_test_usetex_file = self.pdf.dir_to + '/' + name_test.replace('.', '_') + ".png"
+    fig.savefig(name_test_usetex_file, dpi=600)
+    all_images.append(name_test_usetex_file)
+
     self.pdf.add_to_pdf(fig)
+
+    return all_images
 
 
 def test_imbalance(self, param):
@@ -208,7 +226,9 @@ class qa_iqbal_gen (gr_unittest.TestCase):
 
         data = test_imbalance(self, param)
 
-        plot(self,data)
+        all_images = plot(self,data)
+
+        print_all_images(all_images)
 
         # i,j = np.unravel_index(data.corr.argmax(), data.corr.shape) #get the index of the maximum value of correlation
         # # self.assertAlmostEqual(param.step / (2 * math.pi), data_fft.carrier)
@@ -230,7 +250,9 @@ class qa_iqbal_gen (gr_unittest.TestCase):
 
         data = test_imbalance(self, param)
 
-        plot(self,data)
+        all_images = plot(self,data)
+
+        print_all_images(all_images)
 
         # i,j = np.unravel_index(data.corr.argmax(), data.corr.shape) #get the index of the maximum value of correlation
         # # self.assertAlmostEqual(param.step / (2 * math.pi), data_fft.carrier)
@@ -238,6 +260,6 @@ class qa_iqbal_gen (gr_unittest.TestCase):
 
 if __name__ == '__main__':
     suite = gr_unittest.TestLoader().loadTestsFromTestCase(qa_iqbal_gen)
-    runner = runner.HTMLTestRunner(output='Results', template='DEFAULT_TEMPLATE_2')
+    runner = runner.HTMLTestRunner(output='Results', template='DEFAULT_TEMPLATE_3')
     runner.run(suite)
     #gr_unittest.TestProgram()
