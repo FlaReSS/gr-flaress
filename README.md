@@ -3,6 +3,7 @@ gr-flaress module for GnuRadio
 
 ### HOW TO INSTALL GNURADIO
 rember to change MYUSER
+
     sudo pip install PyBOMBS
     pybombs auto-config
     pybombs recipes add gr-recipes git+https://github.com/gnuradio/gr-recipes.git
