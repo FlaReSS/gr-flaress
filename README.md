@@ -2,13 +2,14 @@
 gr-flaress module for GnuRadio
 
 ### HOW TO INSTALL GNURADIO
+rember to change MYUSER
     sudo pip install PyBOMBS
     pybombs auto-config
     pybombs recipes add gr-recipes git+https://github.com/gnuradio/gr-recipes.git
     pybombs recipes add gr-etcetera git+https://github.com/gnuradio/gr-etcetera.git
-    mkdir /home/myuser/gnuradio
+    mkdir /home/MYUSER/gnuradio
     pybombs config --package gnuradio gitrev v3.7.13.5
-    pybombs prefix init /home/myuser/gnuradio/prefix -a myprefix -R gnuradio-default
+    pybombs prefix init /home/MYUSER/gnuradio/prefix -a myprefix -R gnuradio-default
 
 
 ## HOW TO INSTALL NEW GROUP OF OOT BLOCKS
