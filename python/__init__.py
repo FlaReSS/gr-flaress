@@ -33,10 +33,6 @@ except ImportError:
 # import any pure python here
 from sine_debug import sine_debug
 
-from snr_estimator_c import snr_estimator_c
-from snr_estimator_f import snr_estimator_f
-from snr_estimator_fc import snr_estimator_fc
-from snr_estimator_cc import snr_estimator_cc
 from snr_estimator_cf import snr_estimator_cf
 
 from snr_estimator_cfv import snr_estimator_cfv
