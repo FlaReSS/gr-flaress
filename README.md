@@ -78,3 +78,29 @@ if you want to install the OOT Module in an older version of GnuRadio Companion,
 #### PDFKit:
 
     pip install pdfkit
+    
+## DOXYGEN PDF GENERATION
+
+to generate the PDF version of the doxygen files, from the build folder inside the gr-ecss folder:
+
+    cd /docs/doxygen/
+    doxygen
+    cd latex
+    make
+the file containing all the documentation will be named ¨refman.pdf¨.
+
+a recent version of doxygen is needed:
+
+    git clone https://github.com/doxygen/doxygen.git
+    cd doxygen
+    mkdir build
+    cd build
+    cmake -G "Unix Makefiles" ..
+    make
+    sudo make install
+    sudo ldconfig
+
+additional packets for latex generation:
+
+    sudo apt-get install texlive-font-utils
+    sudo apt install texlive-latex-extra
