@@ -96,6 +96,8 @@ the file containing all the documentation will be named ¨refman.pdf¨.
 
 a recent version of doxygen is needed:
 
+    sudo apt-get install flex
+    sudo apt-get install bison
     git clone https://github.com/doxygen/doxygen.git
     cd doxygen
     mkdir build
