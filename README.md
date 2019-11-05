@@ -74,7 +74,7 @@ if you want to install the OOT Module in an older version of GnuRadio Companion,
 #### wkhtmltopdf 0.12.1:
 
     sudo wget https://github.com/wkhtmltopdf/wkhtmltopdf/releases/download/0.12.1/wkhtmltox-0.12.1_linux-trusty-amd64.deb
-    sudo dpkg -i wkhtmltox_0.12.5-1.xenial_amd64.deb
+    sudo dpkg -i wkhtmltox-0.12.1_linux-trusty-amd64.deb
 #### PDFKit:
 
     pip install pdfkit
