@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 #
 # Copyright 2018 Antonio Miraglia - ISISpace .
@@ -6,7 +6,7 @@
 
 from gnuradio import gr, gr_unittest
 from gnuradio import blocks, analog
-import runner, threading, time, pmt, math
+import runner, threading, time, pmt, math, boost
 import flaress_swig as flaress
 
 def make_tag(key, value, offset, srcid=None):
@@ -65,10 +65,10 @@ class qa_selector (gr_unittest.TestCase):
         sig_source0 = analog.sig_source_c(samp_rate,analog.GR_SAW_WAVE, 0.125 , 10, 0)
         sig_source1 = analog.sig_source_c(samp_rate,analog.GR_SAW_WAVE, 0.125 , -10, -1)
     
-        throttle0.set_max_noutput_items (samp_rate)
-        throttle1.set_max_noutput_items (samp_rate)
-        throttle0.set_min_noutput_items (samp_rate)
-        throttle1.set_min_noutput_items (samp_rate)
+        # throttle0.set_max_noutput_items (samp_rate)
+        # throttle1.set_max_noutput_items (samp_rate)
+        # throttle0.set_min_noutput_items (samp_rate)
+        # throttle1.set_min_noutput_items (samp_rate)
     
         # Connections
         tb.connect(sig_source0,throttle0)
@@ -99,7 +99,7 @@ class qa_selector (gr_unittest.TestCase):
     
         for i in xrange(N):
             if (data_out[i] == data_in_0[i]):
-                    N_sel0 += 1
+                N_sel0 += 1
             elif (data_out[i] == data_in_1[(i)]):
                 N_sel1 += 1
             else:
@@ -110,15 +110,15 @@ class qa_selector (gr_unittest.TestCase):
         self.assertEqual(lost_items, 0)
         self.assertEqual((N_sel0 + N_sel1), N)
     
-        print "- Items outputted from in0: ", N_sel0
-        print "- Items outputted from in1: ", N_sel1
-        print "- Items lost: ", lost_items
+        print ("- Items outputted from in0: ", N_sel0)
+        print ("- Items outputted from in1: ", N_sel1)
+        print ("- Items lost: ", lost_items)
 
         #check the switch
         self.assertEqual(len(switch), 1)
         self.assertEqual(self.debug_select, 1)
-        print "- Final order of the selector: %d;" %self.debug_select
-        print "- Set function received at the moment (of the simulation): %.2f s;" % (switch[0] * (1.0 / samp_rate))
+        print ("- Final order of the selector: %d;" %self.debug_select)
+        print ("- Set function received at the moment (of the simulation): %.2f s;" % (switch[0] * (1.0 / samp_rate)))
 
     def test_001_f (self):
         """test_001_f: mux float version with 2 inputs"""
@@ -155,10 +155,10 @@ class qa_selector (gr_unittest.TestCase):
         sig_source0 = analog.sig_source_f(samp_rate,analog.GR_SAW_WAVE, 0.125 , 10, 0)
         sig_source1 = analog.sig_source_f(samp_rate,analog.GR_SAW_WAVE, 0.125 , -10, -1)
     
-        throttle0.set_max_noutput_items (samp_rate)
-        throttle1.set_max_noutput_items (samp_rate)
-        throttle0.set_min_noutput_items (samp_rate)
-        throttle1.set_min_noutput_items (samp_rate)
+        # throttle0.set_max_noutput_items (samp_rate)
+        # throttle1.set_max_noutput_items (samp_rate)
+        # throttle0.set_min_noutput_items (samp_rate)
+        # throttle1.set_min_noutput_items (samp_rate)
 
         # Connections
         tb.connect(sig_source0,throttle0)
@@ -188,7 +188,7 @@ class qa_selector (gr_unittest.TestCase):
     
         for i in xrange(N):
             if (data_out[i] == data_in_0[i]):
-                    N_sel0 += 1
+                N_sel0 += 1
             elif (data_out[i] == data_in_1[(i)]):
                 N_sel1 += 1
             else:
@@ -199,15 +199,15 @@ class qa_selector (gr_unittest.TestCase):
         self.assertEqual(lost_items, 0)
         self.assertEqual((N_sel0 + N_sel1), N)
     
-        print "- Items outputted from in0: ", N_sel0
-        print "- Items outputted from in1: ", N_sel1
-        print "- Items lost: ", lost_items
+        print ("- Items outputted from in0: ", N_sel0)
+        print ("- Items outputted from in1: ", N_sel1)
+        print ("- Items lost: ", lost_items)
 
         #check the switch
         self.assertEqual(len(switch), 1)
         self.assertEqual(self.debug_select, 1)
-        print "- Final order of the selector: %d;" %self.debug_select
-        print "- Set function received at the moment (of the simulation): %.2f s;" % (switch[0] * (1.0 / samp_rate))
+        print ("- Final order of the selector: %d;" %self.debug_select)
+        print ("- Set function received at the moment (of the simulation): %.2f s;" % (switch[0] * (1.0 / samp_rate)))
 
     def test_001_d (self):
         """test_001_d: mux double version with 2 inputs"""
@@ -246,10 +246,10 @@ class qa_selector (gr_unittest.TestCase):
         conv_in0 = flaress.float_to_double()
         conv_in1 = flaress.float_to_double()
 
-        throttle0.set_max_noutput_items (samp_rate)
-        throttle1.set_max_noutput_items (samp_rate)
-        throttle0.set_min_noutput_items (samp_rate)
-        throttle1.set_min_noutput_items (samp_rate)
+        # throttle0.set_max_noutput_items (samp_rate)
+        # throttle1.set_max_noutput_items (samp_rate)
+        # throttle0.set_min_noutput_items (samp_rate)
+        # throttle1.set_min_noutput_items (samp_rate)
 
         # Connections
         tb.connect(sig_source0, conv_in0, throttle0)
@@ -279,7 +279,7 @@ class qa_selector (gr_unittest.TestCase):
     
         for i in xrange(N):
             if (data_out[i] == data_in_0[i]):
-                    N_sel0 += 1
+                N_sel0 += 1
             elif (data_out[i] == data_in_1[(i)]):
                 N_sel1 += 1
             else:
@@ -290,15 +290,15 @@ class qa_selector (gr_unittest.TestCase):
         self.assertEqual(lost_items, 0)
         self.assertEqual((N_sel0 + N_sel1), N)
     
-        print "- Items outputted from in0: ", N_sel0
-        print "- Items outputted from in1: ", N_sel1
-        print "- Items lost: ", lost_items
+        print ("- Items outputted from in0: ", N_sel0)
+        print ("- Items outputted from in1: ", N_sel1)
+        print ("- Items lost: ", lost_items)
 
         #check the switch
         self.assertEqual(len(switch), 1)
         self.assertEqual(self.debug_select, 1)
-        print "- Final order of the selector: %d;" %self.debug_select
-        print "- Set function received at the moment (of the simulation): %.2f s;" % (switch[0] * (1.0 / samp_rate))
+        print ("- Final order of the selector: %d;" %self.debug_select)
+        print ("- Set function received at the moment (of the simulation): %.2f s;" % (switch[0] * (1.0 / samp_rate)))
 
     def test_001_i (self):
         """test_001_i: mux int version with 2 inputs"""
@@ -335,10 +335,10 @@ class qa_selector (gr_unittest.TestCase):
         sig_source0 = analog.sig_source_i(samp_rate,analog.GR_SAW_WAVE, 0.125 , 10, 0)
         sig_source1 = analog.sig_source_i(samp_rate,analog.GR_SAW_WAVE, 0.125 , -10, -1)
     
-        throttle0.set_max_noutput_items (samp_rate)
-        throttle1.set_max_noutput_items (samp_rate)
-        throttle0.set_min_noutput_items (samp_rate)
-        throttle1.set_min_noutput_items (samp_rate)
+        # throttle0.set_max_noutput_items (samp_rate)
+        # throttle1.set_max_noutput_items (samp_rate)
+        # throttle0.set_min_noutput_items (samp_rate)
+        # throttle1.set_min_noutput_items (samp_rate)
 
         # Connections
         tb.connect(sig_source0,throttle0)
@@ -368,7 +368,7 @@ class qa_selector (gr_unittest.TestCase):
     
         for i in xrange(N):
             if (data_out[i] == data_in_0[i]):
-                    N_sel0 += 1
+                N_sel0 += 1
             elif (data_out[i] == data_in_1[(i)]):
                 N_sel1 += 1
             else:
@@ -379,15 +379,15 @@ class qa_selector (gr_unittest.TestCase):
         self.assertEqual(lost_items, 0)
         self.assertEqual((N_sel0 + N_sel1), N)
     
-        print "- Items outputted from in0: ", N_sel0
-        print "- Items outputted from in1: ", N_sel1
-        print "- Items lost: ", lost_items
+        print ("- Items outputted from in0: ", N_sel0)
+        print ("- Items outputted from in1: ", N_sel1)
+        print ("- Items lost: ", lost_items)
 
         #check the switch
         self.assertEqual(len(switch), 1)
         self.assertEqual(self.debug_select, 1)
-        print "- Final order of the selector: %d;" %self.debug_select
-        print "- Set function received at the moment (of the simulation): %.2f s;" % (switch[0] * (1.0 / samp_rate))
+        print ("- Final order of the selector: %d;" %self.debug_select)
+        print ("- Set function received at the moment (of the simulation): %.2f s;" % (switch[0] * (1.0 / samp_rate)))
 
     def test_001_l (self):
         """test_001_l: mux int64 version with 2 inputs"""
@@ -426,10 +426,10 @@ class qa_selector (gr_unittest.TestCase):
         conv_in0 = flaress.int_to_int64()
         conv_in1 = flaress.int_to_int64()
 
-        throttle0.set_max_noutput_items (samp_rate)
-        throttle1.set_max_noutput_items (samp_rate)
-        throttle0.set_min_noutput_items (samp_rate)
-        throttle1.set_min_noutput_items (samp_rate)
+        # throttle0.set_max_noutput_items (samp_rate)
+        # throttle1.set_max_noutput_items (samp_rate)
+        # throttle0.set_min_noutput_items (samp_rate)
+        # throttle1.set_min_noutput_items (samp_rate)
 
         # Connections
         tb.connect(sig_source0, conv_in0, throttle0)
@@ -459,7 +459,7 @@ class qa_selector (gr_unittest.TestCase):
     
         for i in xrange(N):
             if (data_out[i] == data_in_0[i]):
-                    N_sel0 += 1
+                N_sel0 += 1
             elif (data_out[i] == data_in_1[(i)]):
                 N_sel1 += 1
             else:
@@ -470,15 +470,15 @@ class qa_selector (gr_unittest.TestCase):
         self.assertEqual(lost_items, 0)
         self.assertEqual((N_sel0 + N_sel1), N)
     
-        print "- Items outputted from in0: ", N_sel0
-        print "- Items outputted from in1: ", N_sel1
-        print "- Items lost: ", lost_items
+        print ("- Items outputted from in0: ", N_sel0)
+        print ("- Items outputted from in1: ", N_sel1)
+        print ("- Items lost: ", lost_items)
 
         #check the switch
         self.assertEqual(len(switch), 1)
         self.assertEqual(self.debug_select, 1)
-        print "- Final order of the selector: %d;" %self.debug_select
-        print "- Set function received at the moment (of the simulation): %.2f s;" % (switch[0] * (1.0 / samp_rate))
+        print ("- Final order of the selector: %d;" %self.debug_select)
+        print ("- Set function received at the moment (of the simulation): %.2f s;" % (switch[0] * (1.0 / samp_rate)))
 
     def test_002_c (self):
         """test_002_c: mux version with 3 inputs"""
@@ -526,12 +526,12 @@ class qa_selector (gr_unittest.TestCase):
         sig_source1 = analog.sig_source_c(samp_rate,analog.GR_SAW_WAVE, 0.125 , 10, 11)
         sig_source2 = analog.sig_source_c(samp_rate,analog.GR_SAW_WAVE, 0.125 , -10, -1)
     
-        throttle0.set_max_noutput_items (samp_rate)
-        throttle1.set_max_noutput_items (samp_rate)
-        throttle2.set_max_noutput_items (samp_rate)
-        throttle0.set_min_noutput_items (samp_rate)
-        throttle1.set_min_noutput_items (samp_rate)
-        throttle2.set_min_noutput_items (samp_rate)
+        # throttle0.set_max_noutput_items (samp_rate)
+        # throttle1.set_max_noutput_items (samp_rate)
+        # throttle2.set_max_noutput_items (samp_rate)
+        # throttle0.set_min_noutput_items (samp_rate)
+        # throttle1.set_min_noutput_items (samp_rate)
+        # throttle2.set_min_noutput_items (samp_rate)
 
         # Connections
         tb.connect(sig_source0, throttle0)
@@ -567,7 +567,7 @@ class qa_selector (gr_unittest.TestCase):
     
         for i in xrange(N):
             if (data_out[i] == data_in_0[i]):
-                    N_sel0 += 1
+                N_sel0 += 1
             elif (data_out[i] == data_in_1[(i)]):
                 N_sel1 += 1
             elif (data_out[i] == data_in_2[(i)]):
@@ -581,17 +581,17 @@ class qa_selector (gr_unittest.TestCase):
         self.assertEqual(lost_items, 0)
         self.assertEqual((N_sel0 + N_sel1 + N_sel2), N)
     
-        print "- Items outputted from in0: ", N_sel0
-        print "- Items outputted from in1: ", N_sel1
-        print "- Items outputted from in2: ", N_sel2
-        print "- Items lost: ", lost_items
+        print ("- Items outputted from in0: ", N_sel0)
+        print ("- Items outputted from in1: ", N_sel1)
+        print ("- Items outputted from in2: ", N_sel2)
+        print ("- Items lost: ", lost_items)
 
         #check the switch
         self.assertEqual(len(switch), 2)
         self.assertEqual(self.debug_select, 2)
-        print "- Final order of the selector: %d;" %self.debug_select
-        print "- First Set function received at the moment (of the simulation): %.2f s;" % (switch[0] * (1.0 / samp_rate))
-        print "- Second Set function received at the moment (of the simulation): %.2f s;" % (switch[1] * (1.0 / samp_rate))
+        print ("- Final order of the selector: %d;" %self.debug_select)
+        print ("- First Set function received at the moment (of the simulation): %.2f s;" % (switch[0] * (1.0 / samp_rate)))
+        print ("- Second Set function received at the moment (of the simulation): %.2f s;" % (switch[1] * (1.0 / samp_rate)))
     
     def test_003_c (self):
         """test_003_c: demux version with 2 outputs"""
@@ -625,8 +625,8 @@ class qa_selector (gr_unittest.TestCase):
         head = blocks.head(gr.sizeof_gr_complex, N)
         sig_source = analog.sig_source_c(samp_rate,analog.GR_SAW_WAVE, float(samp_rate / N) , 10, 0)
     
-        throttle.set_max_noutput_items (samp_rate)
-        throttle.set_min_noutput_items (samp_rate)
+        # throttle.set_max_noutput_items (samp_rate)
+        # throttle.set_min_noutput_items (samp_rate)
 
         # Connections
         tb.connect(sig_source,throttle)
@@ -662,15 +662,15 @@ class qa_selector (gr_unittest.TestCase):
         self.assertEqual(lost_items, 0)
         self.assertEqual((N_sel0 + N_sel1), N)
     
-        print "- Items outputted on out0: ",N_sel0
-        print "- Items outputted on out1: ", N_sel1
-        print "- Items lost: ", lost_items
+        print ("- Items outputted on out0: ",N_sel0)
+        print ("- Items outputted on out1: ", N_sel1)
+        print ("- Items lost: ", lost_items)
 
         #check the switch
         self.assertEqual(len(switch), 1)
         self.assertEqual(self.debug_select, 1)
-        print "- Final order of the selector: %d;" %self.debug_select
-        print "- Set function received at the moment (of the simulation): %.2f s;" % (switch[0] * (1.0 / samp_rate))
+        print ("- Final order of the selector: %d;" %self.debug_select)
+        print ("- Set function received at the moment (of the simulation): %.2f s;" % (switch[0] * (1.0 / samp_rate)))
     
     def test_004_c (self):
         """test_004_c: demux version with 3 outpus"""
@@ -712,8 +712,8 @@ class qa_selector (gr_unittest.TestCase):
         head = blocks.head(gr.sizeof_gr_complex, N)
         sig_source = analog.sig_source_c(samp_rate,analog.GR_SAW_WAVE, float(samp_rate / N) , 10, 0)
     
-        throttle.set_max_noutput_items (samp_rate)
-        throttle.set_min_noutput_items (samp_rate)
+        # throttle.set_max_noutput_items (samp_rate)
+        # throttle.set_min_noutput_items (samp_rate)
 
         # Connections
         tb.connect(sig_source,throttle)
@@ -757,17 +757,17 @@ class qa_selector (gr_unittest.TestCase):
         self.assertEqual((N_sel0 + N_sel1 + N_sel2), N)
     
     
-        print "- Items outputted on out0: ",N_sel0
-        print "- Items outputted on out1: ", N_sel1
-        print "- Items outputted on out2: ", N_sel2
-        print "- Items lost: ", lost_items
+        print ("- Items outputted on out0: ",N_sel0)
+        print ("- Items outputted on out1: ", N_sel1)
+        print ("- Items outputted on out2: ", N_sel2)
+        print ("- Items lost: ", lost_items)
 
         #check the switch
         self.assertEqual(len(switch), 2)
         self.assertEqual(self.debug_select, 2)
-        print "- Final order of the selector: %d;" %self.debug_select
-        print "- First Set function received at the moment (of the simulation): %.2f s;" % (switch[0] * (1.0 / samp_rate))
-        print "- Second et function received at the moment (of the simulation): %.2f s;" % (switch[1] * (1.0 / samp_rate))
+        print ("- Final order of the selector: %d;" %self.debug_select)
+        print ("- First Set function received at the moment (of the simulation): %.2f s;" % (switch[0] * (1.0 / samp_rate)))
+        print ("- Second et function received at the moment (of the simulation): %.2f s;" % (switch[1] * (1.0 / samp_rate)))
 
     def test_005_c (self):
         """test_005_c: mux complex version in switcher mode"""
@@ -807,8 +807,8 @@ class qa_selector (gr_unittest.TestCase):
         head = blocks.head(gr.sizeof_gr_complex, N)
         sig_source = analog.sig_source_c(samp_rate,analog.GR_SAW_WAVE, 0.125 , 10, 0)
     
-        throttle.set_max_noutput_items (samp_rate)
-        throttle.set_min_noutput_items (samp_rate)
+        # throttle.set_max_noutput_items (samp_rate)
+        # throttle.set_min_noutput_items (samp_rate)
     
         # Connections
         tb.connect(sig_source,throttle)
@@ -841,15 +841,15 @@ class qa_selector (gr_unittest.TestCase):
         self.assertGreater(lost_items, 0)
         self.assertEqual(N_sel + lost_items, N)
     
-        print "- Items outputted from in: ", N
-        print "- Items lost: ", lost_items
+        print ("- Items outputted from in: ", N)
+        print (("- Items lost: ", lost_items))
 
         #check the switch
         self.assertEqual(len(switch), 2)
         self.assertEqual(self.debug_select, 0)
-        print "- Final order of the selector: %d;" %self.debug_select
-        print "- First Set function (Turn OFF) received at the moment (of the simulation): %.2f s;" % (switch[0] * (1.0 / samp_rate))
-        print "- Second Set function (Turn ON) received at the moment (of the simulation): %.2f s;" % (switch[1] * (1.0 / samp_rate))
+        print ("- Final order of the selector: %d;" %self.debug_select)
+        print ("- First Set function (Turn OFF) received at the moment (of the simulation): %.2f s;" % (switch[0] * (1.0 / samp_rate)))
+        print ("- Second Set function (Turn ON) received at the moment (of the simulation): %.2f s;" % (switch[1] * (1.0 / samp_rate)))
     
     def test_006_c (self):
         """test_006_c: mux complex version with tagged streams"""
@@ -901,7 +901,7 @@ class qa_selector (gr_unittest.TestCase):
         self.assertTrue(compare_tags(expected_tags[2], result_tags[2]))
         self.assertTrue(compare_tags(expected_tags[3], result_tags[3]))
 
-        print "- Tag received properly"
+        print ("- Tag received properly")
 
 if __name__ == '__main__':
     suite = gr_unittest.TestLoader().loadTestsFromTestCase(qa_selector)
