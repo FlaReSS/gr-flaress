@@ -1,6 +1,18 @@
 # gr-flaress
 gr-flaress module for GnuRadio
 
+### HOW TO INSTALL GNURADIO
+rember to change MYUSER
+
+    sudo pip install PyBOMBS
+    pybombs auto-config
+    pybombs recipes add gr-recipes git+https://github.com/gnuradio/gr-recipes.git
+    pybombs recipes add gr-etcetera git+https://github.com/gnuradio/gr-etcetera.git
+    mkdir /home/MYUSER/gnuradio
+    pybombs config --package gnuradio gitrev v3.7.13.5
+    pybombs prefix init /home/MYUSER/gnuradio/prefix -a myprefix -R gnuradio-default
+
+
 ## HOW TO INSTALL NEW GROUP OF OOT BLOCKS
 (notice that "prefix" must be the same directory where is GNURADIO. The default PyBOMBS path is "prefix"). Run this commands in the main directory of the OOT group.
 
@@ -61,8 +73,41 @@ if you want to install the OOT Module in an older version of GnuRadio Companion,
 
 #### wkhtmltopdf 0.12.1:
 
-    sudo wget https://github.com/wkhtmltopdf/wkhtmltopdf/releases/download/0.12.1/wkhtmltox-0.12.1_linux-trusty-amd64.deb
-    sudo dpkg -i wkhtmltox_0.12.5-1.xenial_amd64.deb
+##### Ubuntu18.04:
+    sudo wget https://builds.wkhtmltopdf.org/0.12.1.3/wkhtmltox_0.12.1.3-1~bionic_amd64.deb
+    sudo dpkg -i wkhtmltox_0.12.1.3-1~bionic_amd64.deb
+    sudo apt-get install -f
+    sudo ln -s /usr/local/bin/wkhtmltopdf /usr/bin
+    sudo ln -s /usr/local/bin/wkhtmltoimage /usr/bi
+
 #### PDFKit:
 
     pip install pdfkit
+    
+## DOXYGEN PDF GENERATION
+
+to generate the PDF version of the doxygen files, from the build folder inside the gr-ecss folder:
+
+    cd /docs/doxygen/
+    doxygen
+    cd latex
+    make
+the file containing all the documentation will be named ¨refman.pdf¨.
+
+a recent version of doxygen is needed:
+
+    sudo apt-get install flex
+    sudo apt-get install bison
+    git clone https://github.com/doxygen/doxygen.git
+    cd doxygen
+    mkdir build
+    cd build
+    cmake -G "Unix Makefiles" ..
+    make
+    sudo make install
+    sudo ldconfig
+
+additional packets for latex generation:
+
+    sudo apt-get install texlive-font-utils
+    sudo apt install texlive-latex-extra
