@@ -22,7 +22,7 @@ def compare_tags(a, b):
     return a.offset == b.offset and pmt.equal(a.key, b.key) and \
            pmt.equal(a.value, b.value) and pmt.equal(a.srcid, b.srcid)
 
-class float_to_double (gr_unittest.TestCase):
+class qa_float_to_double (gr_unittest.TestCase):
 
     def setUp(self):
         self.tb = gr.top_block()
@@ -114,7 +114,7 @@ class float_to_double (gr_unittest.TestCase):
         self.assertEqual(expected_result, result_data)
 
 if __name__ == '__main__':
-    suite = gr_unittest.TestLoader().loadTestsFromTestCase(float_to_double)
+    suite = gr_unittest.TestLoader().loadTestsFromTestCase(qa_float_to_double)
     runner = runner.HTMLTestRunner(output='Results', template='DEFAULT_TEMPLATE_1')
     runner.run(suite)
     gr_unittest.TestProgram()

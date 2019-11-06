@@ -97,9 +97,9 @@ class qa_selector (gr_unittest.TestCase):
         N_sel1 = 0
         N_out = len(data_out)
     
-        for i in xrange(N):
+        for i in range(N):
             if (data_out[i] == data_in_0[i]):
-                N_sel0 += 1
+                    N_sel0 += 1
             elif (data_out[i] == data_in_1[(i)]):
                 N_sel1 += 1
             else:
@@ -186,9 +186,9 @@ class qa_selector (gr_unittest.TestCase):
         N_sel1 = 0
         N_out = len(data_out)
     
-        for i in xrange(N):
+        for i in range(N):
             if (data_out[i] == data_in_0[i]):
-                N_sel0 += 1
+                    N_sel0 += 1
             elif (data_out[i] == data_in_1[(i)]):
                 N_sel1 += 1
             else:
@@ -277,7 +277,7 @@ class qa_selector (gr_unittest.TestCase):
         N_sel1 = 0
         N_out = len(data_out)
     
-        for i in xrange(N):
+        for i in range(N):
             if (data_out[i] == data_in_0[i]):
                 N_sel0 += 1
             elif (data_out[i] == data_in_1[(i)]):
@@ -366,9 +366,9 @@ class qa_selector (gr_unittest.TestCase):
         N_sel1 = 0
         N_out = len(data_out)
     
-        for i in xrange(N):
+        for i in range(N):
             if (data_out[i] == data_in_0[i]):
-                N_sel0 += 1
+                    N_sel0 += 1
             elif (data_out[i] == data_in_1[(i)]):
                 N_sel1 += 1
             else:
@@ -457,9 +457,9 @@ class qa_selector (gr_unittest.TestCase):
         N_sel1 = 0
         N_out = len(data_out)
     
-        for i in xrange(N):
+        for i in range(N):
             if (data_out[i] == data_in_0[i]):
-                N_sel0 += 1
+                    N_sel0 += 1
             elif (data_out[i] == data_in_1[(i)]):
                 N_sel1 += 1
             else:
@@ -565,7 +565,7 @@ class qa_selector (gr_unittest.TestCase):
         N_sel2 = 0
         N_out = len(data_out)
     
-        for i in xrange(N):
+        for i in range(N):
             if (data_out[i] == data_in_0[i]):
                 N_sel0 += 1
             elif (data_out[i] == data_in_1[(i)]):
@@ -649,7 +649,7 @@ class qa_selector (gr_unittest.TestCase):
         lost_items = 0
         N_sel0 = len(data_out_0)
         N_sel1 = len(data_out_1)
-        for i in xrange(N):
+        for i in range(N):
             if ( i < N_sel0):
                 if (data_in[i] != data_out_0[i]):
                     lost_items += 1
@@ -739,7 +739,7 @@ class qa_selector (gr_unittest.TestCase):
         N_sel0 = len(data_out_0)
         N_sel1 = len(data_out_1)
         N_sel2 = len(data_out_2)
-        for i in xrange(N):
+        for i in range(N):
             if ( i < N_sel0):
                 if (data_in[i] != data_out_0[i]):
                     lost_items += 1
@@ -830,7 +830,7 @@ class qa_selector (gr_unittest.TestCase):
         N_sel = 0
         N_out = len(data_out)
 
-        for i in xrange(N):
+        for i in range(N):
             try:
                 if (data_out.index(data_in[i]) >= 0):
                     N_sel += 1
@@ -842,7 +842,7 @@ class qa_selector (gr_unittest.TestCase):
         self.assertEqual(N_sel + lost_items, N)
     
         print ("- Items outputted from in: ", N)
-        print (("- Items lost: ", lost_items))
+        print ("- Items lost: ", lost_items)
 
         #check the switch
         self.assertEqual(len(switch), 2)

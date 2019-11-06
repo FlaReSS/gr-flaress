@@ -17,12 +17,12 @@ import runner, math
 import numpy as np
 
 def print_parameters(data):
-    to_print = "\p Signal amplitude= %.2f V; Noise amplitude= %.2f V; f_samp= %.1f Hz; f_signal= %.1f Hz; Signal Bandwidth = %.1f Hz; Noise Bandwidth = %.1f Hz, FFT size = %d\p" \
+    to_print = "/pr!Signal amplitude= %.2f V; Noise amplitude= %.2f V; f_samp= %.1f Hz; f_signal= %.1f Hz; Signal Bandwidth = %.1f Hz; Noise Bandwidth = %.1f Hz, FFT size = %d/pr!" \
         %(data.signal_amp, data.noise_amp, data.samp_rate, data.freq_sine, data.signal_bw, data.noise_bw, data.fft)
-    print to_print
+    print (to_print)
 
 
-class qa_snr (gr_unittest.TestCase):
+class qa_snr_estimator (gr_unittest.TestCase):
 
     def setUp (self):
         self.tb = gr.top_block ()
@@ -88,8 +88,8 @@ class qa_snr (gr_unittest.TestCase):
         data_out = dst_out.data()
 
 
-        print "SNR evaluated with variance:",10*math.log10(np.var(data_src) / np.var(data_noise))
-        print "SNR estimated:", np.mean(data_out)
+        print ("SNR evaluated with variance:",10*math.log10(np.var(data_src) / np.var(data_noise)))
+        print ("SNR estimated:", np.mean(data_out))
 
     def test_002_t (self):
         """test_002_t: CNR with all spectrum"""
@@ -147,8 +147,8 @@ class qa_snr (gr_unittest.TestCase):
         data_out = dst_out.data()
 
 
-        print "SNR evaluated variance:",10*math.log10(np.var(data_src) / np.var(data_noise))
-        print "SNR estimated:", np.mean(data_out)
+        print ("SNR evaluated variance:",10*math.log10(np.var(data_src) / np.var(data_noise)))
+        print ("SNR estimated:", np.mean(data_out))
 
     def test_003_t (self):
         """test_003_t: SNR with fixed noise bandwidth"""
@@ -208,11 +208,11 @@ class qa_snr (gr_unittest.TestCase):
         data_out = dst_out.data()
 
 
-        print "SNR evaluated variance:",10*math.log10(np.var(data_src) / np.var(data_noise))
-        print "SNR estimated:", np.mean(data_out)
+        print ("SNR evaluated variance:",10*math.log10(np.var(data_src) / np.var(data_noise)))
+        print ("SNR estimated:", np.mean(data_out))
 
 if __name__ == '__main__':
-    suite = gr_unittest.TestLoader().loadTestsFromTestCase(qa_snr)
+    suite = gr_unittest.TestLoader().loadTestsFromTestCase(qa_snr_estimator)
     runner = runner.HTMLTestRunner(output='Results',template='DEFAULT_TEMPLATE_2')
     runner.run(suite)
     #gr_unittest.TestProgram()
