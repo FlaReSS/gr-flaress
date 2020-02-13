@@ -26,16 +26,14 @@ description here (python/__init__.py).
 # import swig generated symbols into the flaress namespace
 try:
 	# this might fail if the module is python-only
-	from flaress_swig import *
+	from .flaress_swig import *
 except ImportError:
 	pass
 
 # import any pure python here
-from sine_debug import sine_debug
-
-from snr_estimator_cf import snr_estimator_cf
-
-from snr_estimator_cfv import snr_estimator_cfv
+from .sine_debug import sine_debug
+from .snr_estimator_cf import snr_estimator_cf
+from .snr_estimator_cfv import snr_estimator_cfv
 
 
 

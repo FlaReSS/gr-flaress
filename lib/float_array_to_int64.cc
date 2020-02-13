@@ -25,7 +25,7 @@
 #endif
 
 #define _ISOC9X_SOURCE
-#include <float_array_to_int64.h>
+#include "float_array_to_int64.h"
 #include <math.h>
 #include <stdint.h>
 

@@ -6,7 +6,7 @@ from gnuradio import fft
 from gnuradio.fft import window
 from gnuradio.filter import firdes
 from gnuradio import filter
-import flaress_swig as flaress
+from . import flaress_swig as flaress
 import sys, math
 
 
@@ -49,8 +49,8 @@ class snr_estimator_cfv(gr.hier_block2):
         self.average = average
         self.win = win
 
-       
-        
+
+
         fft_window = self.win(self.nintems)
 
         self.fft = fft.fft_vcc(self.nintems, True, fft_window, True)
@@ -66,7 +66,7 @@ class snr_estimator_cfv(gr.hier_block2):
                                      -20*math.log10(self.nintems)              # Adjust for number of bins
                                      -10*math.log10(float(window_power)/self.nintems) # Adjust for windowing loss
                                      -20*math.log10(float(2)/2))      # Adjust for reference scale
-        
+
         self.connect(self, self._sd, self.fft, self.c2magsq, self._avg, self.snr, (self, 0))
         self.connect(self._avg, self.log, (self, 1))
 

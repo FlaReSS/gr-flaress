@@ -64,7 +64,11 @@ if(NOT flaress_sources)
 endif(NOT flaress_sources)
 
 add_library(gnuradio-flaress SHARED ${flaress_sources})
-target_link_libraries(gnuradio-flaress ${Boost_LIBRARIES} ${GNURADIO_ALL_LIBRARIES})
+target_link_libraries(gnuradio-flaress gnuradio::gnuradio-runtime)
+target_include_directories(gnuradio-flaress
+  PUBLIC $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/../include>
+  PUBLIC $<INSTALL_INTERFACE:include>
+  )
 set_target_properties(gnuradio-flaress PROPERTIES DEFINE_SYMBOL "gnuradio_flaress_EXPORTS")
 
 if(APPLE)
@@ -77,35 +81,10 @@ endif(APPLE)
 # Install built library files
 ########################################################################
 include(GrMiscUtils)
-GR_LIBRARY_FOO(gnuradio-flaress RUNTIME_COMPONENT "flaress_runtime" DEVEL_COMPONENT "flaress_devel")
-
-########################################################################
-# Build and register unit test
-########################################################################
-include(GrTest)
-
-include_directories(${CPPUNIT_INCLUDE_DIRS})
-
-list(APPEND test_flaress_sources
-    ${CMAKE_CURRENT_SOURCE_DIR}/test_flaress.cc
-    ${CMAKE_CURRENT_SOURCE_DIR}/qa_flaress.cc
-)
-
-add_executable(test-flaress ${test_flaress_sources})
-
-target_link_libraries(
-  test-flaress
-  ${GNURADIO_RUNTIME_LIBRARIES}
-  ${Boost_LIBRARIES}
-  ${CPPUNIT_LIBRARIES}
-  gnuradio-flaress
-)
-
-GR_ADD_TEST(test_flaress test-flaress)
+GR_LIBRARY_FOO(gnuradio-flaress)
 
 ########################################################################
 # Print summary
 ########################################################################
 message(STATUS "Using install prefix: ${CMAKE_INSTALL_PREFIX}")
 message(STATUS "Building for version: ${VERSION} / ${LIBVER}")
-
