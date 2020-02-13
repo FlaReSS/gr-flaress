@@ -435,7 +435,7 @@ class _HtmlTestResult(_TextTestResult):
             error_message = testCase.err[1]
         else:
             error_message = testCase.err
-        
+
 
         if(template == 'DEFAULT_TEMPLATE_2'):
             return test_cases_list.append([desc, param, stack, status, error_type, error_message])

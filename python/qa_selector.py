@@ -32,17 +32,17 @@ class qa_selector (gr_unittest.TestCase):
 
     def test_001_c (self):
         """test_001_c: mux complex version with 2 inputs"""
-    
+
         tb = self.tb
-    
+
         # Variables
         samp_rate = 4096
         N = samp_rate * 3
-    
+
         # Blocks
         flaress_selector = flaress.selector(gr.sizeof_gr_complex*1, 0, 2, 1)
         debug_switch = flaress.debug_func_probe(gr.sizeof_gr_complex*1)
-    
+
         def _probe_func_probe():
             time.sleep(1)
             try:
@@ -51,10 +51,10 @@ class qa_selector (gr_unittest.TestCase):
                 self.debug_select = flaress_selector.get_select()
             except AttributeError:
                 pass
-    
+
         _probe_func_thread = threading.Thread(target=_probe_func_probe)
         _probe_func_thread.daemon = True
-    
+
         throttle0 = blocks.throttle(gr.sizeof_gr_complex*1, samp_rate, True)
         throttle1 = blocks.throttle(gr.sizeof_gr_complex*1, samp_rate, True)
         dst_in0 = blocks.vector_sink_c()
@@ -73,22 +73,22 @@ class qa_selector (gr_unittest.TestCase):
         tb.connect(throttle1, (flaress_selector, 1))
         tb.connect(flaress_selector, head_out, dst_out)
         tb.connect(flaress_selector, debug_switch)
-    
+
         _probe_func_thread.start()
-    
+
         tb.run()
-    
+
         data_in_0 = dst_in0.data()
         data_in_1 = dst_in1.data()
         data_out = dst_out.data()
         switch = debug_switch.data()
-    
+
         # Checking
         lost_items = 0
         N_sel0 = 0
         N_sel1 = 0
         N_out = len(data_out)
-    
+
         for i in range(N):
             if (data_out[i] == data_in_0[i]):
                     N_sel0 += 1
@@ -96,12 +96,12 @@ class qa_selector (gr_unittest.TestCase):
                 N_sel1 += 1
             else:
                 lost_items += 1
-    
+
         self.assertGreater(N_sel0, 0)
         self.assertGreater(N_sel1, 0)
         self.assertEqual(lost_items, 0)
         self.assertEqual((N_sel0 + N_sel1), N)
-    
+
         print ("- Items outputted from in0: ", N_sel0)
         print ("- Items outputted from in1: ", N_sel1)
         print ("- Items lost: ", lost_items)
@@ -114,17 +114,17 @@ class qa_selector (gr_unittest.TestCase):
 
     def test_001_f (self):
         """test_001_f: mux float version with 2 inputs"""
-    
+
         tb = self.tb
-    
+
         # Variables
         samp_rate = 4096
         N = samp_rate * 3
-    
+
         # Blocks
         flaress_selector = flaress.selector(gr.sizeof_float*1, 0, 2, 1)
         debug_switch = flaress.debug_func_probe(gr.sizeof_float*1)
-    
+
         def _probe_func_probe():
             time.sleep(1)
             try:
@@ -133,10 +133,10 @@ class qa_selector (gr_unittest.TestCase):
                 self.debug_select = flaress_selector.get_select()
             except AttributeError:
                 pass
-    
+
         _probe_func_thread = threading.Thread(target=_probe_func_probe)
         _probe_func_thread.daemon = True
-    
+
         throttle0 = blocks.throttle(gr.sizeof_float*1, samp_rate, True)
         throttle1 = blocks.throttle(gr.sizeof_float*1, samp_rate, True)
         dst_in0 = blocks.vector_sink_f()
@@ -158,21 +158,21 @@ class qa_selector (gr_unittest.TestCase):
         tb.connect(head1, (flaress_selector, 1))
         tb.connect(flaress_selector, dst_out)
         tb.connect(flaress_selector, debug_switch)
-    
+
         _probe_func_thread.start()
         tb.run()
-    
+
         data_in_0 = dst_in0.data()
         data_in_1 = dst_in1.data()
         data_out = dst_out.data()
         switch = debug_switch.data()
-    
+
         # Checking
         lost_items = 0
         N_sel0 = 0
         N_sel1 = 0
         N_out = len(data_out)
-    
+
         for i in range(N):
             if (data_out[i] == data_in_0[i]):
                     N_sel0 += 1
@@ -180,12 +180,12 @@ class qa_selector (gr_unittest.TestCase):
                 N_sel1 += 1
             else:
                 lost_items += 1
-    
+
         self.assertGreater(N_sel0, 0)
         self.assertGreater(N_sel1, 0)
         self.assertEqual(lost_items, 0)
         self.assertEqual((N_sel0 + N_sel1), N)
-    
+
         print ("- Items outputted from in0: ", N_sel0)
         print ("- Items outputted from in1: ", N_sel1)
         print ("- Items lost: ", lost_items)
@@ -198,17 +198,17 @@ class qa_selector (gr_unittest.TestCase):
 
     def test_001_d (self):
         """test_001_d: mux double version with 2 inputs"""
-    
+
         tb = self.tb
-    
+
         # Variables
         samp_rate = 4096
         N = samp_rate * 3
-    
+
         # Blocks
         flaress_selector = flaress.selector(gr.sizeof_double*1, 0, 2, 1)
         debug_switch = flaress.debug_func_probe(gr.sizeof_double*1)
-    
+
         def _probe_func_probe():
             time.sleep(1)
             try:
@@ -217,10 +217,10 @@ class qa_selector (gr_unittest.TestCase):
                 self.debug_select = flaress_selector.get_select()
             except AttributeError:
                 pass
-    
+
         _probe_func_thread = threading.Thread(target=_probe_func_probe)
         _probe_func_thread.daemon = True
-    
+
         throttle0 = blocks.throttle(gr.sizeof_double*1, samp_rate, True)
         throttle1 = blocks.throttle(gr.sizeof_double*1, samp_rate, True)
         dst_in0 = flaress.vector_sink_double()
@@ -249,21 +249,21 @@ class qa_selector (gr_unittest.TestCase):
         tb.connect(head1, (flaress_selector, 1))
         tb.connect(flaress_selector, dst_out)
         tb.connect(flaress_selector, debug_switch)
-    
+
         _probe_func_thread.start()
         tb.run()
-    
+
         data_in_0 = dst_in0.data()
         data_in_1 = dst_in1.data()
         data_out = dst_out.data()
         switch = debug_switch.data()
-    
+
         # Checking
         lost_items = 0
         N_sel0 = 0
         N_sel1 = 0
         N_out = len(data_out)
-    
+
         for i in range(N):
             if (data_out[i] == data_in_0[i]):
                 N_sel0 += 1
@@ -271,12 +271,12 @@ class qa_selector (gr_unittest.TestCase):
                 N_sel1 += 1
             else:
                 lost_items += 1
-    
+
         self.assertGreater(N_sel0, 0)
         self.assertGreater(N_sel1, 0)
         self.assertEqual(lost_items, 0)
         self.assertEqual((N_sel0 + N_sel1), N)
-    
+
         print ("- Items outputted from in0: ", N_sel0)
         print ("- Items outputted from in1: ", N_sel1)
         print ("- Items lost: ", lost_items)
@@ -289,17 +289,17 @@ class qa_selector (gr_unittest.TestCase):
 
     def test_001_i (self):
         """test_001_i: mux int version with 2 inputs"""
-    
+
         tb = self.tb
-    
+
         # Variables
         samp_rate = 4096
         N = samp_rate * 3
-    
+
         # Blocks
         flaress_selector = flaress.selector(gr.sizeof_int*1, 0, 2, 1)
         debug_switch = flaress.debug_func_probe(gr.sizeof_int*1)
-    
+
         def _probe_func_probe():
             time.sleep(1)
             try:
@@ -308,10 +308,10 @@ class qa_selector (gr_unittest.TestCase):
                 self.debug_select = flaress_selector.get_select()
             except AttributeError:
                 pass
-    
+
         _probe_func_thread = threading.Thread(target=_probe_func_probe)
         _probe_func_thread.daemon = True
-    
+
         throttle0 = blocks.throttle(gr.sizeof_int*1, samp_rate, True)
         throttle1 = blocks.throttle(gr.sizeof_int*1, samp_rate, True)
         dst_in0 = blocks.vector_sink_i()
@@ -321,7 +321,7 @@ class qa_selector (gr_unittest.TestCase):
         head1 = blocks.head(gr.sizeof_int, N)
         sig_source0 = analog.sig_source_i(samp_rate,analog.GR_SAW_WAVE, 0.125 , 10, 0)
         sig_source1 = analog.sig_source_i(samp_rate,analog.GR_SAW_WAVE, 0.125 , -10, -1)
-    
+
         # throttle0.set_max_noutput_items (samp_rate)
         # throttle1.set_max_noutput_items (samp_rate)
         # throttle0.set_min_noutput_items (samp_rate)
@@ -338,21 +338,21 @@ class qa_selector (gr_unittest.TestCase):
         tb.connect(head1, (flaress_selector, 1))
         tb.connect(flaress_selector, dst_out)
         tb.connect(flaress_selector, debug_switch)
-    
+
         _probe_func_thread.start()
         tb.run()
-    
+
         data_in_0 = dst_in0.data()
         data_in_1 = dst_in1.data()
         data_out = dst_out.data()
         switch = debug_switch.data()
-    
+
         # Checking
         lost_items = 0
         N_sel0 = 0
         N_sel1 = 0
         N_out = len(data_out)
-    
+
         for i in range(N):
             if (data_out[i] == data_in_0[i]):
                     N_sel0 += 1
@@ -360,12 +360,12 @@ class qa_selector (gr_unittest.TestCase):
                 N_sel1 += 1
             else:
                 lost_items += 1
-    
+
         self.assertGreater(N_sel0, 0)
         self.assertGreater(N_sel1, 0)
         self.assertEqual(lost_items, 0)
         self.assertEqual((N_sel0 + N_sel1), N)
-    
+
         print ("- Items outputted from in0: ", N_sel0)
         print ("- Items outputted from in1: ", N_sel1)
         print ("- Items lost: ", lost_items)
@@ -378,17 +378,17 @@ class qa_selector (gr_unittest.TestCase):
 
     def test_001_l (self):
         """test_001_l: mux int64 version with 2 inputs"""
-    
+
         tb = self.tb
-    
+
         # Variables
         samp_rate = 4096
         N = samp_rate * 3
-    
+
         # Blocks
         flaress_selector = flaress.selector(flaress.sizeof_long*1, 0, 2, 1)
         debug_switch = flaress.debug_func_probe(flaress.sizeof_long*1)
-    
+
         def _probe_func_probe():
             time.sleep(1)
             try:
@@ -397,10 +397,10 @@ class qa_selector (gr_unittest.TestCase):
                 self.debug_select = flaress_selector.get_select()
             except AttributeError:
                 pass
-    
+
         _probe_func_thread = threading.Thread(target=_probe_func_probe)
         _probe_func_thread.daemon = True
-    
+
         throttle0 = blocks.throttle(flaress.sizeof_long*1, samp_rate, True)
         throttle1 = blocks.throttle(flaress.sizeof_long*1, samp_rate, True)
         dst_in0 = flaress.vector_sink_int64()
@@ -429,21 +429,21 @@ class qa_selector (gr_unittest.TestCase):
         tb.connect(head1, (flaress_selector, 1))
         tb.connect(flaress_selector, dst_out)
         tb.connect(flaress_selector, debug_switch)
-    
+
         _probe_func_thread.start()
         tb.run()
-    
+
         data_in_0 = dst_in0.data()
         data_in_1 = dst_in1.data()
         data_out = dst_out.data()
         switch = debug_switch.data()
-    
+
         # Checking
         lost_items = 0
         N_sel0 = 0
         N_sel1 = 0
         N_out = len(data_out)
-    
+
         for i in range(N):
             if (data_out[i] == data_in_0[i]):
                     N_sel0 += 1
@@ -451,12 +451,12 @@ class qa_selector (gr_unittest.TestCase):
                 N_sel1 += 1
             else:
                 lost_items += 1
-    
+
         self.assertGreater(N_sel0, 0)
         self.assertGreater(N_sel1, 0)
         self.assertEqual(lost_items, 0)
         self.assertEqual((N_sel0 + N_sel1), N)
-    
+
         print ("- Items outputted from in0: ", N_sel0)
         print ("- Items outputted from in1: ", N_sel1)
         print ("- Items lost: ", lost_items)
@@ -469,17 +469,17 @@ class qa_selector (gr_unittest.TestCase):
 
     def test_002_c (self):
         """test_002_c: mux version with 3 inputs"""
-    
+
         tb = self.tb
-    
+
         # Variables
         samp_rate = 4096
         N = samp_rate * 4
-    
+
         # Blocks
         flaress_selector = flaress.selector(gr.sizeof_gr_complex*1, 0, 3, 1)
         debug_switch = flaress.debug_func_probe(gr.sizeof_gr_complex*1)
-    
+
         def _probe_func_probe():
             time.sleep(1)
             try:
@@ -495,10 +495,10 @@ class qa_selector (gr_unittest.TestCase):
                 self.debug_select = flaress_selector.get_select()
             except AttributeError:
                 pass
-    
+
         _probe_func_thread = threading.Thread(target=_probe_func_probe)
         _probe_func_thread.daemon = True
-    
+
         throttle0 = blocks.throttle(gr.sizeof_gr_complex*1, samp_rate, True)
         throttle1 = blocks.throttle(gr.sizeof_gr_complex*1, samp_rate, True)
         throttle2 = blocks.throttle(gr.sizeof_gr_complex*1, samp_rate, True)
@@ -523,23 +523,23 @@ class qa_selector (gr_unittest.TestCase):
         tb.connect(throttle2, (flaress_selector, 2))
         tb.connect(flaress_selector, head, dst_out)
         tb.connect(flaress_selector, debug_switch)
-    
+
         _probe_func_thread.start()
         tb.run()
-    
+
         data_in_0 = dst_in0.data()
         data_in_1 = dst_in1.data()
         data_in_2 = dst_in2.data()
         data_out = dst_out.data()
         switch = debug_switch.data()
-    
+
         # Checking
         lost_items = 0
         N_sel0 = 0
         N_sel1 = 0
         N_sel2 = 0
         N_out = len(data_out)
-    
+
         for i in range(N):
             if (data_out[i] == data_in_0[i]):
                 N_sel0 += 1
@@ -549,13 +549,13 @@ class qa_selector (gr_unittest.TestCase):
                 N_sel2 += 1
             else:
                 lost_items += 1
-    
+
         self.assertGreater(N_sel0, 0)
         self.assertGreater(N_sel1, 0)
         self.assertGreater(N_sel2, 0)
         self.assertEqual(lost_items, 0)
         self.assertEqual((N_sel0 + N_sel1 + N_sel2), N)
-    
+
         print ("- Items outputted from in0: ", N_sel0)
         print ("- Items outputted from in1: ", N_sel1)
         print ("- Items outputted from in2: ", N_sel2)
@@ -567,20 +567,20 @@ class qa_selector (gr_unittest.TestCase):
         print ("- Final order of the selector: %d;" %self.debug_select)
         print ("- First Set function received at the moment (of the simulation): %.2f s;" % (switch[0] * (1.0 / samp_rate)))
         print ("- Second Set function received at the moment (of the simulation): %.2f s;" % (switch[1] * (1.0 / samp_rate)))
-    
+
     def test_003_c (self):
         """test_003_c: demux version with 2 outputs"""
-    
+
         tb = self.tb
-    
+
         # Variables
         samp_rate = 4096
         N = samp_rate * 3
-    
+
         # Blocks
         flaress_selector = flaress.selector(gr.sizeof_gr_complex*1, 0, 1, 2)
         debug_switch = flaress.debug_func_probe(gr.sizeof_gr_complex*1)
-    
+
         def _probe_func_probe():
             time.sleep(1)
             try:
@@ -589,17 +589,17 @@ class qa_selector (gr_unittest.TestCase):
                 self.debug_select = flaress_selector.get_select()
             except AttributeError:
                 pass
-    
+
         _probe_func_thread = threading.Thread(target=_probe_func_probe)
         _probe_func_thread.daemon = True
-    
+
         throttle = blocks.throttle(gr.sizeof_gr_complex*1, samp_rate, True)
         dst_in = blocks.vector_sink_c()
         dst_out0 = blocks.vector_sink_c()
         dst_out1 = blocks.vector_sink_c()
         head = blocks.head(gr.sizeof_gr_complex, N)
         sig_source = analog.sig_source_c(samp_rate,analog.GR_SAW_WAVE, float(samp_rate / N) , 10, 0)
-    
+
         # throttle.set_max_noutput_items (samp_rate)
         # throttle.set_min_noutput_items (samp_rate)
 
@@ -611,15 +611,15 @@ class qa_selector (gr_unittest.TestCase):
         tb.connect(head, debug_switch)
         tb.connect((flaress_selector, 0), dst_out0)
         tb.connect((flaress_selector, 1), dst_out1)
-    
+
         _probe_func_thread.start()
         tb.run()
-    
+
         data_in = dst_in.data()
         data_out_0 = dst_out0.data()
         data_out_1 = dst_out1.data()
         switch = debug_switch.data()
-    
+
         # Checking
         lost_items = 0
         N_sel0 = len(data_out_0)
@@ -631,12 +631,12 @@ class qa_selector (gr_unittest.TestCase):
             else:
                 if (data_in[i] != data_out_1[i - N_sel0]):
                     lost_items += 1
-    
+
         self.assertGreater(N_sel0, 0)
         self.assertGreater(N_sel1, 0)
         self.assertEqual(lost_items, 0)
         self.assertEqual((N_sel0 + N_sel1), N)
-    
+
         print ("- Items outputted on out0: ",N_sel0)
         print ("- Items outputted on out1: ", N_sel1)
         print ("- Items lost: ", lost_items)
@@ -646,20 +646,20 @@ class qa_selector (gr_unittest.TestCase):
         self.assertEqual(self.debug_select, 1)
         print ("- Final order of the selector: %d;" %self.debug_select)
         print ("- Set function received at the moment (of the simulation): %.2f s;" % (switch[0] * (1.0 / samp_rate)))
-    
+
     def test_004_c (self):
         """test_004_c: demux version with 3 outpus"""
-    
+
         tb = self.tb
-    
+
         # Variables
         samp_rate = 4096
         N = samp_rate * 4
-    
+
         # Blocks
         flaress_selector = flaress.selector(gr.sizeof_gr_complex*1, 0, 1, 3)
         debug_switch = flaress.debug_func_probe(gr.sizeof_gr_complex*1)
-    
+
         def _probe_func_probe():
             time.sleep(1)
             try:
@@ -675,10 +675,10 @@ class qa_selector (gr_unittest.TestCase):
                 self.debug_select = flaress_selector.get_select()
             except AttributeError:
                 pass
-    
+
         _probe_func_thread = threading.Thread(target=_probe_func_probe)
         _probe_func_thread.daemon = True
-    
+
         throttle = blocks.throttle(gr.sizeof_gr_complex*1, samp_rate, True)
         dst_in = blocks.vector_sink_c()
         dst_out0 = blocks.vector_sink_c()
@@ -686,7 +686,7 @@ class qa_selector (gr_unittest.TestCase):
         dst_out2 = blocks.vector_sink_c()
         head = blocks.head(gr.sizeof_gr_complex, N)
         sig_source = analog.sig_source_c(samp_rate,analog.GR_SAW_WAVE, float(samp_rate / N) , 10, 0)
-    
+
         # throttle.set_max_noutput_items (samp_rate)
         # throttle.set_min_noutput_items (samp_rate)
 
@@ -699,16 +699,16 @@ class qa_selector (gr_unittest.TestCase):
         tb.connect((flaress_selector, 0), dst_out0)
         tb.connect((flaress_selector, 1), dst_out1)
         tb.connect((flaress_selector, 2), dst_out2)
-    
+
         _probe_func_thread.start()
         tb.run()
-    
+
         data_in = dst_in.data()
         data_out_0 = dst_out0.data()
         data_out_1 = dst_out1.data()
         data_out_2 = dst_out2.data()
         switch = debug_switch.data()
-    
+
         # Checking
         lost_items = 0
         N_sel0 = len(data_out_0)
@@ -724,14 +724,14 @@ class qa_selector (gr_unittest.TestCase):
             else:
                 if (data_in[i] != data_out_2[i - (N_sel0 + N_sel1)]):
                     lost_items += 1
-    
+
         self.assertGreater(N_sel0, 0)
         self.assertGreater(N_sel1, 0)
         self.assertGreater(N_sel2, 0)
         self.assertEqual(lost_items, 0)
         self.assertEqual((N_sel0 + N_sel1 + N_sel2), N)
-    
-    
+
+
         print ("- Items outputted on out0: ",N_sel0)
         print ("- Items outputted on out1: ", N_sel1)
         print ("- Items outputted on out2: ", N_sel2)
@@ -746,17 +746,17 @@ class qa_selector (gr_unittest.TestCase):
 
     def test_005_c (self):
         """test_005_c: mux complex version in switcher mode"""
-    
+
         tb = self.tb
-    
+
         # Variables
         samp_rate = 4096
         N = samp_rate * 4
-    
+
         # Blocks
         flaress_selector = flaress.selector(gr.sizeof_gr_complex*1, 0, 1, 1)
         debug_switch = flaress.debug_func_probe(gr.sizeof_gr_complex*1)
-    
+
         def _probe_func_probe():
             time.sleep(1)
             try:
@@ -772,19 +772,19 @@ class qa_selector (gr_unittest.TestCase):
                 self.debug_select = flaress_selector.get_select()
             except AttributeError:
                 pass
-    
+
         _probe_func_thread = threading.Thread(target=_probe_func_probe)
         _probe_func_thread.daemon = True
-    
+
         throttle = blocks.throttle(gr.sizeof_gr_complex*1, samp_rate, True)
         dst_in = blocks.vector_sink_c()
         dst_out = blocks.vector_sink_c()
         head = blocks.head(gr.sizeof_gr_complex, N)
         sig_source = analog.sig_source_c(samp_rate,analog.GR_SAW_WAVE, 0.125 , 10, 0)
-    
+
         # throttle.set_max_noutput_items (samp_rate)
         # throttle.set_min_noutput_items (samp_rate)
-    
+
         # Connections
         tb.connect(sig_source,throttle)
         tb.connect(throttle, head)
@@ -792,14 +792,14 @@ class qa_selector (gr_unittest.TestCase):
         tb.connect(head, debug_switch)
         tb.connect(head, flaress_selector)
         tb.connect(flaress_selector, dst_out)
-    
+
         _probe_func_thread.start()
         tb.run()
-    
+
         data_in = dst_in.data()
         data_out = dst_out.data()
         switch = debug_switch.data()
-    
+
         # Checking
         lost_items = 0
         N_sel = 0
@@ -811,11 +811,11 @@ class qa_selector (gr_unittest.TestCase):
                     N_sel += 1
             except ValueError:
                 lost_items += 1
-    
+
         self.assertGreater(N_sel, 0)
         self.assertGreater(lost_items, 0)
         self.assertEqual(N_sel + lost_items, N)
-    
+
         print ("- Items outputted from in: ", N)
         print ("- Items lost: ", lost_items)
 
@@ -825,12 +825,12 @@ class qa_selector (gr_unittest.TestCase):
         print ("- Final order of the selector: %d;" %self.debug_select)
         print ("- First Set function (Turn OFF) received at the moment (of the simulation): %.2f s;" % (switch[0] * (1.0 / samp_rate)))
         print ("- Second Set function (Turn ON) received at the moment (of the simulation): %.2f s;" % (switch[1] * (1.0 / samp_rate)))
-    
+
     def test_006_c (self):
         """test_006_c: mux complex version with tagged streams"""
-    
+
         tb = self.tb
-    
+
         # Variables
         samp_rate = 1024
         N = samp_rate * 4
@@ -850,7 +850,7 @@ class qa_selector (gr_unittest.TestCase):
                             make_tag('key1', 'val1', (N / 2), 'src1')])
 
         expected_tags =src_tags0[:]
-    
+
         # Blocks
         flaress_selector = flaress.selector(gr.sizeof_gr_complex*1, 0, 2, 1)
         dst_out = blocks.vector_sink_c()
@@ -858,12 +858,12 @@ class qa_selector (gr_unittest.TestCase):
         sig_source0 = blocks.vector_source_c(src_data, repeat=False, tags=src_tags0)
         sig_source1 = blocks.vector_source_c(src_data, repeat=False, tags=src_tags1)
 
-    
+
         # Connections
         tb.connect(sig_source0, (flaress_selector, 0))
         tb.connect(sig_source1, (flaress_selector, 1))
-        tb.connect(flaress_selector, head, dst_out)
-    
+        tb.connect(flaress_selector, dst_out)
+
         self.tb.run()
 
         result_data = dst_out.data()

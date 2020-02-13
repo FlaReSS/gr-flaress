@@ -23,25 +23,25 @@ class qa_sine_debug (gr_unittest.TestCase):
         """test_001: with sine wave"""
 
         tb = self.tb
-    
+
         # Variables
         samp_rate = 4096 * 32
         items = samp_rate / 2
         step_phase = 2.0
         frequency = step_phase * samp_rate / (2 * math.pi)
-    
+
         # Blocks
         sine_debug_0 = sine_debug()
         dst_out = blocks.vector_sink_f()
         head = blocks.head(gr.sizeof_gr_complex, items)
         sig_source = analog.sig_source_c(samp_rate, analog.GR_SIN_WAVE, frequency, 1, 0)
 
-    
+
         # Connections
         tb.connect(sig_source, head)
         tb.connect(head, sine_debug_0)
         tb.connect(sine_debug_0, dst_out)
-    
+
         self.tb.run()
 
         result_data = dst_out.data()
@@ -54,25 +54,25 @@ class qa_sine_debug (gr_unittest.TestCase):
         """test_002: with cossine wave"""
 
         tb = self.tb
-    
+
         # Variables
         samp_rate = 4096 * 32
         items = samp_rate / 2
         step_phase = 3.0
         frequency = step_phase * samp_rate / (2 * math.pi)
-    
+
         # Blocks
         sine_debug_0 = sine_debug()
         dst_out = blocks.vector_sink_f()
         head = blocks.head(gr.sizeof_gr_complex, items)
         sig_source = analog.sig_source_c(samp_rate, analog.GR_COS_WAVE, frequency, 1, 0)
 
-    
+
         # Connections
         tb.connect(sig_source, head)
         tb.connect(head, sine_debug_0)
         tb.connect(sine_debug_0, dst_out)
-    
+
         self.tb.run()
 
         result_data = dst_out.data()
