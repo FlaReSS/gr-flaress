@@ -6,7 +6,7 @@ from gnuradio import fft
 from gnuradio.fft import window
 from gnuradio.filter import firdes
 from gnuradio import filter
-from . import flaress_swig as flaress
+import flaress
 import sys, math
 
 

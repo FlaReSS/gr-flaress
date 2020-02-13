@@ -48,8 +48,8 @@ class qa_sine_debug (gr_unittest.TestCase):
 
         self.assertAlmostEqual(np.mean(result_data), step_phase, 4)
         self.assertAlmostEqual(np.var(result_data), 0, 3)
-        print np.mean(result_data), np.var(result_data)
-        
+        print(np.mean(result_data), np.var(result_data))
+
     def test_002(self):
         """test_002: with cossine wave"""
 
@@ -79,7 +79,7 @@ class qa_sine_debug (gr_unittest.TestCase):
 
         self.assertAlmostEqual(np.mean(result_data), step_phase, 4)
         self.assertAlmostEqual(np.var(result_data), 0, 3)
-        print np.mean(result_data), np.var(result_data)
+        print(np.mean(result_data), np.var(result_data))
 
 
 if __name__ == '__main__':

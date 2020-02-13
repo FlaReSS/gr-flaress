@@ -54,11 +54,11 @@ class Pdf_class(object):
 def print_parameters(data):
     to_print = "\parameters Sample rate = %d Hz; Input Frequency = %.3f Hz; Input Amplitude = %.3f V; Input Offset =  %.3f V; Magnitude Imbalance  = %d; Phase Imbalance = %f; Origin = %s \parameters" \
         %(data.samp_rate, data.frequency, data.amplitude, data.offset, data.magnitude, data.phase, data.origin)
-    print (to_print)
+    print(to_print)
 
 def print_all_images(data):
     to_print = "\images"
-    
+
     for image in data:
         to_print = to_print + image + ";"
 
@@ -66,8 +66,8 @@ def print_all_images(data):
         to_print = to_print[:-1]
 
     to_print = to_print + "\images"
-    print (to_print)
-    
+    print(to_print)
+
 def plot(self, data):
     """this function create a defined graph for the pll with the data input and output"""
 
@@ -78,14 +78,14 @@ def plot(self, data):
     in_imag = []
 
 
-    print (data.corr)
+    print(data.corr)
 
 
-    for i in xrange (len(data.out)):
+    for i in range (len(data.out)):
         out_real.append(data.out[i].real)
         out_imag.append(data.out[i].imag)
-    
-    for i in xrange (len(data.src)):
+
+    for i in range (len(data.src)):
         in_real.append(data.src[i].real)
         in_imag.append(data.src[i].imag)
 

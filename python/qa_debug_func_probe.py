@@ -7,7 +7,6 @@
 from gnuradio import gr, gr_unittest
 import flaress_swig as flaress
 import runner, threading, time
-import boost
 from gnuradio import blocks, analog
 
 class qa_debug_func_probe (gr_unittest.TestCase):
