@@ -25,6 +25,18 @@
 #include "flaress/fixed_point_math_dd.h"
 #include "flaress/integer_math_ii.h"
 #include "flaress/integer_math_ll.h"
+#include "flaress/multiply_double.h"
+#include "flaress/multiply_int64.h"
+#include "flaress/multiply_const_double.h"
+#include "flaress/multiply_const_int64.h"
+#include "flaress/add_double.h"
+#include "flaress/add_const_double.h"
+#include "flaress/add_int64.h"
+#include "flaress/add_const_int64.h"
+#include "flaress/sub_int64.h"
+#include "flaress/sub_double.h"
+#include "flaress/divide_double.h"
+#include "flaress/divide_int64.h"
 %}
 
 %constant int sizeof_long = sizeof(int64_t);
@@ -65,3 +77,27 @@ GR_SWIG_BLOCK_MAGIC2(flaress, integer_math_ii);
 %include "flaress/integer_math_ll.h"
 GR_SWIG_BLOCK_MAGIC2(flaress, integer_math_ll);
 
+%include "flaress/multiply_double.h"
+GR_SWIG_BLOCK_MAGIC2(flaress, multiply_double);
+%include "flaress/multiply_int64.h"
+GR_SWIG_BLOCK_MAGIC2(flaress, multiply_int64);
+%include "flaress/multiply_const_double.h"
+GR_SWIG_BLOCK_MAGIC2(flaress, multiply_const_double);
+%include "flaress/multiply_const_int64.h"
+GR_SWIG_BLOCK_MAGIC2(flaress, multiply_const_int64);
+%include "flaress/add_double.h"
+GR_SWIG_BLOCK_MAGIC2(flaress, add_double);
+%include "flaress/add_const_double.h"
+GR_SWIG_BLOCK_MAGIC2(flaress, add_const_double);
+%include "flaress/add_int64.h"
+GR_SWIG_BLOCK_MAGIC2(flaress, add_int64);
+%include "flaress/add_const_int64.h"
+GR_SWIG_BLOCK_MAGIC2(flaress, add_const_int64);
+%include "flaress/sub_int64.h"
+GR_SWIG_BLOCK_MAGIC2(flaress, sub_int64);
+%include "flaress/sub_double.h"
+GR_SWIG_BLOCK_MAGIC2(flaress, sub_double);
+%include "flaress/divide_double.h"
+GR_SWIG_BLOCK_MAGIC2(flaress, divide_double);
+%include "flaress/divide_int64.h"
+GR_SWIG_BLOCK_MAGIC2(flaress, divide_int64);

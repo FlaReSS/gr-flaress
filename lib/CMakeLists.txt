@@ -44,7 +44,18 @@ list(APPEND flaress_sources
     fixed_point_math_dd_impl.cc
     integer_math_ii_impl.cc
     integer_math_ll_impl.cc
-    )
+    multiply_double_impl.cc
+    multiply_int64_impl.cc
+    multiply_const_double_impl.cc
+    multiply_const_int64_impl.cc
+    add_double_impl.cc
+    add_const_double_impl.cc
+    add_int64_impl.cc
+    add_const_int64_impl.cc
+    sub_int64_impl.cc
+    sub_double_impl.cc
+    divide_double_impl.cc
+    divide_int64_impl.cc )
 
 set(flaress_sources "${flaress_sources}" PARENT_SCOPE)
 if(NOT flaress_sources)

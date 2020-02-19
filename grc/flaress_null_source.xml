@@ -34,16 +34,16 @@
 			<key>byte</key>
 			<opt>size:gr.sizeof_char</opt>
 		</option>
-    <option>
-      <name>Int64</name>
-      <key>s64</key>
-      <opt>size:flaress.sizeof_long</opt>
-    </option>
-    <option>
-      <name>Float64</name>
-      <key>f64</key>
-      <opt>size:gr.sizeof_double</opt>
-    </option>
+		<option>
+			<name>Int64</name>
+			<key>s64</key>
+			<opt>size:flaress.sizeof_long</opt>
+			</option>
+		<option>
+			<name>Float64</name>
+			<key>f64</key>
+			<opt>size:gr.sizeof_double</opt>
+		</option>
 	</param>
 	<param>
 		<name>Vec Length</name>

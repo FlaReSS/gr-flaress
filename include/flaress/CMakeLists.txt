@@ -40,5 +40,16 @@ install(FILES
     fixed_point_math_dd.h
     integer_math_ii.h
     integer_math_ll.h
-    DESTINATION include/flaress
+    multiply_double.h
+    multiply_int64.h
+    multiply_const_double.h
+    multiply_const_int64.h
+    add_double.h
+    add_const_double.h
+    add_int64.h
+    add_const_int64.h
+    sub_int64.h
+    sub_double.h
+    divide_double.h
+    divide_int64.h DESTINATION include/flaress
 )

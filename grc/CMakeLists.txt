@@ -34,5 +34,10 @@ install(FILES
     flaress_fixed_point_math_xx.xml
     flaress_integer_math_xx.xml
     flaress_snr_estimator.xml
-    DESTINATION share/gnuradio/grc/blocks
+    flaress_multiply_xx.xml
+    flaress_multiply_const_xx.xml
+    flaress_add_xx.xml
+    flaress_add_const_xx.xml
+    flaress_sub_xx.xml
+    flaress_divide_xx.xml DESTINATION share/gnuradio/grc/blocks
 )
