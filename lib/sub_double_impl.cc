@@ -58,16 +58,12 @@ namespace gr {
         gr_vector_void_star &output_items)
     {
       double *out = (double *)output_items[0];
-      double *in1 = (double *)input_items[0];
-      double *in2 = (double *)input_items[1];
+      const double *in1 = (const double *)input_items[0];
+      const double *in2 = (const double *)input_items[1];
 
-      for (size_t i = 1; i < input_items.size(); i++)
+      for (int j = 0; j < (noutput_items * d_vlen); j++)
       {
-        double *in = (double *)input_items[i];
-        for (int j = 0; j < noutput_items * d_vlen; j++)
-        {
-          out[j] = in1[j] - in2[j];
-        }
+        out[j] = in1[j] - in2[j];
       }
 
       return noutput_items;

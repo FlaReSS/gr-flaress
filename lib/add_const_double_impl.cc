@@ -62,18 +62,14 @@ namespace gr {
         gr_vector_const_void_star &input_items,
         gr_vector_void_star &output_items)
     {
-      double *in = (double *)input_items[0];
+      const double *in = (const double *)input_items[0];
       double *out = (double *)output_items[0];
 
-      int nitems_per_block = output_signature()->sizeof_stream_item(0) / sizeof(double);
-
-      for (int i = 0; i < noutput_items; i++)
+      for (int j = 0; j < (noutput_items * d_vlen); j++)
       {
-        for (int j = 0; j < nitems_per_block; j++)
-        {
-          out[j] = in[j] + d_k;
+        out[j] = in[j] + d_k;
         }
-      }
+      
 
       return noutput_items;
     }

@@ -680,7 +680,7 @@ from gnuradio import gr, gr_unittest
 from gnuradio import blocks
 import flaress_swig as flaress
 
-class qa_divide_int64 (gr_unittest.TestCase):
+class qa_add_int64 (gr_unittest.TestCase):
 
     def setUp (self):
         self.tb = gr.top_block ()
@@ -692,7 +692,26 @@ class qa_divide_int64 (gr_unittest.TestCase):
         # set up fg
         self.tb.run ()
         # check data
+        
+    def test_001_double_2 (self):
+        """test_001_double_2: add const double version with 2 inputs"""
 
+        src_data1 = [int(x) for x in range(1024)]
+        src_data2 = [int(x) for x in range(1024)]
+        expected_result = tuple(src_data1 + src_data2)
+
+        src1 = flaress.vector_source_int64(src_data1)
+        src2 = flaress.vector_source_int64(src_data2)
+        dst = flaress.vector_sink_int64()
+
+        op = flaress.add_const_double()
+
+        self.tb.connect(src1, (op, 0))
+        self.tb.connect(src2, (op, 1))
+        self.tb.connect(op, dst)
+        self.tb.run()
+        result_data = dst.data()
+        self.assertEqual(expected_result, result_data)
 
 if __name__ == '__main__':
-    gr_unittest.run(qa_divide_int64, "qa_divide_int64.xml")
+    gr_unittest.run(qa_add_int64, "qa_add_int64.xml")
