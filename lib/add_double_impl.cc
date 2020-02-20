@@ -65,7 +65,7 @@ namespace gr {
       double *out = (double *)output_items[0];
       int noi = d_vlen * noutput_items;
 
-      memcpy(out, input_items[0], noi * sizeof(double));
+      memcpy(out, (const double *)input_items[0], noi * sizeof(double));
       for (size_t i = 1; i < input_items.size(); i++)
         volk_64f_x2_add_64f(out, out, (const double *)input_items[i], noi);
       return noutput_items;

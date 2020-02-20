@@ -61,17 +61,12 @@ namespace gr {
         gr_vector_const_void_star &input_items,
         gr_vector_void_star &output_items)
     {
-      int64_t *in = (int64_t *)input_items[0];
+      const int64_t *in = (const int64_t *)input_items[0];
       int64_t *out = (int64_t *)output_items[0];
 
-      int nitems_per_block = output_signature()->sizeof_stream_item(0) / sizeof(int64_t);
-
-      for (int i = 0; i < noutput_items; i++)
+      for (int j = 0; j < (noutput_items * d_vlen); j++)
       {
-        for (int j = 0; j < nitems_per_block; j++)
-        {
-          out[j] = in[j] * d_k;
-        }
+        out[j] = in[j] * d_k;
       }
 
       return noutput_items;

@@ -60,12 +60,15 @@ namespace gr {
       int64_t *out = (int64_t *)output_items[0];
       int noi = d_vlen * noutput_items;
 
-      for (size_t i = 1; i < input_items.size(); i++)
+      for (size_t i = 0; i < input_items.size(); i++)
       {
         int64_t *in = (int64_t *)input_items[i];
         for (int j = 0; j < noutput_items * d_vlen; j++)
         {
-          out[j] = out[j] * in[j];
+          if (i == 0)
+            out[j] = in[j];
+          else
+            out[j] = out[j] * in[j];
         }
       }
 
