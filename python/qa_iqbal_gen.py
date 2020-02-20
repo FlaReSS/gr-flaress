@@ -54,7 +54,7 @@ class Pdf_class(object):
 def print_parameters(data):
     to_print = "\parameters Sample rate = %d Hz; Input Frequency = %.3f Hz; Input Amplitude = %.3f V; Input Offset =  %.3f V; Magnitude Imbalance  = %d; Phase Imbalance = %f; Origin = %s \parameters" \
         %(data.samp_rate, data.frequency, data.amplitude, data.offset, data.magnitude, data.phase, data.origin)
-    print to_print
+    print (to_print)
 
 def print_all_images(data):
     to_print = "\images"
@@ -66,7 +66,7 @@ def print_all_images(data):
         to_print = to_print[:-1]
 
     to_print = to_print + "\images"
-    print to_print
+    print (to_print)
     
 def plot(self, data):
     """this function create a defined graph for the pll with the data input and output"""
@@ -78,7 +78,7 @@ def plot(self, data):
     in_imag = []
 
 
-    print data.corr
+    print (data.corr)
 
 
     for i in xrange (len(data.out)):
@@ -148,11 +148,13 @@ def plot(self, data):
     ax6.tick_params(axis='y', labelcolor='blue')
 
     name_test = self.id().split("__main__.")[1]
-    name_test_usetex = name_test.replace('_', '\_').replace('.', ': ')
+    name_test_usetex = name_test.replace('_', ' ').replace('.', ': ')
 
     fig.suptitle(name_test_usetex, fontsize=30)
     fig.tight_layout()  # otherwise the right y-label is slightly clipped
     fig.subplots_adjust(hspace=0.6, top=0.85, bottom=0.15)
+    fig.set_figheight(6.4)
+    fig.set_figwidth(8)
 
     # plt.show()
     name_test_usetex_file = self.pdf.dir_to + '/' + name_test.replace('.', '_') + ".png"
