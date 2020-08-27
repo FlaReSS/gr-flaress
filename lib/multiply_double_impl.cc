@@ -45,8 +45,7 @@ namespace gr {
                          io_signature::make(1, 1, sizeof(double) * vlen)),
           d_vlen(vlen)
     {
-      const int alignment_multiple =
-          volk_get_alignment() / sizeof(double);
+      const int alignment_multiple = volk_get_alignment() / sizeof(double);
       set_alignment(std::max(1, alignment_multiple));
     }
 

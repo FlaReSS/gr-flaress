@@ -60,26 +60,18 @@ class qa_selector (gr_unittest.TestCase):
         dst_in0 = blocks.vector_sink_c()
         dst_in1 = blocks.vector_sink_c()
         dst_out = blocks.vector_sink_c()
-        head0 = blocks.head(gr.sizeof_gr_complex, N)
-        head1 = blocks.head(gr.sizeof_gr_complex, N)
+        head_out = blocks.head(gr.sizeof_gr_complex, N)
         sig_source0 = analog.sig_source_c(samp_rate,analog.GR_SAW_WAVE, 0.125 , 10, 0)
         sig_source1 = analog.sig_source_c(samp_rate,analog.GR_SAW_WAVE, 0.125 , -10, -1)
-    
-        # throttle0.set_max_noutput_items (samp_rate)
-        # throttle1.set_max_noutput_items (samp_rate)
-        # throttle0.set_min_noutput_items (samp_rate)
-        # throttle1.set_min_noutput_items (samp_rate)
-    
+
         # Connections
         tb.connect(sig_source0,throttle0)
         tb.connect(sig_source1,throttle1)
-        tb.connect(throttle0, head0)
-        tb.connect(throttle1, head1)
-        tb.connect(head0, dst_in0)
-        tb.connect(head1, dst_in1)
-        tb.connect(head0, (flaress_selector, 0))
-        tb.connect(head1, (flaress_selector, 1))
-        tb.connect(flaress_selector, dst_out)
+        tb.connect(throttle0, dst_in0)
+        tb.connect(throttle1, dst_in1)
+        tb.connect(throttle0, (flaress_selector, 0))
+        tb.connect(throttle1, (flaress_selector, 1))
+        tb.connect(flaress_selector, head_out, dst_out)
         tb.connect(flaress_selector, debug_switch)
     
         _probe_func_thread.start()
@@ -154,11 +146,6 @@ class qa_selector (gr_unittest.TestCase):
         head1 = blocks.head(gr.sizeof_float, N)
         sig_source0 = analog.sig_source_f(samp_rate,analog.GR_SAW_WAVE, 0.125 , 10, 0)
         sig_source1 = analog.sig_source_f(samp_rate,analog.GR_SAW_WAVE, 0.125 , -10, -1)
-    
-        # throttle0.set_max_noutput_items (samp_rate)
-        # throttle1.set_max_noutput_items (samp_rate)
-        # throttle0.set_min_noutput_items (samp_rate)
-        # throttle1.set_min_noutput_items (samp_rate)
 
         # Connections
         tb.connect(sig_source0,throttle0)
@@ -519,34 +506,22 @@ class qa_selector (gr_unittest.TestCase):
         dst_in1 = flaress.vector_sink_double()
         dst_in2 = flaress.vector_sink_double()
         dst_out = flaress.vector_sink_double()
-        head0 = blocks.head(gr.sizeof_gr_complex, N)
-        head1 = blocks.head(gr.sizeof_gr_complex, N)
-        head2 = blocks.head(gr.sizeof_gr_complex, N)
+        head = blocks.head(gr.sizeof_gr_complex, N)
         sig_source0 = analog.sig_source_c(samp_rate,analog.GR_SAW_WAVE, 0.125 , 10, 0)
         sig_source1 = analog.sig_source_c(samp_rate,analog.GR_SAW_WAVE, 0.125 , 10, 11)
         sig_source2 = analog.sig_source_c(samp_rate,analog.GR_SAW_WAVE, 0.125 , -10, -1)
-    
-        # throttle0.set_max_noutput_items (samp_rate)
-        # throttle1.set_max_noutput_items (samp_rate)
-        # throttle2.set_max_noutput_items (samp_rate)
-        # throttle0.set_min_noutput_items (samp_rate)
-        # throttle1.set_min_noutput_items (samp_rate)
-        # throttle2.set_min_noutput_items (samp_rate)
 
         # Connections
         tb.connect(sig_source0, throttle0)
         tb.connect(sig_source1, throttle1)
         tb.connect(sig_source2, throttle2)
-        tb.connect(throttle0, head0)
-        tb.connect(throttle1, head1)
-        tb.connect(throttle2, head2)
-        tb.connect(head0, dst_in0)
-        tb.connect(head1, dst_in1)
-        tb.connect(head2, dst_in2)
-        tb.connect(head0, (flaress_selector, 0))
-        tb.connect(head1, (flaress_selector, 1))
-        tb.connect(head2, (flaress_selector, 2))
-        tb.connect(flaress_selector, dst_out)
+        tb.connect(throttle0, dst_in0)
+        tb.connect(throttle1, dst_in1)
+        tb.connect(throttle2, dst_in2)
+        tb.connect(throttle0, (flaress_selector, 0))
+        tb.connect(throttle1, (flaress_selector, 1))
+        tb.connect(throttle2, (flaress_selector, 2))
+        tb.connect(flaress_selector, head, dst_out)
         tb.connect(flaress_selector, debug_switch)
     
         _probe_func_thread.start()
@@ -887,7 +862,7 @@ class qa_selector (gr_unittest.TestCase):
         # Connections
         tb.connect(sig_source0, (flaress_selector, 0))
         tb.connect(sig_source1, (flaress_selector, 1))
-        tb.connect(flaress_selector, dst_out)
+        tb.connect(flaress_selector, head, dst_out)
     
         self.tb.run()
 
