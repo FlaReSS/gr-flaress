@@ -415,17 +415,17 @@ class _HtmlTestResult(_TextTestResult):
         desc = test_description or test_name
         images = []
 
-        if (testCase.stdout.decode('latin-1').startswith("\n") == True):
-            out_messages = testCase.stdout.decode('latin-1').replace("\n", "" , 1)
+        if (testCase.stdout.startswith("\n") == True):
+            out_messages = testCase.stdout.replace("\n", "" , 1)
         else:
-            out_messages = testCase.stdout.decode('latin-1')
+            out_messages = testCase.stdout
 
-        param = testCase.parameters.decode('latin-1').replace(";", ";<br />")
+        param = testCase.parameters.replace(";", ";<br />")
 
-        images = testCase.all_images.decode('latin-1').split(";")
+        images = testCase.all_images.split(";")
 
 
-        stack= out_messages.replace("\n", "<br />") + testCase.stderr.decode('latin-1')
+        stack= out_messages.replace("\n", "<br />") + testCase.stderr
 
         status = ('success', 'danger', 'warning', 'info')[testCase.outcome-1]
 
@@ -435,7 +435,7 @@ class _HtmlTestResult(_TextTestResult):
             error_message = testCase.err[1]
         else:
             error_message = testCase.err
-        
+
 
         if(template == 'DEFAULT_TEMPLATE_2'):
             return test_cases_list.append([desc, param, stack, status, error_type, error_message])

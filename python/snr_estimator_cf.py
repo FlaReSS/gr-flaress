@@ -6,7 +6,7 @@ from gnuradio import fft
 from gnuradio.fft import window
 from gnuradio.filter import firdes
 from gnuradio import filter
-import flaress_swig as flaress
+import flaress
 import sys, math
 
 
@@ -49,8 +49,8 @@ class snr_estimator_cf(gr.hier_block2):
         self.average = average
         self.win = win
 
-       
-        
+
+
         fft_window = self.win(self.nintems)
 
         self.fft = fft.fft_vcc(self.nintems, True, fft_window, True)
@@ -60,7 +60,7 @@ class snr_estimator_cf(gr.hier_block2):
         self._avg = filter.single_pole_iir_filter_ff(1.0, self.nintems)
 
         self.snr = flaress.snr(self.auto_carrier, self.carrier, self.all_spectrum, self.freq_central, self.samp_rate, self.nintems, self.signal_bw, self.noise_bw)
-        
+
         self.connect(self, self._sd, self.fft, self.c2magsq, self._avg, self.snr, self)
 
         self._average = average
