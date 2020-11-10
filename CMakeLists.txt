@@ -47,6 +47,9 @@ set(VERSION_INFO_API_COMPAT    0)
 set(VERSION_INFO_MINOR_VERSION 0)
 set(VERSION_INFO_MAINT_VERSION git)
 
+# force C++11 dialect (needed as of GNU Radio 3.8)
+set(CMAKE_CXX_STANDARD 11)
+
 # Set cmake policies.
 # This will suppress developer warnings during the cmake process that can occur
 # if a newer cmake version than the minimum is used.
