@@ -25,8 +25,8 @@ elif [ $1 = '-complete' ]; then
 	cmake -DCMAKE_INSTALL_PREFIX=~/prefix ../
 	make
 	make test
-	sudo make install
-	sudo ldconfig
+	make install
+	ldconfig
 else
 	echo Please, specify between -make, -test, -complete
 fi
