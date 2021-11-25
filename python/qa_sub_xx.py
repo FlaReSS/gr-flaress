@@ -68,6 +68,6 @@ class qa_sub_xx (gr_unittest.TestCase):
 
 if __name__ == '__main__':
     suite = gr_unittest.TestLoader().loadTestsFromTestCase(qa_sub_xx)
-    runner = runner.HTMLTestRunner(output='Results', template='DEFAULT_TEMPLATE_1')
+    runner = runner.HTMLTestRunner(output='../TestResults', template='DEFAULT_TEMPLATE_1')
     runner.run(suite)
     gr_unittest.TestProgram()

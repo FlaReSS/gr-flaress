@@ -213,6 +213,6 @@ class qa_snr_estimator (gr_unittest.TestCase):
 
 if __name__ == '__main__':
     suite = gr_unittest.TestLoader().loadTestsFromTestCase(qa_snr_estimator)
-    runner = runner.HTMLTestRunner(output='Results',template='DEFAULT_TEMPLATE_2')
+    runner = runner.HTMLTestRunner(output='../TestResults',template='DEFAULT_TEMPLATE_2')
     runner.run(suite)
     #gr_unittest.TestProgram()
