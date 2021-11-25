@@ -39,6 +39,16 @@ GR_PYTHON_INSTALL(
 )
 
 ########################################################################
+# Find required Python packages
+########################################################################
+find_package(PythonInterp REQUIRED)
+find_package(PythonLibs REQUIRED)
+find_package(numpy )
+find_package(jinja2 )
+find_package(matplotlib )
+find_package(pdfkit )
+
+########################################################################
 # Handle the unit tests
 ########################################################################
 include(GrTest)
@@ -47,7 +57,6 @@ set(GR_TEST_TARGET_DEPS gnuradio-flaress)
 set(GR_TEST_PYTHON_DIRS ${CMAKE_BINARY_DIR}/swig)
 GR_ADD_TEST(qa_float_to_double ${PYTHON_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/qa_float_to_double.py)
 GR_ADD_TEST(qa_float_to_int64 ${PYTHON_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/qa_float_to_int64.py)
-GR_ADD_TEST(qa_selector ${PYTHON_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/qa_selector.py)
 GR_ADD_TEST(qa_vector_sink_source_double ${PYTHON_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/qa_vector_sink_source_double.py)
 GR_ADD_TEST(qa_vector_sink_source_int64 ${PYTHON_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/qa_vector_sink_source_int64.py)
 GR_ADD_TEST(qa_null_source_sink ${PYTHON_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/qa_null_source_sink.py)
