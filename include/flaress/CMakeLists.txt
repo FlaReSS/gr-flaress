@@ -25,7 +25,6 @@ install(FILES
     api.h
     float_to_double.h
     float_to_int64.h
-    selector.h
     snr.h
     vector_sink_int64.h
     vector_sink_double.h

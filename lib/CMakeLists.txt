@@ -29,7 +29,6 @@ list(APPEND flaress_sources
     float_to_double_impl.cc
     float_to_int64_impl.cc
     float_array_to_int64.cc
-    selector_impl.cc
     snr_impl.cc
     vector_sink_int64_impl.cc
     vector_sink_double_impl.cc

@@ -18,10 +18,8 @@
 # the Free Software Foundation, Inc., 51 Franklin Street,
 # Boston, MA 02110-1301, USA.
 install(FILES
-    flaress_selector.block.yml
     flaress_float_to_double.block.yml
     flaress_float_to_int64.block.yml
-    flaress_selector.block.yml
     flaress_snr.block.yml
     flaress_vector_sink_x.block.yml
     flaress_null_sink.block.yml
