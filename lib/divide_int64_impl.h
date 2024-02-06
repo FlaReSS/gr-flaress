@@ -21,7 +21,7 @@
 #ifndef INCLUDED_FLARESS_DIVIDE_INT64_IMPL_H
 #define INCLUDED_FLARESS_DIVIDE_INT64_IMPL_H
 
-#include <flaress/divide_int64.h>
+#include <gnuradio/flaress/divide_int64.h>
 
 namespace gr {
   namespace flaress {

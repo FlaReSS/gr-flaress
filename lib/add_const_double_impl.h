@@ -21,7 +21,7 @@
 #ifndef INCLUDED_FLARESS_ADD_CONST_DOUBLE_IMPL_H
 #define INCLUDED_FLARESS_ADD_CONST_DOUBLE_IMPL_H
 
-#include <flaress/add_const_double.h>
+#include <gnuradio/flaress/add_const_double.h>
 
 namespace gr {
   namespace flaress {

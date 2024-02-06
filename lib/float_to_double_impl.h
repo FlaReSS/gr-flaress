@@ -23,7 +23,7 @@
 #ifndef INCLUDED_FLARESS_FLOAT_TO_DOUBLE_IMPL_H
 #define INCLUDED_FLARESS_FLOAT_TO_DOUBLE_IMPL_H
 
-#include <flaress/float_to_double.h>
+#include <gnuradio/flaress/float_to_double.h>
 
 namespace gr {
   namespace flaress {

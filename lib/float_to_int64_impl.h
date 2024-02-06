@@ -21,7 +21,7 @@
 #ifndef INCLUDED_FLARESS_FLOAT_TO_INT64_IMPL_H
 #define INCLUDED_FLARESS_FLOAT_TO_INT64_IMPL_H
 
-#include <flaress/float_to_int64.h>
+#include <gnuradio/flaress/float_to_int64.h>
 
 namespace gr {
   namespace flaress {

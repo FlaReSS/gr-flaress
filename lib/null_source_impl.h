@@ -23,7 +23,7 @@
 #ifndef INCLUDED_FLARESS_NULL_SOURCE_IMPL_H
 #define INCLUDED_FLARESS_NULL_SOURCE_IMPL_H
 
-#include <flaress/null_source.h>
+#include <gnuradio/flaress/null_source.h>
 
     namespace gr {
   namespace flaress {

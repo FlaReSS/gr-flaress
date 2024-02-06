@@ -20,7 +20,7 @@
 #ifndef INCLUDED_FLARESS_MULTIPLY_CONST_DOUBLE_IMPL_H
 #define INCLUDED_FLARESS_MULTIPLY_CONST_DOUBLE_IMPL_H
 
-#include <flaress/multiply_const_double.h>
+#include <gnuradio/flaress/multiply_const_double.h>
 
 namespace gr {
   namespace flaress {

@@ -21,7 +21,7 @@
 #ifndef INCLUDED_FLARESS_DIVIDE_DOUBLE_IMPL_H
 #define INCLUDED_FLARESS_DIVIDE_DOUBLE_IMPL_H
 
-#include <flaress/divide_double.h>
+#include <gnuradio/flaress/divide_double.h>
 
 namespace gr {
   namespace flaress {

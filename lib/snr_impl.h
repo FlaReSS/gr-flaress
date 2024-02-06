@@ -21,7 +21,7 @@
 #ifndef INCLUDED_FLARESS_SNR_IMPL_H
 #define INCLUDED_FLARESS_SNR_IMPL_H
 
-#include <flaress/snr.h>
+#include <gnuradio/flaress/snr.h>
 
 namespace gr {
   namespace flaress {

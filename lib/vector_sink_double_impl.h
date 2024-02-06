@@ -23,7 +23,7 @@
 #ifndef INCLUDED_FLARESS_VECTOR_SINK_DOUBLE_IMPL_H
 #define INCLUDED_FLARESS_VECTOR_SINK_DOUBLE_IMPL_H
 
-#include <flaress/vector_sink_double.h>
+#include <gnuradio/flaress/vector_sink_double.h>
 
 namespace gr {
   namespace flaress {

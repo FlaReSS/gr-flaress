@@ -23,7 +23,7 @@
 #ifndef INCLUDED_FLARESS_NULL_SINK_IMPL_H
 #define INCLUDED_FLARESS_NULL_SINK_IMPL_H
 
-#include <flaress/null_sink.h>
+#include <gnuradio/flaress/null_sink.h>
 
 namespace gr {
   namespace flaress {

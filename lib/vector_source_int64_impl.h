@@ -24,7 +24,7 @@
 #ifndef INCLUDED_FLARESS_VECTOR_SOURCE_INT64_IMPL_H
 #define INCLUDED_FLARESS_VECTOR_SOURCE_INT64_IMPL_H
 
-#include <flaress/vector_source_int64.h>
+#include <gnuradio/flaress/vector_source_int64.h>
 
     namespace gr {
   namespace flaress {

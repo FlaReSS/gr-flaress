@@ -23,7 +23,7 @@
 #ifndef INCLUDED_FLARESS_INT_TO_INT64_IMPL_H
 #define INCLUDED_FLARESS_INT_TO_INT64_IMPL_H
 
-#include <flaress/int_to_int64.h>
+#include <gnuradio/flaress/int_to_int64.h>
 
     namespace gr {
   namespace flaress {

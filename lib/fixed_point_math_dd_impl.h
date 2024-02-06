@@ -20,7 +20,7 @@
  #ifndef INCLUDED_FLARESS_FIXED_POINT_MATH_DD_IMPL_H
 #define INCLUDED_FLARESS_FIXED_POINT_MATH_DD_IMPL_H
 
-#include <flaress/fixed_point_math_dd.h>
+#include <gnuradio/flaress/fixed_point_math_dd.h>
 
 namespace gr {
   namespace flaress {

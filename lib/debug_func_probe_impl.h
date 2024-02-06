@@ -23,7 +23,7 @@
 #ifndef INCLUDED_FLARESS_DEBUG_FUNC_PROBE_IMPL_H
 #define INCLUDED_FLARESS_DEBUG_FUNC_PROBE_IMPL_H
 
-#include <flaress/debug_func_probe.h>
+#include <gnuradio/flaress/debug_func_probe.h>
 
 namespace gr {
   namespace flaress {

@@ -21,7 +21,7 @@
 #ifndef INCLUDED_FLARESS_SUB_INT64_IMPL_H
 #define INCLUDED_FLARESS_SUB_INT64_IMPL_H
 
-#include <flaress/sub_int64.h>
+#include <gnuradio/flaress/sub_int64.h>
 
 namespace gr {
   namespace flaress {

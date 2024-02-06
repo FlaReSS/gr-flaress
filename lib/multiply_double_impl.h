@@ -21,7 +21,7 @@
 #ifndef INCLUDED_FLARESS_MULTIPLY_DOUBLE_IMPL_H
 #define INCLUDED_FLARESS_MULTIPLY_DOUBLE_IMPL_H
 
-#include <flaress/multiply_double.h>
+#include <gnuradio/flaress/multiply_double.h>
 
 namespace gr {
   namespace flaress {

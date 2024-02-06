@@ -23,7 +23,7 @@
 #ifndef INCLUDED_FLARESS_VECTOR_SOURCE_DOUBLE_IMPL_H
 #define INCLUDED_FLARESS_VECTOR_SOURCE_DOUBLE_IMPL_H
 
-#include <flaress/vector_source_double.h>
+#include <gnuradio/flaress/vector_source_double.h>
 
 namespace gr {
   namespace flaress {

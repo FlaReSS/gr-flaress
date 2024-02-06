@@ -21,7 +21,7 @@
 #ifndef INCLUDED_FLARESS_INTEGER_MATH_II_IMPL_H
 #define INCLUDED_FLARESS_INTEGER_MATH_II_IMPL_H
 
-#include <flaress/integer_math_ii.h>
+#include <gnuradio/flaress/integer_math_ii.h>
 
 namespace gr {
   namespace flaress {

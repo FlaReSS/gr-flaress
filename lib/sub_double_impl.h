@@ -21,7 +21,7 @@
 #ifndef INCLUDED_FLARESS_SUB_DOUBLE_IMPL_H
 #define INCLUDED_FLARESS_SUB_DOUBLE_IMPL_H
 
-#include <flaress/sub_double.h>
+#include <gnuradio/flaress/sub_double.h>
 
 namespace gr {
   namespace flaress {

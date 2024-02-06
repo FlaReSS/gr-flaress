@@ -21,7 +21,7 @@
 #ifndef INCLUDED_FLARESS_MULTIPLY_INT64_IMPL_H
 #define INCLUDED_FLARESS_MULTIPLY_INT64_IMPL_H
 
-#include <flaress/multiply_int64.h>
+#include <gnuradio/flaress/multiply_int64.h>
 
 namespace gr {
   namespace flaress {
