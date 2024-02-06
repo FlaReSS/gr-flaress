@@ -14,7 +14,7 @@
 /* BINDTOOL_GEN_AUTOMATIC(0)                                                       */
 /* BINDTOOL_USE_PYGCCXML(0)                                                        */
 /* BINDTOOL_HEADER_FILE(null_sink.h)                                        */
-/* BINDTOOL_HEADER_FILE_HASH(396d6e8c601ec0a9571ef1365414a531)                     */
+/* BINDTOOL_HEADER_FILE_HASH(bc4124b73c91d478211c0ec7a3e6b47c)                     */
 /***********************************************************************************/
 
 #include <pybind11/complex.h>
@@ -23,7 +23,7 @@
 
 namespace py = pybind11;
 
-#include <flaress/null_sink.h>
+#include <gnuradio/flaress/null_sink.h>
 // pydoc.h is automatically generated in the build directory
 #include <null_sink_pydoc.h>
 

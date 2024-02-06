@@ -14,7 +14,7 @@
 /* BINDTOOL_GEN_AUTOMATIC(0)                                                       */
 /* BINDTOOL_USE_PYGCCXML(0)                                                        */
 /* BINDTOOL_HEADER_FILE(debug_func_probe.h)                                        */
-/* BINDTOOL_HEADER_FILE_HASH(696a3e4aa7e26f6e2cc17239b14c8a02)                     */
+/* BINDTOOL_HEADER_FILE_HASH(98d76286e5a908df126c9710015c858f)                     */
 /***********************************************************************************/
 
 #include <pybind11/complex.h>
@@ -23,7 +23,7 @@
 
 namespace py = pybind11;
 
-#include <flaress/debug_func_probe.h>
+#include <gnuradio/flaress/debug_func_probe.h>
 // pydoc.h is automatically generated in the build directory
 #include <debug_func_probe_pydoc.h>
 

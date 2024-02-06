@@ -4,6 +4,12 @@ id: flaress_float_to_int64
 label: Float To Int64
 category: '[flaress]'
 
+templates:
+    imports: from gnuradio import flaress
+    make: flaress.float_to_int64(${vlen}, ${scale})
+    callbacks:
+    - set_scale(${scale})
+
 parameters:
 -   id: vlen
     label: Vec Length
@@ -24,11 +30,5 @@ outputs:
 -   domain: stream
     dtype: s64
     vlen: ${ vlen }
-
-templates:
-    imports: import flaress
-    make: flaress.float_to_int64(${vlen}, ${scale})
-    callbacks:
-    - set_scale(${scale})
 
 file_format: 1

@@ -4,6 +4,10 @@ id: flaress_sine_debug
 label: Sine Debug
 category: '[flaress]'
 
+templates:
+    imports: from gnuradio import flaress
+    make: flaress.sine_debug()
+
 inputs:
 -   domain: stream
     dtype: complex
@@ -11,9 +15,5 @@ inputs:
 outputs:
 -   domain: stream
     dtype: float
-
-templates:
-    imports: import flaress
-    make: flaress.sine_debug()
 
 file_format: 1

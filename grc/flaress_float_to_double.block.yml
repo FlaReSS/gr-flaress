@@ -4,6 +4,10 @@ id: flaress_float_to_double
 label: Float To Double
 category: '[flaress]'
 
+templates:
+    imports: from gnuradio import flaress
+    make: flaress.float_to_double()
+
 inputs:
 -   domain: stream
     dtype: float
@@ -11,9 +15,5 @@ inputs:
 outputs:
 -   domain: stream
     dtype: f64
-
-templates:
-    imports: import flaress
-    make: flaress.float_to_double()
 
 file_format: 1

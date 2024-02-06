@@ -14,7 +14,7 @@
 /* BINDTOOL_GEN_AUTOMATIC(0)                                                       */
 /* BINDTOOL_USE_PYGCCXML(0)                                                        */
 /* BINDTOOL_HEADER_FILE(sub_double.h)                                        */
-/* BINDTOOL_HEADER_FILE_HASH(d60843b3de841e09d2b1033277f428a5)                     */
+/* BINDTOOL_HEADER_FILE_HASH(70c5703ea66217378b15228fce65e48b)                     */
 /***********************************************************************************/
 
 #include <pybind11/complex.h>
@@ -23,7 +23,7 @@
 
 namespace py = pybind11;
 
-#include <flaress/sub_double.h>
+#include <gnuradio/flaress/sub_double.h>
 // pydoc.h is automatically generated in the build directory
 #include <sub_double_pydoc.h>
 

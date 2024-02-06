@@ -29,6 +29,34 @@ include(GrPybind)
 ########################################################################
 
 list(APPEND flaress_python_files
+    add_const_double_python.cc
+    add_const_int64_python.cc
+    add_double_python.cc
+    add_int64_python.cc
+    debug_func_probe_python.cc
+    divide_double_python.cc
+    divide_int64_python.cc
+    fixed_point_math_cc_python.cc
+    fixed_point_math_dd_python.cc
+    fixed_point_math_ff_python.cc
+    float_to_double_python.cc
+    float_to_int64_python.cc
+    integer_math_ii_python.cc
+    integer_math_ll_python.cc
+    int_to_int64_python.cc
+    multiply_const_double_python.cc
+    multiply_const_int64_python.cc
+    multiply_double_python.cc
+    multiply_int64_python.cc
+    null_sink_python.cc
+    null_source_python.cc
+    snr_python.cc
+    sub_double_python.cc
+    sub_int64_python.cc
+    vector_sink_double_python.cc
+    vector_sink_int64_python.cc
+    vector_source_double_python.cc
+    vector_source_int64_python.cc
     python_bindings.cc)
 
 GR_PYBIND_MAKE_OOT(flaress

@@ -4,6 +4,10 @@ id: flaress_null_sink
 label: Null Sink
 category: '[flaress]'
 
+templates:
+    imports: from gnuradio import flaress
+    make: flaress.null_sink(${type.size}*${vlen})
+
 parameters:
 -   id: type
     label: Input Type
@@ -35,12 +39,9 @@ inputs:
     dtype: ${ type }
     vlen: ${ vlen }
     multiplicity: ${ num_inputs }
+
 asserts:
 - ${ num_inputs >= 1 }
 - ${ vlen > 0 }
-
-templates:
-    imports: import flaress
-    make: flaress.null_sink(${type.size}*${vlen})
 
 file_format: 1

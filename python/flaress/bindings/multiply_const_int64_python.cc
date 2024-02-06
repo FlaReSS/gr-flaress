@@ -14,7 +14,7 @@
 /* BINDTOOL_GEN_AUTOMATIC(0)                                                       */
 /* BINDTOOL_USE_PYGCCXML(0)                                                        */
 /* BINDTOOL_HEADER_FILE(multiply_const_int64.h)                                        */
-/* BINDTOOL_HEADER_FILE_HASH(72a653ac0069f14792538f9e143f23e2)                     */
+/* BINDTOOL_HEADER_FILE_HASH(a893c4f7117a757fecdd6c4e14826149)                     */
 /***********************************************************************************/
 
 #include <pybind11/complex.h>
@@ -23,7 +23,7 @@
 
 namespace py = pybind11;
 
-#include <flaress/multiply_const_int64.h>
+#include <gnuradio/flaress/multiply_const_int64.h>
 // pydoc.h is automatically generated in the build directory
 #include <multiply_const_int64_pydoc.h>
 

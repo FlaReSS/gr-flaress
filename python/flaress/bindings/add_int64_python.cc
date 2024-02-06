@@ -14,7 +14,7 @@
 /* BINDTOOL_GEN_AUTOMATIC(0)                                                       */
 /* BINDTOOL_USE_PYGCCXML(0)                                                        */
 /* BINDTOOL_HEADER_FILE(add_int64.h)                                        */
-/* BINDTOOL_HEADER_FILE_HASH(a14a97bbf3068787564323a9807341ad)                     */
+/* BINDTOOL_HEADER_FILE_HASH(c6dc7edecfad13b7f09d9187d53298c2)                     */
 /***********************************************************************************/
 
 #include <pybind11/complex.h>
@@ -23,7 +23,7 @@
 
 namespace py = pybind11;
 
-#include <flaress/add_int64.h>
+#include <gnuradio/flaress/add_int64.h>
 // pydoc.h is automatically generated in the build directory
 #include <add_int64_pydoc.h>
 

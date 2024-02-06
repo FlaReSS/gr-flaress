@@ -4,6 +4,17 @@ id: flaress_snr_estimator_x
 label: SNR Estimator
 category: '[flaress]'
 
+templates:
+    imports: |-
+        from gnuradio import flaress
+        from gnuradio.fft import window
+    make: "flaress.snr_estimator_${fft_output.fcn}( \n        auto_carrier = ${auto_carrier},\
+        \ \n        carrier = ${carrier}, \n        all_spectrum = ${all_spectrum},\
+        \ \n        freq_central = ${freq_central}, \n        samp_rate = ${samp_rate},\
+        \ \n        nintems = ${nintems}, \n        signal_bw = ${signal_bw}, \n \
+        \       noise_bw = ${noise_bw}, \n        avg_alpha = ${avg_alpha}, \n   \
+        \     average = ${average}, \n        win = ${win})"
+
 parameters:
 -   id: fft_output
     label: FFT Output
@@ -85,16 +96,5 @@ outputs:
     vlen: ${ nintems }
     optional: true
     hide: ${ fft_output }
-
-templates:
-    imports: |-
-        from gnuradio.fft import window
-        import flaress
-    make: "flaress.snr_estimator_${fft_output.fcn}( \n        auto_carrier = ${auto_carrier},\
-        \ \n        carrier = ${carrier}, \n        all_spectrum = ${all_spectrum},\
-        \ \n        freq_central = ${freq_central}, \n        samp_rate = ${samp_rate},\
-        \ \n        nintems = ${nintems}, \n        signal_bw = ${signal_bw}, \n \
-        \       noise_bw = ${noise_bw}, \n        avg_alpha = ${avg_alpha}, \n   \
-        \     average = ${average}, \n        win = ${win})"
 
 file_format: 1

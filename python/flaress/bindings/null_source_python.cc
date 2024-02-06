@@ -14,7 +14,7 @@
 /* BINDTOOL_GEN_AUTOMATIC(0)                                                       */
 /* BINDTOOL_USE_PYGCCXML(0)                                                        */
 /* BINDTOOL_HEADER_FILE(null_source.h)                                        */
-/* BINDTOOL_HEADER_FILE_HASH(81952c339426f9da7b6092123f3da6bd)                     */
+/* BINDTOOL_HEADER_FILE_HASH(c73e2e62138d6d3cf44900734b1e34a9)                     */
 /***********************************************************************************/
 
 #include <pybind11/complex.h>
@@ -23,7 +23,7 @@
 
 namespace py = pybind11;
 
-#include <flaress/null_source.h>
+#include <gnuradio/flaress/null_source.h>
 // pydoc.h is automatically generated in the build directory
 #include <null_source_pydoc.h>
 

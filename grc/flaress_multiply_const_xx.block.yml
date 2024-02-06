@@ -4,6 +4,12 @@ id: flaress_multiply_const_double
 label: Multiply Const
 category: '[flaress]'
 
+templates:
+    imports: from gnuradio import flaress
+    make: flaress.multiply_const_${type.fcn}(${const}, ${vlen})
+    callbacks:
+    - set_k(${const})
+
 parameters:
 -   id: type
     label: IO Type
@@ -32,13 +38,8 @@ outputs:
 -   domain: stream
     dtype: ${ type }
     vlen: ${ vlen }
+
 asserts:
 - ${ vlen > 0 }
-
-templates:
-    imports: import flaress
-    make: flaress.multiply_const_${type.fcn}(${const}, ${vlen})
-    callbacks:
-    - set_k(${const})
 
 file_format: 1

@@ -14,7 +14,7 @@
 /* BINDTOOL_GEN_AUTOMATIC(0)                                                       */
 /* BINDTOOL_USE_PYGCCXML(0)                                                        */
 /* BINDTOOL_HEADER_FILE(multiply_double.h)                                        */
-/* BINDTOOL_HEADER_FILE_HASH(374513b87574ee8fc32e708dfd2b2c8a)                     */
+/* BINDTOOL_HEADER_FILE_HASH(005b3ed8acfd38c7f927342d1cd60379)                     */
 /***********************************************************************************/
 
 #include <pybind11/complex.h>
@@ -23,7 +23,7 @@
 
 namespace py = pybind11;
 
-#include <flaress/multiply_double.h>
+#include <gnuradio/flaress/multiply_double.h>
 // pydoc.h is automatically generated in the build directory
 #include <multiply_double_pydoc.h>
 

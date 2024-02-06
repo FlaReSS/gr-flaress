@@ -4,6 +4,10 @@ id: flaress_fixed_point_math_xx
 label: Fixed Point Math
 category: '[flaress]'
 
+templates:
+    imports: from gnuradio import flaress
+    make: flaress.fixed_point_math_${type.fcn}(${vlen}, ${N_int}, ${N_frac})
+
 parameters:
 -   id: type
     label: IO Type
@@ -35,11 +39,8 @@ outputs:
 -   domain: stream
     dtype: ${ type }
     vlen: ${ vlen }
+
 asserts:
 - ${ vlen > 0 }
-
-templates:
-    imports: import flaress
-    make: flaress.fixed_point_math_${type.fcn}(${vlen}, ${N_int}, ${N_frac})
 
 file_format: 1

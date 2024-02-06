@@ -14,7 +14,7 @@
 /* BINDTOOL_GEN_AUTOMATIC(0)                                                       */
 /* BINDTOOL_USE_PYGCCXML(0)                                                        */
 /* BINDTOOL_HEADER_FILE(divide_int64.h)                                        */
-/* BINDTOOL_HEADER_FILE_HASH(4b5912b3309af1f9f07166df4392f448)                     */
+/* BINDTOOL_HEADER_FILE_HASH(6307a28b81de8cb3638aedbef3a0f4c2)                     */
 /***********************************************************************************/
 
 #include <pybind11/complex.h>
@@ -23,7 +23,7 @@
 
 namespace py = pybind11;
 
-#include <flaress/divide_int64.h>
+#include <gnuradio/flaress/divide_int64.h>
 // pydoc.h is automatically generated in the build directory
 #include <divide_int64_pydoc.h>
 

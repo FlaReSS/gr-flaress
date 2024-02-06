@@ -14,7 +14,7 @@
 /* BINDTOOL_GEN_AUTOMATIC(0)                                                       */
 /* BINDTOOL_USE_PYGCCXML(0)                                                        */
 /* BINDTOOL_HEADER_FILE(snr.h)                                        */
-/* BINDTOOL_HEADER_FILE_HASH(f0dd1e2c97e078ed1d3079100873d399)                     */
+/* BINDTOOL_HEADER_FILE_HASH(726bb75bfab7c4c0fbccb086bb96af1f)                     */
 /***********************************************************************************/
 
 #include <pybind11/complex.h>
@@ -23,7 +23,7 @@
 
 namespace py = pybind11;
 
-#include <flaress/snr.h>
+#include <gnuradio/flaress/snr.h>
 // pydoc.h is automatically generated in the build directory
 #include <snr_pydoc.h>
 

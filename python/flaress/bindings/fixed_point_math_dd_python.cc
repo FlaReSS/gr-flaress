@@ -14,7 +14,7 @@
 /* BINDTOOL_GEN_AUTOMATIC(0)                                                       */
 /* BINDTOOL_USE_PYGCCXML(0)                                                        */
 /* BINDTOOL_HEADER_FILE(fixed_point_math_dd.h)                                        */
-/* BINDTOOL_HEADER_FILE_HASH(54fcfdadd035368dd0c58770c8ff73c6)                     */
+/* BINDTOOL_HEADER_FILE_HASH(8d665b060ae2db85658335f3b7a2abcc)                     */
 /***********************************************************************************/
 
 #include <pybind11/complex.h>
@@ -23,7 +23,7 @@
 
 namespace py = pybind11;
 
-#include <flaress/fixed_point_math_dd.h>
+#include <gnuradio/flaress/fixed_point_math_dd.h>
 // pydoc.h is automatically generated in the build directory
 #include <fixed_point_math_dd_pydoc.h>
 

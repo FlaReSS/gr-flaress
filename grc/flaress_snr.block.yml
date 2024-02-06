@@ -4,6 +4,11 @@ id: flaress_snr
 label: snr
 category: '[flaress]'
 
+templates:
+    imports: from gnuradio import flaress
+    make: flaress.snr(${auto_carrier}, ${carrier}, ${freq_central}, ${samp_rate},
+        ${nintems}, ${signal_bw}, ${noise_bw})
+
 parameters:
 -   id: carrier
     label: Measurement
@@ -45,10 +50,5 @@ inputs:
 outputs:
 -   domain: stream
     dtype: float
-
-templates:
-    imports: import flaress
-    make: flaress.snr(${auto_carrier}, ${carrier}, ${freq_central}, ${samp_rate},
-        ${nintems}, ${signal_bw}, ${noise_bw})
 
 file_format: 1

@@ -4,6 +4,10 @@ id: flaress_integer_math_xx
 label: Integer Math
 category: '[flaress]'
 
+templates:
+    imports: from gnuradio import flaress
+    make: flaress.integer_math_${type.fcn}(${vlen}, ${N_int})
+
 parameters:
 -   id: type
     label: Input Type
@@ -32,11 +36,8 @@ outputs:
 -   domain: stream
     dtype: ${ type }
     vlen: ${ vlen }
+
 asserts:
 - ${ vlen > 0 }
-
-templates:
-    imports: import flaress
-    make: flaress.integer_math_${type.fcn}(${vlen}, ${N_int})
 
 file_format: 1

@@ -14,7 +14,7 @@
 /* BINDTOOL_GEN_AUTOMATIC(0)                                                       */
 /* BINDTOOL_USE_PYGCCXML(0)                                                        */
 /* BINDTOOL_HEADER_FILE(float_to_double.h)                                        */
-/* BINDTOOL_HEADER_FILE_HASH(eea12616080da943eda26f883c46dfa0)                     */
+/* BINDTOOL_HEADER_FILE_HASH(9b1cd59707fd821e98a4f62941912a10)                     */
 /***********************************************************************************/
 
 #include <pybind11/complex.h>
@@ -23,7 +23,7 @@
 
 namespace py = pybind11;
 
-#include <flaress/float_to_double.h>
+#include <gnuradio/flaress/float_to_double.h>
 // pydoc.h is automatically generated in the build directory
 #include <float_to_double_pydoc.h>
 

@@ -14,7 +14,7 @@
 /* BINDTOOL_GEN_AUTOMATIC(0)                                                       */
 /* BINDTOOL_USE_PYGCCXML(0)                                                        */
 /* BINDTOOL_HEADER_FILE(vector_source_double.h)                                        */
-/* BINDTOOL_HEADER_FILE_HASH(3bc794567954cf1bcb8165050c664205)                     */
+/* BINDTOOL_HEADER_FILE_HASH(34c3e4b6af46d9dc78facc3d2b6301da)                     */
 /***********************************************************************************/
 
 #include <pybind11/complex.h>
@@ -23,7 +23,7 @@
 
 namespace py = pybind11;
 
-#include <flaress/vector_source_double.h>
+#include <gnuradio/flaress/vector_source_double.h>
 // pydoc.h is automatically generated in the build directory
 #include <vector_source_double_pydoc.h>
 
@@ -40,7 +40,7 @@ void bind_vector_source_double(py::module& m)
            py::arg("data"),
            py::arg("repeat") = false,
            py::arg("vlen") = 1,
-           py::arg("tags") = std::vector<tag_t>(),
+           py::arg("tags") = std::vector<gr::tag_t>(),
            D(vector_source_double,make)
         )
         
@@ -57,7 +57,7 @@ void bind_vector_source_double(py::module& m)
         
         .def("set_data",&vector_source_double::set_data,       
             py::arg("data"),
-            py::arg("tags") = std::vector<tag_t>(),
+            py::arg("tags") = std::vector<gr::tag_t>(),
             D(vector_source_double,set_data)
         )
 

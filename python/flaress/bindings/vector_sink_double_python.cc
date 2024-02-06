@@ -14,7 +14,7 @@
 /* BINDTOOL_GEN_AUTOMATIC(0)                                                       */
 /* BINDTOOL_USE_PYGCCXML(0)                                                        */
 /* BINDTOOL_HEADER_FILE(vector_sink_double.h)                                        */
-/* BINDTOOL_HEADER_FILE_HASH(48b526663af6ffad65fd2670843948d4)                     */
+/* BINDTOOL_HEADER_FILE_HASH(1aa9a15edbc41f84f25baeb7ab6886e5)                     */
 /***********************************************************************************/
 
 #include <pybind11/complex.h>
@@ -23,7 +23,7 @@
 
 namespace py = pybind11;
 
-#include <flaress/vector_sink_double.h>
+#include <gnuradio/flaress/vector_sink_double.h>
 // pydoc.h is automatically generated in the build directory
 #include <vector_sink_double_pydoc.h>
 

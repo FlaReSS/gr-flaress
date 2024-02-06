@@ -4,6 +4,10 @@ id: flaress_debug_func_probe
 label: Debug Function Probe
 category: '[flaress]'
 
+templates:
+    imports: from gnuradio import flaress
+    make: flaress.debug_func_probe(${type.size}*${vlen})
+
 parameters:
 -   id: type
     label: IO Type
@@ -25,9 +29,5 @@ inputs:
     dtype: ${ type }
     vlen: ${ vlen }
     multiplicity: '1'
-
-templates:
-    imports: import flaress
-    make: flaress.debug_func_probe(${type.size}*${vlen})
 
 file_format: 1

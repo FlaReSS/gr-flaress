@@ -14,7 +14,7 @@
 /* BINDTOOL_GEN_AUTOMATIC(0)                                                       */
 /* BINDTOOL_USE_PYGCCXML(0)                                                        */
 /* BINDTOOL_HEADER_FILE(vector_source_int64.h)                                        */
-/* BINDTOOL_HEADER_FILE_HASH(da9dfd02b5005e27142950d879768e27)                     */
+/* BINDTOOL_HEADER_FILE_HASH(a7ecf232a9341a278e6c93f494d99984)                     */
 /***********************************************************************************/
 
 #include <pybind11/complex.h>
@@ -23,7 +23,7 @@
 
 namespace py = pybind11;
 
-#include <flaress/vector_source_int64.h>
+#include <gnuradio/flaress/vector_source_int64.h>
 // pydoc.h is automatically generated in the build directory
 #include <vector_source_int64_pydoc.h>
 
@@ -40,7 +40,7 @@ void bind_vector_source_int64(py::module& m)
            py::arg("data"),
            py::arg("repeat") = false,
            py::arg("vlen") = 1,
-           py::arg("tags") = std::vector<tag_t>(),
+           py::arg("tags") = std::vector<gr::tag_t>(),
            D(vector_source_int64,make)
         )
         
@@ -57,7 +57,7 @@ void bind_vector_source_int64(py::module& m)
         
         .def("set_data",&vector_source_int64::set_data,       
             py::arg("data"),
-            py::arg("tags") = std::vector<tag_t>(),
+            py::arg("tags") = std::vector<gr::tag_t>(),
             D(vector_source_int64,set_data)
         )
 

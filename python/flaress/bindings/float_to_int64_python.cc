@@ -14,7 +14,7 @@
 /* BINDTOOL_GEN_AUTOMATIC(0)                                                       */
 /* BINDTOOL_USE_PYGCCXML(0)                                                        */
 /* BINDTOOL_HEADER_FILE(float_to_int64.h)                                        */
-/* BINDTOOL_HEADER_FILE_HASH(82b9cf32a86361a97f55a512c658e800)                     */
+/* BINDTOOL_HEADER_FILE_HASH(8e3259ea885a603d353d31b35b05c0d0)                     */
 /***********************************************************************************/
 
 #include <pybind11/complex.h>
@@ -23,7 +23,7 @@
 
 namespace py = pybind11;
 
-#include <flaress/float_to_int64.h>
+#include <gnuradio/flaress/float_to_int64.h>
 // pydoc.h is automatically generated in the build directory
 #include <float_to_int64_pydoc.h>
 

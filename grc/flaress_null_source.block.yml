@@ -4,6 +4,10 @@ id: flaress_null_source
 label: Null Source
 category: '[flaress]'
 
+templates:
+    imports: from gnuradio import flaress
+    make: flaress.null_source(${type.size}*${vlen})
+
 parameters:
 -   id: type
     label: Output Type
@@ -35,12 +39,9 @@ outputs:
     dtype: ${ type }
     vlen: ${ vlen }
     multiplicity: ${ num_outputs }
+
 asserts:
 - ${ num_outputs >= 1 }
 - ${ vlen > 0 }
-
-templates:
-    imports: import flaress
-    make: flaress.null_source(${type.size}*${vlen})
 
 file_format: 1

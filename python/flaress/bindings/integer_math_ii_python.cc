@@ -14,7 +14,7 @@
 /* BINDTOOL_GEN_AUTOMATIC(0)                                                       */
 /* BINDTOOL_USE_PYGCCXML(0)                                                        */
 /* BINDTOOL_HEADER_FILE(integer_math_ii.h)                                        */
-/* BINDTOOL_HEADER_FILE_HASH(8f541e002c78140fb139668db92871c4)                     */
+/* BINDTOOL_HEADER_FILE_HASH(90d95cafeab5490ea26d1144ebaa876c)                     */
 /***********************************************************************************/
 
 #include <pybind11/complex.h>
@@ -23,7 +23,7 @@
 
 namespace py = pybind11;
 
-#include <flaress/integer_math_ii.h>
+#include <gnuradio/flaress/integer_math_ii.h>
 // pydoc.h is automatically generated in the build directory
 #include <integer_math_ii_pydoc.h>
 

@@ -4,6 +4,10 @@ id: flaress_multiply_double
 label: Multiply
 category: '[flaress]'
 
+templates:
+    imports: from gnuradio import flaress
+    make: flaress.multiply_${type.fcn}(${vlen})
+
 parameters:
 -   id: type
     label: IO Type
@@ -34,12 +38,9 @@ outputs:
 -   domain: stream
     dtype: ${ type }
     vlen: ${ vlen }
+
 asserts:
 - ${ num_inputs > 1 }
 - ${ vlen > 0 }
-
-templates:
-    imports: import flaress
-    make: flaress.multiply_${type.fcn}(${vlen})
 
 file_format: 1

@@ -4,6 +4,10 @@ id: flaress_vector_source_int64
 label: Vector Source Int64
 category: '[flaress]'
 
+templates:
+    imports: from gnuradio import flaress
+    make: flaress.vector_source_int64(${vector}, ${repeat}, ${vlen}, ${tags})
+
 parameters:
 -   id: vector
     label: Vector
@@ -29,11 +33,8 @@ outputs:
 -   domain: stream
     dtype: s64
     vlen: ${ vlen }
+
 asserts:
 - ${ vlen > 0 }
-
-templates:
-    imports: import flaress
-    make: flaress.vector_source_int64(${vector}, ${repeat}, ${vlen}, ${tags})
 
 file_format: 1
