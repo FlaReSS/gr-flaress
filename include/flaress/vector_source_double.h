@@ -65,7 +65,7 @@ namespace gr {
   {
   public:
     // gr::flaress::vector_source_double::sptr
-    typedef boost::shared_ptr<vector_source_double> sptr;
+    typedef std::shared_ptr<vector_source_double> sptr;
 
     static sptr make(const std::vector<double> &data, bool repeat = false, int vlen = 1, const std::vector<tag_t> &tags = std::vector<tag_t>());
 

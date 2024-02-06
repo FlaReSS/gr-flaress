@@ -35,7 +35,7 @@ namespace gr {
     class FLARESS_API integer_math_ii : virtual public gr::sync_block
     {
      public:
-      typedef boost::shared_ptr<integer_math_ii> sptr;
+      typedef std::shared_ptr<integer_math_ii> sptr;
 
     /*!
        * Convert stream of integers to a limited stream of integers in fixed point math,

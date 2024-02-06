@@ -37,7 +37,7 @@ namespace gr {
     {
     public:
       // gr::blocks::vector_sink_double::sptr
-      typedef boost::shared_ptr<vector_sink_double> sptr;
+      typedef std::shared_ptr<vector_sink_double> sptr;
 
       /*!
        * \brief Make a new instance of the vector source, and return a shared pointer to it.

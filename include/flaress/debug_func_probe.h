@@ -39,7 +39,7 @@ namespace gr {
     {
      public:
       // gr::flaress::debug_func_probe::sptr
-      typedef boost::shared_ptr<debug_func_probe> sptr;
+      typedef std::shared_ptr<debug_func_probe> sptr;
 
       /*!
        * \brief Make a new instance of the vector that contains the absolute nitems read when the debug_nitems() is called,

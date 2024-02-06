@@ -39,7 +39,7 @@ namespace gr {
   class FLARESS_API add_double : virtual public gr::sync_block
   {
   public:
-    typedef boost::shared_ptr<add_double> sptr;
+    typedef std::shared_ptr<add_double> sptr;
 
     /*!
        * \brief Add streams of double values

@@ -36,7 +36,7 @@ namespace gr {
   class FLARESS_API add_const_int64 : virtual public gr::sync_block
   {
    public:
-    typedef boost::shared_ptr<add_const_int64> sptr;
+    typedef std::shared_ptr<add_const_int64> sptr;
 
     /*!
        * \brief Create an instance of add_const_int64

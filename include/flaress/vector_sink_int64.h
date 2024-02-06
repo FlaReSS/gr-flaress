@@ -37,7 +37,7 @@ namespace gr {
     {
     public:
       // gr::flaress::vector_sink_int64::sptr
-      typedef boost::shared_ptr<vector_sink_int64> sptr;
+      typedef std::shared_ptr<vector_sink_int64> sptr;
 
       /*!
        * \brief Make a new instance of the vector source, and return a shared pointer to it.

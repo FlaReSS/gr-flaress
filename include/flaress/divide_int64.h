@@ -39,7 +39,7 @@ namespace gr {
   class FLARESS_API divide_int64 : virtual public gr::sync_block
   {
   public:
-    typedef boost::shared_ptr<divide_int64> sptr;
+    typedef std::shared_ptr<divide_int64> sptr;
 
     /*!
        * \brief Divide streams of double values

@@ -35,7 +35,7 @@ namespace gr {
     class FLARESS_API fixed_point_math_cc : virtual public gr::sync_block
     {
      public:
-      typedef boost::shared_ptr<fixed_point_math_cc> sptr;
+      typedef std::shared_ptr<fixed_point_math_cc> sptr;
 
     /*!
        * Convert stream of complexs to a limited stream of complexs in fixed point math,

@@ -36,7 +36,7 @@ namespace gr {
   class FLARESS_API add_const_double : virtual public gr::sync_block
   {
   public:
-    typedef boost::shared_ptr<add_const_double> sptr;
+    typedef std::shared_ptr<add_const_double> sptr;
 
     /*!
        * \brief Create an instance of add_const_double

@@ -65,7 +65,7 @@ namespace gr {
   {
   public:
     // gr::flaress::vector_source_int64::sptr
-    typedef boost::shared_ptr<vector_source_int64> sptr;
+    typedef std::shared_ptr<vector_source_int64> sptr;
 
     static sptr make(const std::vector<long int> &data, bool repeat = false, int vlen = 1, const std::vector<tag_t> &tags = std::vector<tag_t>());
 

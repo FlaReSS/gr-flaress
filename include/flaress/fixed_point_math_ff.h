@@ -35,7 +35,7 @@ namespace gr {
     class FLARESS_API fixed_point_math_ff : virtual public gr::sync_block
     {
      public:
-      typedef boost::shared_ptr<fixed_point_math_ff> sptr;
+      typedef std::shared_ptr<fixed_point_math_ff> sptr;
 
     /*!
        * Convert stream of floats to a limited stream of floats in fixed point math,

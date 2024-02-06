@@ -39,7 +39,7 @@ namespace gr {
   class FLARESS_API multiply_double : virtual public gr::sync_block
   {
   public:
-    typedef boost::shared_ptr<multiply_double> sptr;
+    typedef std::shared_ptr<multiply_double> sptr;
 
     /*!
        * \brief Multiply streams of double values

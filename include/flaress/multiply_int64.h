@@ -39,7 +39,7 @@ namespace gr {
   class FLARESS_API multiply_int64 : virtual public gr::sync_block
   {
   public:
-    typedef boost::shared_ptr<multiply_int64> sptr;
+    typedef std::shared_ptr<multiply_int64> sptr;
 
     /*!
        * \brief Multiply streams of int64 values

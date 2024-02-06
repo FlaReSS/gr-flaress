@@ -37,7 +37,7 @@ namespace gr {
     {
     public:
       // gr::flaress::null_source::sptr
-      typedef boost::shared_ptr<null_source> sptr;
+      typedef std::shared_ptr<null_source> sptr;
 
       /*!
         * Build a null source block.

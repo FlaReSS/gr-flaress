@@ -39,7 +39,7 @@ namespace gr {
   class FLARESS_API add_int64 : virtual public gr::sync_block
   {
   public:
-    typedef boost::shared_ptr<add_int64> sptr;
+    typedef std::shared_ptr<add_int64> sptr;
 
     /*!
        * \brief Add streams of int64 values

@@ -36,7 +36,7 @@ namespace gr {
     class FLARESS_API snr : virtual public gr::sync_block
     {
      public:
-      typedef boost::shared_ptr<snr> sptr;
+      typedef std::shared_ptr<snr> sptr;
 
       /*!
        * \brief Return a shared_ptr to a new instance of flaress::snr.

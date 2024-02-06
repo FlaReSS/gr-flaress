@@ -36,7 +36,7 @@ namespace gr {
     class FLARESS_API float_to_int64 : virtual public gr::sync_block
     {
      public:
-      typedef boost::shared_ptr<float_to_int64> sptr;
+      typedef std::shared_ptr<float_to_int64> sptr;
 
       /*!
        * Build a float to int64 block.

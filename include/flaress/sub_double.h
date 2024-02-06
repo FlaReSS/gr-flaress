@@ -39,7 +39,7 @@ namespace gr {
   class FLARESS_API sub_double : virtual public gr::sync_block
   {
   public:
-    typedef boost::shared_ptr<sub_double> sptr;
+    typedef std::shared_ptr<sub_double> sptr;
 
     /*!
        * \brief Subtract streams of double values

@@ -35,7 +35,7 @@ namespace gr {
     class FLARESS_API integer_math_ll : virtual public gr::sync_block
     {
      public:
-      typedef boost::shared_ptr<integer_math_ll> sptr;
+      typedef std::shared_ptr<integer_math_ll> sptr;
 
     /*!
        * Convert stream of long integers to a limited stream of long integers in fixed point math,

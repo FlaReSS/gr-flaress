@@ -73,3 +73,6 @@ GR_ADD_TEST(qa_add_xx ${PYTHON_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/qa_add_xx
 GR_ADD_TEST(qa_add_const_xx ${PYTHON_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/qa_add_const_xx.py)
 GR_ADD_TEST(qa_sub_xx ${PYTHON_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/qa_sub_xx.py)
 GR_ADD_TEST(qa_divide_xx ${PYTHON_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/qa_divide_xx.py)
+
+add_subdirectory(bindings)
+

@@ -693,7 +693,7 @@ namespace gr {
     class FLARESS_API float_to_double : virtual public gr::sync_block
     {
      public:
-      typedef boost::shared_ptr<float_to_double> sptr;
+      typedef std::shared_ptr<float_to_double> sptr;
 
       /*!
        * \brief Return a shared_ptr to a new instance of flaress::float_to_double.
