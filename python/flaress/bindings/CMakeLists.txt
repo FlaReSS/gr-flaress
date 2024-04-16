@@ -31,8 +31,7 @@ include(GrPybind)
 list(APPEND flaress_python_files
     add_const_double_python.cc
     add_const_int64_python.cc
-    add_double_python.cc
-    add_int64_python.cc
+    add_python.cc
     debug_func_probe_python.cc
     divide_double_python.cc
     divide_int64_python.cc

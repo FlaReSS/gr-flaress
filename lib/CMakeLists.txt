@@ -33,9 +33,8 @@ list(APPEND flaress_sources
     multiply_int64_impl.cc
     multiply_const_double_impl.cc
     multiply_const_int64_impl.cc
-    add_double_impl.cc
     add_const_double_impl.cc
-    add_int64_impl.cc
+    add_impl.cc
     add_const_int64_impl.cc
     sub_int64_impl.cc
     sub_double_impl.cc

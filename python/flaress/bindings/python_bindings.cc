@@ -24,8 +24,7 @@ namespace py = pybind11;
 
 void bind_add_const_double(py::module&);
 void bind_add_const_int64(py::module&);
-void bind_add_double(py::module&);
-void bind_add_int64(py::module&);
+void bind_add(py::module&);
 void bind_debug_func_probe(py::module&);
 void bind_divide_double(py::module&);
 void bind_divide_int64(py::module&);
@@ -82,8 +81,7 @@ PYBIND11_MODULE(flaress_python, m)
 
     bind_add_const_double(m);
     bind_add_const_int64(m);
-    bind_add_double(m);
-    bind_add_int64(m);
+    bind_add(m);
     bind_debug_func_probe(m);
     bind_divide_double(m);
     bind_divide_int64(m);

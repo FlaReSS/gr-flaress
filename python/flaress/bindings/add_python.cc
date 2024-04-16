@@ -13,8 +13,8 @@
 /* If manual edits are made, the following tags should be modified accordingly.    */
 /* BINDTOOL_GEN_AUTOMATIC(0)                                                       */
 /* BINDTOOL_USE_PYGCCXML(0)                                                        */
-/* BINDTOOL_HEADER_FILE(add_int64.h)                                        */
-/* BINDTOOL_HEADER_FILE_HASH(c6dc7edecfad13b7f09d9187d53298c2)                     */
+/* BINDTOOL_HEADER_FILE(add.h)                                        */
+/* BINDTOOL_HEADER_FILE_HASH(e230fbe071631a7eaf732ed72c3b4e07)                     */
 /***********************************************************************************/
 
 #include <pybind11/complex.h>
@@ -23,38 +23,25 @@
 
 namespace py = pybind11;
 
-#include <gnuradio/flaress/add_int64.h>
+#include <gnuradio/flaress/add.h>
 // pydoc.h is automatically generated in the build directory
-#include <add_int64_pydoc.h>
+#include <add_pydoc.h>
 
-void bind_add_int64(py::module& m)
+template <typename T>
+void bind_add_template(py::module& m, const char* classname)
 {
+    using add = gr::flaress::add<T>;
 
-    using add_int64    = ::gr::flaress::add_int64;
-
-
-    py::class_<add_int64, gr::sync_block, gr::block, gr::basic_block,
-        std::shared_ptr<add_int64>>(m, "add_int64", D(add_int64))
-
-        .def(py::init(&add_int64::make),
-           py::arg("vlen") = 1,
-           D(add_int64,make)
-        )
-        
-
-
-
-        ;
-
-
-
-
+    py::class_<add,
+               gr::sync_block,
+               gr::block,
+               gr::basic_block,
+               std::shared_ptr<add>>(m, classname)
+        .def(py::init(&gr::flaress::add<T>::make), py::arg("vlen") = 1);
 }
 
-
-
-
-
-
-
-
+void bind_add(py::module& m)
+{
+    bind_add_template<double>(m, "add_double");
+    bind_add_template<int64_t>(m, "add_int64");
+}
