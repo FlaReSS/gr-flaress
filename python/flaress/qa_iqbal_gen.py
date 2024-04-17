@@ -8,7 +8,7 @@ from gnuradio import gr, gr_unittest
 from gnuradio import blocks, channels, analog
 from collections import namedtuple
 from scipy import signal
-import flaress_swig as flaress
+from gnuradio import flaress
 import math, time, datetime
 import numpy as np
 import runner, os, abc, sys, pmt

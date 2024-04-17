@@ -6,7 +6,7 @@
 
 from gnuradio import gr, gr_unittest
 from gnuradio import blocks
-import flaress_swig as flaress
+from gnuradio import flaress
 import runner, pmt, math
 
 class qa_add_const_xx (gr_unittest.TestCase):
@@ -21,12 +21,11 @@ class qa_add_const_xx (gr_unittest.TestCase):
         """test_001_int64_2: add const int64 version with 2 inputs"""
 
         src_data1 = [int(x) for x in range(16)]
-        expected_result_temp = []
+        expected_result = []
 
         const = 10
         for i in range(0, len(src_data1)): 
-            expected_result_temp.append(const + src_data1[i])
-        expected_result = tuple(expected_result_temp)
+            expected_result.append(const + src_data1[i])
 
         src1 = flaress.vector_source_int64(src_data1)
         dst = flaress.vector_sink_int64()
@@ -43,12 +42,11 @@ class qa_add_const_xx (gr_unittest.TestCase):
         """test_002_double_2: add const double version with 2 inputs"""
 
         src_data1 = [float(x) for x in range(16)]
-        expected_result_temp = []
+        expected_result = []
 
         const = 10
         for i in range(0, len(src_data1)): 
-            expected_result_temp.append(const + src_data1[i])
-        expected_result = tuple(expected_result_temp)
+            expected_result.append(const + src_data1[i])
 
         src1 = flaress.vector_source_double(src_data1)
         dst = flaress.vector_sink_double()
@@ -60,7 +58,8 @@ class qa_add_const_xx (gr_unittest.TestCase):
         self.tb.run()
         result_data = dst.data()
         self.assertEqual(expected_result, result_data)
-      
+
+
 if __name__ == '__main__':
     suite = gr_unittest.TestLoader().loadTestsFromTestCase(qa_add_const_xx)
     runner = runner.HTMLTestRunner(output='../TestResults', template='DEFAULT_TEMPLATE_1')

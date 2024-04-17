@@ -6,7 +6,7 @@
 
 from gnuradio import gr, gr_unittest
 from gnuradio import blocks
-import flaress_swig as flaress
+from gnuradio import flaress
 import runner, pmt, math
 
 def make_tag(key, value, offset, srcid=None):
@@ -34,7 +34,7 @@ class qa_float_to_double (gr_unittest.TestCase):
         """test_001: that sink has data set in source for the simplest case"""
         
         src_data = [float(x) for x in range(16)]
-        expected_result = tuple(src_data)
+        expected_result = src_data
 
         src = blocks.vector_source_f(src_data)
         dst = flaress.vector_sink_int64()
@@ -49,7 +49,7 @@ class qa_float_to_double (gr_unittest.TestCase):
         """test_002: vectors (the gnuradio vector I/O type)"""
         
         src_data = [float(x) for x in range(16)]
-        expected_result = tuple(src_data)
+        expected_result = src_data
 
         src = blocks.vector_source_f(src_data, False, 2)
         dst = flaress.vector_sink_int64(2)
@@ -64,7 +64,7 @@ class qa_float_to_double (gr_unittest.TestCase):
         """test_003: sending and receiving tagged streams"""
         
         src_data = [float(x) for x in range(16)]
-        expected_result = tuple(src_data)
+        expected_result = src_data
         src_tags = tuple([make_tag('key', 'val', 0, 'src')])
         expected_tags = src_tags[:]
 
@@ -84,7 +84,7 @@ class qa_float_to_double (gr_unittest.TestCase):
         """test_004: set_data"""
 
         src_data = [float(x) for x in range(16)]
-        expected_result = tuple(src_data)
+        expected_result = src_data
 
         src = blocks.vector_source_f((3,1,4))
         dst = flaress.vector_sink_int64()
@@ -100,7 +100,7 @@ class qa_float_to_double (gr_unittest.TestCase):
         """test_005: set_repeat"""
        
         src_data = [float(x) for x in range(16)]
-        expected_result = tuple(src_data)
+        expected_result = src_data
 
         src = blocks.vector_source_f(src_data, True)
         dst = flaress.vector_sink_int64()

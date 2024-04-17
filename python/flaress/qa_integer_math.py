@@ -5,7 +5,7 @@
 #
 
 from gnuradio import gr, gr_unittest
-import flaress_swig as flaress
+from gnuradio import flaress
 import runner, time
 import numpy as np
 from gnuradio import blocks, analog
@@ -21,7 +21,7 @@ class qa_integer_math (gr_unittest.TestCase):
     def test_001_t (self):
         """test_001_t: int input"""
         src_data = np.arange(-10, 10, 1)
-        expected_result = (-8, -8, -8, -7, -6, -5, -4, -3, -2, -1, 0, 1, 2, 3, 4, 5, 6, 7, 7, 7)
+        expected_result = [-8, -8, -8, -7, -6, -5, -4, -3, -2, -1, 0, 1, 2, 3, 4, 5, 6, 7, 7, 7]
 
         src = blocks.vector_source_i(src_data)
         dst = blocks.vector_sink_i()
@@ -38,7 +38,7 @@ class qa_integer_math (gr_unittest.TestCase):
     def test_002_t (self):
         """test_002_t: long input"""
         src_data = np.arange(-10, 10, 1)
-        expected_result = (-8, -8, -8, -7, -6, -5, -4, -3, -2, -1, 0, 1, 2, 3, 4, 5, 6, 7, 7, 7)
+        expected_result = [-8, -8, -8, -7, -6, -5, -4, -3, -2, -1, 0, 1, 2, 3, 4, 5, 6, 7, 7, 7]
 
         src = flaress.vector_source_int64(src_data)
         dst = flaress.vector_sink_int64()

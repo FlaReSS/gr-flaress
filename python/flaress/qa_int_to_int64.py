@@ -6,7 +6,7 @@
 
 from gnuradio import gr, gr_unittest
 from gnuradio import blocks
-import flaress_swig as flaress
+from gnuradio import flaress
 import runner, pmt, math
 
 def make_tag(key, value, offset, srcid=None):
@@ -35,7 +35,7 @@ class qa_int_to_int64 (gr_unittest.TestCase):
         
         src_data = [int(x) for x in range(16)]
         src_data_int = [int(x) for x in range(16)]
-        expected_result = tuple(src_data_int)
+        expected_result = src_data_int
 
         src = blocks.vector_source_i(src_data)
         dst = flaress.vector_sink_int64()
@@ -51,7 +51,7 @@ class qa_int_to_int64 (gr_unittest.TestCase):
         
         src_data = [int(x) for x in range(16)]
         src_data_int = [int(x) for x in range(16)]
-        expected_result = tuple(src_data_int)
+        expected_result = src_data_int
 
         src = blocks.vector_source_i(src_data, False, 2)
         dst = flaress.vector_sink_int64(2)
@@ -67,7 +67,7 @@ class qa_int_to_int64 (gr_unittest.TestCase):
         
         src_data = [int(x) for x in range(16)]
         src_data_int = [int(x) for x in range(16)]
-        expected_result = tuple(src_data_int)
+        expected_result = src_data_int
         src_tags = tuple([make_tag('key', 'val', 0, 'src')])
         expected_tags = src_tags[:]
 
@@ -88,7 +88,7 @@ class qa_int_to_int64 (gr_unittest.TestCase):
 
         src_data = [int(x) for x in range(16)]
         src_data_int = [int(x) for x in range(16)]
-        expected_result = tuple(src_data_int)
+        expected_result = src_data_int
 
         src = blocks.vector_source_i((3,1,4))
         dst = flaress.vector_sink_int64()
@@ -105,7 +105,7 @@ class qa_int_to_int64 (gr_unittest.TestCase):
        
         src_data = [int(x) for x in range(16)]
         src_data_int = [int(x) for x in range(16)]
-        expected_result = tuple(src_data_int)
+        expected_result = src_data_int
 
         src = blocks.vector_source_i(src_data, True)
         dst = flaress.vector_sink_int64()

@@ -6,7 +6,7 @@
 
 from gnuradio import gr, gr_unittest
 from gnuradio import blocks
-import flaress_swig as flaress
+from gnuradio import flaress
 import runner, pmt, math
 
 class qa_multiply_xx (gr_unittest.TestCase):
@@ -22,11 +22,10 @@ class qa_multiply_xx (gr_unittest.TestCase):
 
         src_data1 = [int(x) for x in range(16)]
         src_data2 = [int(x) for x in range(16)]
-        expected_result_temp = []
 
+        expected_result = []
         for i in range(0, len(src_data1)): 
-            expected_result_temp.append(src_data1[i] * src_data2[i])
-        expected_result = tuple(expected_result_temp)
+            expected_result.append(src_data1[i] * src_data2[i])
 
         src1 = flaress.vector_source_int64(src_data1)
         src2 = flaress.vector_source_int64(src_data2)
@@ -46,11 +45,10 @@ class qa_multiply_xx (gr_unittest.TestCase):
 
         src_data1 = [float(x) for x in range(16)]
         src_data2 = [float(x) for x in range(16)]
-        expected_result_temp = []
 
+        expected_result = []
         for i in range(0, len(src_data1)): 
-            expected_result_temp.append(src_data1[i] * src_data2[i])
-        expected_result = tuple(expected_result_temp)
+            expected_result.append(src_data1[i] * src_data2[i])
 
         src1 = flaress.vector_source_double(src_data1)
         src2 = flaress.vector_source_double(src_data2)
@@ -72,11 +70,10 @@ class qa_multiply_xx (gr_unittest.TestCase):
         src_data1 = [float(x) for x in range(16)]
         src_data2 = [float(x) for x in range(16)]
         src_data3 = [float(x) for x in range(16)]
-        expected_result_temp = []
 
+        expected_result = []
         for i in range(0, len(src_data1)): 
-            expected_result_temp.append(src_data1[i] * src_data2[i] * src_data3[i])
-        expected_result = tuple(expected_result_temp)
+            expected_result.append(src_data1[i] * src_data2[i] * src_data3[i])
 
         src1 = flaress.vector_source_double(src_data1)
         src2 = flaress.vector_source_double(src_data2)
@@ -99,11 +96,10 @@ class qa_multiply_xx (gr_unittest.TestCase):
         src_data1 = [int(x) for x in range(16)]
         src_data2 = [int(x) for x in range(16)]
         src_data3 = [int(x) for x in range(16)]
-        expected_result_temp = []
 
+        expected_result = []
         for i in range(0, len(src_data1)): 
-            expected_result_temp.append(src_data1[i] * src_data2[i] * src_data3[i])
-        expected_result = tuple(expected_result_temp)
+            expected_result.append(src_data1[i] * src_data2[i] * src_data3[i])
 
         src1 = flaress.vector_source_int64(src_data1)
         src2 = flaress.vector_source_int64(src_data2)
@@ -119,7 +115,6 @@ class qa_multiply_xx (gr_unittest.TestCase):
         self.tb.run()
         result_data = dst.data()
         self.assertEqual(expected_result, result_data)
-
 
 
 if __name__ == '__main__':
