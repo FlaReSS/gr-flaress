@@ -7,7 +7,7 @@
 from gnuradio import gr, gr_unittest
 from gnuradio import blocks
 import runner
-import flaress_swig as flaress
+from gnuradio import flaress
 
 class qa_null_source_sink (gr_unittest.TestCase):
 

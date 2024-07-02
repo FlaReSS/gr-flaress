@@ -6,7 +6,7 @@
 
 from gnuradio import gr, gr_unittest
 from gnuradio import blocks
-import flaress_swig as flaress
+from gnuradio import flaress
 import runner, pmt, math
 
 class qa_sub_xx (gr_unittest.TestCase):

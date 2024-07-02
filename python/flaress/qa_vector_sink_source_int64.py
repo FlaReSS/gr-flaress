@@ -6,7 +6,7 @@
 
 from gnuradio import gr, gr_unittest
 from gnuradio import blocks
-import flaress_swig as flaress
+from gnuradio import flaress
 import runner, pmt, math
 
 def make_tag(key, value, offset, srcid=None):

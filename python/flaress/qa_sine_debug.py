@@ -5,7 +5,7 @@
 #
 
 from gnuradio import gr, gr_unittest
-import flaress_swig as flaress
+from gnuradio import flaress
 from sine_debug import sine_debug
 import runner, time, math
 import numpy as np

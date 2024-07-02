@@ -10,7 +10,7 @@ from gnuradio.fft import window
 from gnuradio.filter import firdes
 from collections import namedtuple
 from gnuradio import filter
-import flaress_swig as flaress
+from gnuradio import flaress
 from snr_estimator_cf import snr_estimator_cf
 from snr_estimator_cfv import snr_estimator_cfv
 import runner, math

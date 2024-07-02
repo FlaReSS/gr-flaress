@@ -5,7 +5,7 @@
 #
 
 from gnuradio import gr, gr_unittest
-import flaress_swig as flaress
+from gnuradio import flaress
 import runner, threading, time
 from gnuradio import blocks, analog
 
