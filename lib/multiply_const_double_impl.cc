@@ -63,7 +63,7 @@ namespace gr
       const double *in = (const double *)input_items[0];
       double *out = (double *)output_items[0];
 
-      for (int j = 0; j < (noutput_items * d_vlen); j++)
+      for (size_t j = 0; j < (noutput_items * d_vlen); j++)
       {
         out[j] = in[j] * d_k;
       }

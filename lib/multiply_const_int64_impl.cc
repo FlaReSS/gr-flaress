@@ -64,7 +64,7 @@ namespace gr {
       const int64_t *in = (const int64_t *)input_items[0];
       int64_t *out = (int64_t *)output_items[0];
 
-      for (int j = 0; j < (noutput_items * d_vlen); j++)
+      for (size_t j = 0; j < (noutput_items * d_vlen); j++)
       {
         out[j] = in[j] * d_k;
       }

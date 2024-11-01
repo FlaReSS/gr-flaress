@@ -53,7 +53,7 @@
     const int *in = (const int *)input_items[0];
     int64_t *out = (int64_t *)output_items[0];
 
-    for (int i = 0; i < noutput_items * d_vlen; i++){
+    for (size_t i = 0; i < noutput_items * d_vlen; i++){
       out[i] = int64_t(d_scale) * int64_t(in[i]);
     }
     return noutput_items;

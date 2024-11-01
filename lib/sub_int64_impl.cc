@@ -61,7 +61,7 @@ namespace gr {
       const int64_t *in1 = (const int64_t *)input_items[0];
       const int64_t *in2 = (const int64_t *)input_items[1];
 
-      for (int j = 0; j < (noutput_items * d_vlen); j++)
+      for (size_t j = 0; j < (noutput_items * d_vlen); j++)
       {
         out[j] = in1[j] - in2[j];
       }

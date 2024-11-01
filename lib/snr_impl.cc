@@ -43,15 +43,16 @@ namespace gr {
         : gr::sync_block("snr",
                          gr::io_signature::make(1, 1, sizeof(float) * nintems),
                          gr::io_signature::make(1, 1, sizeof(float))),
-          d_nintems(nintems), d_auto_carrier(auto_carrier),
-          d_samp_rate(samp_rate), d_carrier(carrier),
+          d_carrier(carrier),
+          d_auto_carrier(auto_carrier),
           d_all_spectrum(all_spectrum),
+          d_samp_rate(samp_rate),
           d_freq_central_index((freq_central / samp_rate * nintems) + (nintems / 2)),
+          d_nintems(nintems),
+          d_nintems_half(nintems / 2),
           signal_item_offset((signal_bw / samp_rate) * (nintems / 4)),
           noise_item_offset((noise_bw / samp_rate) * (nintems / 4))
     {
-
-      d_nintems_half = nintems / 2;
       
       signal_bw_items = signal_item_offset * 2;
 

@@ -61,7 +61,7 @@ namespace gr {
       const double *in1 = (const double *)input_items[0];
       const double *in2 = (const double *)input_items[1];
 
-      for (int j = 0; j < (noutput_items * d_vlen); j++)
+      for (size_t j = 0; j < (noutput_items * d_vlen); j++)
       {
         out[j] = in1[j] - in2[j];
       }

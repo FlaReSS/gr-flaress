@@ -58,12 +58,11 @@ namespace gr {
         gr_vector_void_star &output_items)
     {
       int64_t *out = (int64_t *)output_items[0];
-      int noi = d_vlen * noutput_items;
 
       for (size_t i = 0; i < input_items.size(); i++)
       {
         int64_t *in = (int64_t *)input_items[i];
-        for (int j = 0; j < noutput_items * d_vlen; j++)
+        for (size_t j = 0; j < noutput_items * d_vlen; j++)
         {
           if (i == 0)
             out[j] = in[j];

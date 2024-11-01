@@ -64,8 +64,7 @@ namespace gr {
 
       for (size_t i = 1; i < input_items.size(); i++)
       {
-        int64_t *in = (int64_t *)input_items[i];
-        for (int j = 0; j < noutput_items * d_vlen; j++)
+        for (size_t j = 0; j < noutput_items * d_vlen; j++)
         {
           out[j] = in1[j] / in2[j];
         }

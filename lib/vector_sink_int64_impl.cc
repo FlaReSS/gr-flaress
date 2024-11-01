@@ -59,7 +59,7 @@ namespace gr {
     {
       std::vector<long int> d_data_cast;
       gr::thread::scoped_lock guard(d_data_mutex);
-      for(int i; i < d_data.size(); i++){
+      for(size_t i; i < d_data.size(); i++){
         d_data_cast.push_back( (long int) d_data[i]);
       }
       return d_data_cast;
